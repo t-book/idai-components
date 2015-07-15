@@ -4,7 +4,7 @@ Components library for use in other angular based dai projects.
 
 ## Versioning
 
-The current version is 0.1.0
+The current version is 0.1.x
 
 Additions are no problem, for API breaking changes, we count the middle digit
 one up and create a new branch.
