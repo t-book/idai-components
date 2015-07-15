@@ -66,11 +66,10 @@ describe ('arFooter', function() {
 		    element = $compile(element)(scope);
 		    scope.$digest();
 			$httpBackend.flush();
-			console.log(element)
 		});
 	};
 		
-	fit ('show german menu item',function(){
+	it ('show german menu item',function(){
 		prepare('de');
 		expect(element.find('p').eq(1).find('a').eq(0).text()).toBe("Impressum");
 	});

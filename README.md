@@ -2,10 +2,24 @@
 
 Components library for use in other angular based dai projects. 
 
-To build the library
+
+## Installation
+
+To build and test the library, these preparative steps are necessary:
 
 ```bash
 npm install
+npm install -g karma
+npm install -g karma-jasmine
+npm install -g karma-ng-html2js-preprocessor
+npm install -g karma@canary phantomjs karma-phantomjs-launcher
+```
+
+## Building the library
+
+To build the library
+
+```bash
 ./build.sh
 ```
 
@@ -45,6 +59,13 @@ every call to
 will result in an update of the content shown by the server, 
 based on your edited library code from "src".
 
+## Testing the library
+
+To test the library, execute
+
+```bash
+karma start test/karma.conf.js
+````
 
 
 
