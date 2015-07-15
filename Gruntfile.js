@@ -7,7 +7,7 @@ module.exports = function(grunt) {
 	                livereload: '<%= connect.server.options.livereload %>'
 	            },
 	            files: [
-	                'dest/idai-components.min.js'
+	                'dest/idai-components-*.min.js'
 	            ]
 	        }
 	    },
@@ -31,7 +31,7 @@ module.exports = function(grunt) {
 		uglify: {
 		    my_target: {
 		      files: {
-		        'dest/idai-components.min.js': [
+		        'dest/idai-components-0.1.0.min.js': [
 					'dest/templates.seded.js',
 					'src/js/modules.js',
 					'src/js/**/services_*.js',
