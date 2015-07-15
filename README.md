@@ -2,6 +2,18 @@
 
 Components library for use in other angular based dai projects. 
 
+## Versioning
+
+The current version is 0.1.0
+Additions are no problem, for API breaking changes, we count the middle digit
+one up and create a new branch.
+
+## Usage in other projects
+
+Just copy the file to your project and link the source idai-components-[version].min.js 
+from the index.html
+of your project. Do this after the angular link and before the links to your application 
+scripts, which make use of the library.
 
 ## Installation
 
@@ -26,7 +38,7 @@ To build the library
 This will result in a file
 
 ```bash
-dest/idai-components.min.js
+dest/idai-components-[version].min.js
 ```
 
 This file contains all the contents (js as well as html) from below the "src" directory.
@@ -49,7 +61,7 @@ js/**/*.js
 and includes the minified library.
 
 To reflect your libraries changes as you write them, the
-server watches dest/idai-components.min.js continuosly and
+server watches dest/idai-components-[version].min.js continuosly and
 every call to
 
 ```bash
