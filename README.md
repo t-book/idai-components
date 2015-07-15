@@ -17,7 +17,7 @@ dest/idai-components.min.js
 
 This file contains all the contents (js as well as html) from below the "src" directory.
 
-## Demo application
+## Demo application and development
 
 For easy development, you can start a grunt server
 
@@ -36,7 +36,13 @@ and includes the minified library.
 
 To reflect your libraries changes as you write them, the
 server watches dest/idai-components.min.js continuosly and
-each call to ./build.sh will result in an update of the content shown by the server, 
+each call to
+
+```bash
+./build.sh 
+```
+
+will result in an update of the content shown by the server, 
 based on your edited library code from "src".
 
 
