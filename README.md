@@ -36,7 +36,7 @@ and includes the minified library.
 
 To reflect your libraries changes as you write them, the
 server watches dest/idai-components.min.js continuosly and
-each call to
+every call to
 
 ```bash
 ./build.sh 
