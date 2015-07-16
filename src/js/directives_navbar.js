@@ -13,8 +13,8 @@ angular.module('idai.directives')
 			restrict: 'E',
 			scope: {
 
-				openLoginModal_ : '&',
-				logout : '&'
+				loginFunction : '&',
+				logoutFunction : '&'
 
 			},
 			templateUrl: 'partials/directives/ar-navbar.html',
