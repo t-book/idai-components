@@ -8,7 +8,7 @@ The current version is 0.1.x
 
 For functional additions to the library, the last digit gets incremented.
 
-For API breaking changes, increment the middle digit and create a new branch.
+For API breaking changes, we increment the middle digit and create a new branch.
 
 ## Usage in other projects
 
