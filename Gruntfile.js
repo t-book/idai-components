@@ -7,7 +7,9 @@ module.exports = function(grunt) {
 	                livereload: '<%= connect.server.options.livereload %>'
 	            },
 	            files: [
-	                'dest/idai-components-*.min.js'
+	                'dest/idai-components-*.min.js',
+		            'js/app.js',
+		            'index.html'
 	            ]
 	        }
 	    },
