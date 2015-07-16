@@ -52,12 +52,7 @@
                     </a>
                     <ul class="dropdown-menu" role="menu"
                         style="margin-top:-6px;">
-                        <li>
-                            <a href="catalog">
-                                <span style="color: rgb(66,139,202)" class="glyphicon glyphicon-inbox"></span>
-                                &nbsp;{{transl8;'navbar_manage_catalogs' | transl8}}
-                            </a>
-                        </li>
+                        <span ng-transclude></span ng-transclude>
                         <li class="divider"></li>
                         <li>
                             <a ng-click="logoutFunction();" style="cursor:pointer;">

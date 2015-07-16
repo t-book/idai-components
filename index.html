@@ -15,9 +15,14 @@
         idai.compontents: ar-footer (using language,languageSelection,localizedContent,transl8):
         <idai-navbar 
 			content-dir="static" 
-			login-function=""
-			logout-function=""
-			user_=""></idai-navbar>
+			login-function="openLoginModal()"
+			logout-function="logout()"
+			user_="user"> <li>
+                            <a href="catalog">
+                                <span style="color: rgb(66,139,202)" class="glyphicon glyphicon-inbox"></span>
+                                &nbsp;{{transl8;'navbar_manage_catalogs' | transl8}}
+                            </a>
+                        </li></idai-navbar>
 		idai.compontents: ar-footer (using language,languageSelection,localizedContent,transl8):
 		<idai-footer content-dir="static"></idai-footer>
 	</div>

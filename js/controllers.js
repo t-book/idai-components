@@ -7,7 +7,7 @@ angular.module('sampleApp.controllers',[])
 .controller('MenuController',	[ '$scope', '$location', '$window',
 	function ($scope, $location, $window) {
 
-		$scope.user = {}
+		$scope.user = {username:"daniel"};
 
 		$scope.currentPath = $location.path();
 		$scope.$on("$locationChangeSuccess", function() {
