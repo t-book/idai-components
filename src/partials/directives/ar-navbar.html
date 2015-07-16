@@ -42,12 +42,12 @@
             <li>
 
                 <!-- user menu if logged in -->
-                <div ng-if="user.username" dropdown ng-cloak
+                <div ng-if="user_.username" dropdown ng-cloak
                      class="btn-group btn-group-sm"
                      style="margin-top:2px; padding-left:20px; margin-right:30px;">
                     <a href="bookmarks" class="btn btn-default navbar-btn dropdown-toggle">
                         <span class="glyphicon glyphicon-user"></span>
-                        &nbsp;{{user.username}}
+                        &nbsp;{{user_.username}}
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" role="menu"
@@ -68,13 +68,13 @@
                 </div>
 
                 <!-- login and register if not logged in -->
-                <div ng-if="!user.username" ng-cloak
+                <div ng-if="!user_.username" ng-cloak
                      class="btn-group btn-group-sm"
                      style="margin-top:2px; padding-left:20px; margin-right:30px;">
                     <a  type="button" class="btn btn-primary navbar-btn" ng-click="loginFunction();">
                         <span class="glyphicon glyphicon-log-in"></span> &nbsp;{{transl8;'navbar_sign_in' | transl8}}
                     </a>
-                    <a ng-if="!user.username" class="btn btn-default navbar-btn" href="register">
+                    <a ng-if="!user_.username" class="btn btn-default navbar-btn" href="register">
                         {{transl8;'navbar_sign_up' | transl8}}
                     </a>
                 </div>

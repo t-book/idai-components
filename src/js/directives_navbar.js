@@ -13,6 +13,7 @@ angular.module('idai.directives')
 			restrict: 'E',
 			scope: {
 
+				user_ : '=',
 				loginFunction : '&',
 				logoutFunction : '&'
 
