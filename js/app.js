@@ -1,9 +1,10 @@
 'use strict';
 
-angular.module('arachne',[
+angular.module('sampleApp',[
 	'templates-main',	
 	'ngRoute',
 	'idai.services',
 	'idai.filters',
 	'idai.directives',
+	'sampleApp.controllers'
 ]);

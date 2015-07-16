@@ -8,7 +8,7 @@ module.exports = function(grunt) {
 	            },
 	            files: [
 	                'dest/idai-components-*.min.js',
-		            'js/app.js',
+		            'js/**/*.js',
 		            'index.html'
 	            ]
 	        }

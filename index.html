@@ -1,4 +1,4 @@
-<html lang="en" ng-app="arachne">
+<html lang="en" ng-app="sampleApp">
 <head>
 	
 	<base id="baseLink" href="/">
@@ -11,17 +11,19 @@
 
 </head>
 	
-	<body>
+	<body ng-controller="MenuController">
         idai.compontents: ar-footer (using language,languageSelection,localizedContent,transl8):
-        <ar-navbar content-dir="static"></ar-navbar>
+        <ar-navbar content-dir="static" open-login-modal_="openLoginModal();"></ar-navbar>
 		idai.compontents: ar-footer (using language,languageSelection,localizedContent,transl8):
 		<ar-footer content-dir="static"></ar-footer>
 	</div>
 
 	<script src="node_modules/angular/angular.min.js"></script>
 	<script src="node_modules/angular-route/angular-route.min.js"></script>
+    <script src="node_modules/angular-ui-bootstrap/ui-bootstrap.min.js"></script>
 
 	<script src="dest/idai-components-0.1.0.min.js"></script>
+    <script src="js/controllers.js"></script>
 	<script src="js/app.js"></script>
 </body>
 </html>

@@ -16,6 +16,7 @@
     "angular-mocks": "~1.4.3"
   },
   "dependencies": {
-    "angular": "~1.4.3"
+    "angular": "~1.4.3",
+    "angular-ui-bootstrap": "^0.12.1"
   }
 }

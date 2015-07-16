@@ -11,7 +11,12 @@ angular.module('idai.directives')
 	.directive('arNavbar', function() {
 		return {
 			restrict: 'E',
-			scope: {},
+			scope: {
+
+				openLoginModal_ : '&',
+				logout : '&'
+
+			},
 			templateUrl: 'partials/directives/ar-navbar.html',
 			controller: [ '$scope', '$http', 'localizedContent', '$location',
 				function($scope,$http, localizedContent, $location) {
@@ -33,7 +38,6 @@ angular.module('idai.directives')
 							$location.url(url);
 						}
 					}
-
 				}],
 			link: function(scope,element,attrs){
 				scope.getNavbarLinks(attrs.contentDir);
