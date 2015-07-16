@@ -63,7 +63,7 @@ describe ('Ar-Navbar', function() {
 		    scope = $rootScope.$new();
 			$templateCache.put();
 		    element =
-		        '<ar-navbar content-dir="static"></ar-navbar>';
+		        '<idai-navbar content-dir="static"></idai-navbar>';
 
 		    scope.size = 100;
 		    element = $compile(element)(scope);

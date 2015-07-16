@@ -7,7 +7,7 @@ angular.module('idai.directives')
  * @author: Daniel M. de Oliveira
  */
 
-.directive('arFooter', function() {
+.directive('idaiFooter', function() {
 return {
 	restrict: 'E',
 	scope: {},

@@ -60,7 +60,7 @@ describe ('arFooter', function() {
 		    scope = $rootScope.$new();
 			$templateCache.put();
 		    element =
-		        '<ar-footer content-dir="static"></ar-footer>';
+		        '<idai-footer content-dir="static"></idai-footer>';
 
 		    scope.size = 100;
 		    element = $compile(element)(scope);

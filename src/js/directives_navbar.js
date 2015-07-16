@@ -8,7 +8,7 @@ angular.module('idai.directives')
  * @author: Daniel M. de Oliveira
  */
 
-	.directive('arNavbar', function() {
+	.directive('idaiNavbar', function() {
 		return {
 			restrict: 'E',
 			scope: {
