@@ -37,7 +37,7 @@
                 <a href="info/{{link.id}}">{{link.title}}</a>
             </li>
 
-            <li><a href="contact">{{'navbar_contact' | transl8}}</a></li>
+            <li><a href="contact">{{transl8;'navbar_contact' | transl8}}</a></li>
 
             <li>
 
@@ -55,13 +55,13 @@
                         <li>
                             <a href="catalog">
                                 <span style="color: rgb(66,139,202)" class="glyphicon glyphicon-inbox"></span>
-                                &nbsp;{{'navbar_manage_catalogs' | transl8}}
+                                &nbsp;{{transl8;'navbar_manage_catalogs' | transl8}}
                             </a>
                         </li>
                         <li class="divider"></li>
                         <li>
                             <a ng-click="logout()" style="cursor:pointer;">
-                                <span class="glyphicon glyphicon-log-out"></span> &nbsp;{{'navbar_sign_out' | transl8}}
+                                <span class="glyphicon glyphicon-log-out"></span> &nbsp;{{transl8;'navbar_sign_out' | transl8}}
                             </a>
                         </li>
                     </ul>
@@ -72,10 +72,10 @@
                      class="btn-group btn-group-sm"
                      style="margin-top:2px; padding-left:20px; margin-right:30px;">
                     <a  type="button" class="btn btn-primary navbar-btn" ng-click="openLoginModal_()">
-                        <span class="glyphicon glyphicon-log-in"></span> &nbsp;{{'navbar_sign_in' | transl8}}
+                        <span class="glyphicon glyphicon-log-in"></span> &nbsp;{{transl8;'navbar_sign_in' | transl8}}
                     </a>
                     <a ng-if="!user.username" class="btn btn-default navbar-btn" href="register">
-                        {{'navbar_sign_up' | transl8}}
+                        {{transl8;'navbar_sign_up' | transl8}}
                     </a>
                 </div>
 
