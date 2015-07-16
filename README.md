@@ -6,8 +6,9 @@ Components library for use in other angular based dai projects.
 
 The current version is 0.1.x
 
-Additions are no problem, for API breaking changes, we count the middle digit
-one up and create a new branch.
+For functional additions to the library, the last digit gets incremented.
+
+For API breaking changes, we increment the middle digit and create a new branch.
 
 ## Usage in other projects
 
