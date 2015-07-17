@@ -8,26 +8,7 @@
     {
       "id": "navbar",
       "children":[
-	      {
-	        "id": "faq",
-	        "title": {
-	          "de": "FAQ"
-	        }
-	      },
-	      {
-	        "id": "apis",
-	        "title": {
-	          "de": "Schnittstellen",
-			  "en": "APIs"
-	        }
-	      },
-      {
-        "id": "order",
-        "title": {
-		  "en": "License / Order",
-          "de": "Lizenz / Bestellungen"
-        }
-      },
+	 
       {
         "id": "about",
         "title": {
