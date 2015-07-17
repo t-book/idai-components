@@ -11,7 +11,7 @@
  * 
  * Author: Daniel M. de Oliveira
  */
-describe ('Ar-Navbar', function() {
+describe ('idaiNavbar', function() {
 
 	var scope = {};
 
@@ -43,10 +43,10 @@ describe ('Ar-Navbar', function() {
 		
 		inject(function($rootScope, $compile, $templateCache,$httpBackend) {
 			
-			template = $templateCache.get('partials/directives/ar-navbar.html');
-			$templateCache.put('app/partials/directives/ar-navbar.html',template);
+			template = $templateCache.get('partials/directives/idai-navbar.html');
+			$templateCache.put('app/partials/directives/idai-navbar.html',template);
 			
-			$httpBackend.expectGET('static/content.json').respond(200,'{\
+			$httpBackend.expectGET('info/content.json').respond(200,'{\
 				"id": "",\
 				"children": [\
 				{\
@@ -63,7 +63,7 @@ describe ('Ar-Navbar', function() {
 		    scope = $rootScope.$new();
 			$templateCache.put();
 		    element =
-		        '<idai-navbar content-dir="static"></idai-navbar>';
+		        '<idai-navbar></idai-navbar>';
 
 		    scope.size = 100;
 		    element = $compile(element)(scope);
@@ -74,12 +74,12 @@ describe ('Ar-Navbar', function() {
 	
 	it ('show german menu item',function(){
 		prepare('de');
-		expect(element.find('ul').find('li').eq(0).find('a').text()).toBe("Über Arachne");
+		expect(element.find('ul').eq(2).find('li').find('a').eq(0).text()).toBe("Über Arachne");
 	});
 	
 		
 	it ('show english menu item',function(){
 		prepare('en');
-		expect(element.find('ul').find('li').eq(0).find('a').text()).toBe("About Arachne");
+		expect(element.find('ul').eq(2).find('li').find('a').eq(0).text()).toBe("About Arachne");
 	});
 });

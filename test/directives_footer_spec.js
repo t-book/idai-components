@@ -12,7 +12,7 @@
  * 
  * Author: Daniel M. de Oliveira
  */
-describe ('arFooter', function() {
+describe ('idaiFooter', function() {
 
 	var scope = {};
 
@@ -39,10 +39,10 @@ describe ('arFooter', function() {
 		
 		inject(function($rootScope, $compile, $templateCache,$httpBackend) {
 			
-			template = $templateCache.get('partials/directives/ar-footer.html');
-			$templateCache.put('app/partials/directives/ar-footer.html',template);
+			template = $templateCache.get('partials/directives/idai-footer.html');
+			$templateCache.put('app/partials/directives/idai-footer.html',template);
 			
-			$httpBackend.expectGET('static/content.json').respond(200,'{\
+			$httpBackend.expectGET('info/content.json').respond(200,'{\
 				"id": "",\
 				"children": [\
 				{"id":"header"},\
@@ -60,7 +60,7 @@ describe ('arFooter', function() {
 		    scope = $rootScope.$new();
 			$templateCache.put();
 		    element =
-		        '<idai-footer content-dir="static"></idai-footer>';
+		        '<idai-footer></idai-footer>';
 
 		    scope.size = 100;
 		    element = $compile(element)(scope);

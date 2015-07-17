@@ -18,7 +18,7 @@ angular.module('idai.directives')
 				logoutFunction : '&'
 
 			},
-			templateUrl: 'partials/directives/ar-navbar.html',
+			templateUrl: 'partials/directives/idai-navbar.html',
 			controller: [ '$scope', '$http', 'localizedContent', '$location',
 				function($scope,$http, localizedContent, $location) {
 

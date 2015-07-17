@@ -11,7 +11,7 @@ angular.module('idai.directives')
 return {
 	restrict: 'E',
 	scope: {},
-	templateUrl: 'partials/directives/ar-footer.html',
+	templateUrl: 'partials/directives/idai-footer.html',
 	controller: [ '$scope', '$http', 'localizedContent', 
 		function($scope,$http, localizedContent) {
 		$scope.getFooterLinks = function(contentDir){
