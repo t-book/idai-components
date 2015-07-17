@@ -23,7 +23,7 @@ angular.module('idai.directives')
 				function($scope,$http, localizedContent, $location) {
 
 					$scope.getNavbarLinks = function(contentDir){
-						$http.get(contentDir+'/content.json').success(function(data){
+						$http.get('info/content.json').success(function(data){
 							var navbarLinks = localizedContent.getNodeById(data,'navbar');
 							if (navbarLinks==undefined) {console.log('error: no navbarLinks found');}
 							localizedContent.reduceTitles(navbarLinks)
