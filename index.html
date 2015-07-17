@@ -12,19 +12,16 @@
 </head>
 	
 	<body ng-controller="MenuController">
-        idai.compontents: ar-footer (using language,languageSelection,localizedContent,transl8):
-        <idai-navbar 
+
+       <idai-navbar 
 			content-dir="static" 
 			login-function="openLoginModal()"
 			logout-function="logout()"
-			user_="user"> <li>
-                            <a href="catalog">
-                                <span style="color: rgb(66,139,202)" class="glyphicon glyphicon-inbox"></span>
-                                &nbsp;{{transl8;'navbar_manage_catalogs' | transl8}}
-                            </a>
-                        </li></idai-navbar>
-		idai.compontents: ar-footer (using language,languageSelection,localizedContent,transl8):
+			user_="user"></idai-navbar>
+	
 		<idai-footer content-dir="static"></idai-footer>
+		abc
+			
 	</div>
 
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
