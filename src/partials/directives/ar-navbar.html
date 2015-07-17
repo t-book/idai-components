@@ -54,13 +54,13 @@
             </li>
 
             <!-- user menu if logged in -->
-            <li ng-if="user_.username" ng-cloak
+            <li ng-if="userObject.username" ng-cloak
                  class="btn-group btn-group-sm dropdown"
                  style="margin-top:2px; padding-left:20px; margin-right:5px;">
 
                     <a href="bookmarks" class="btn btn-default navbar-btn" class="dropdown-toogle" data-toggle="dropdown">
                     <span class="glyphicon glyphicon-user"></span>
-                    &nbsp;{{user_.username}}
+                    &nbsp;{{userObject.username}}
                     <span class="caret"></span>
                     </a>
 
@@ -81,13 +81,13 @@
             </li>
 
             <!-- login and register if not logged in -->
-            <li ng-if="!user_.username" ng-cloak
+            <li ng-if="!userObject.username" ng-cloak
                  class="btn-group btn-group-sm"
                  style="margin-top:2px;">
                 <a  type="button" class="btn btn-primary navbar-btn" ng-click="loginFunction();">
                     <span class="glyphicon glyphicon-log-in"></span> &nbsp;{{transl8;'navbar_sign_in' | transl8}}
                 </a>
-                <a ng-if="!user_.username" class="btn btn-default navbar-btn" href="register">
+                <a ng-if="!userObject.username" class="btn btn-default navbar-btn" href="register">
                     {{transl8;'navbar_sign_up' | transl8}}
                 </a>
             </li>
