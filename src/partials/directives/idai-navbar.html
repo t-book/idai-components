@@ -72,7 +72,7 @@
                     <li class="divider"></li>
                     <li>
                         <a ng-click="logoutFunction();" style="cursor:pointer;">
-                            <span class="glyphicon glyphicon-log-out"></span> &nbsp;{{transl8;'navbar_sign_out' | transl8}}
+                            <span class="glyphicon glyphicon-log-out"></span> &nbsp;{{'navbar_sign_out' | transl8}}
                         </a>
                     </li>
                 </ul>
@@ -85,10 +85,10 @@
                  class="btn-group btn-group-sm"
                  style="margin-top:2px;">
                 <a  type="button" class="btn btn-primary navbar-btn" ng-click="loginFunction();">
-                    <span class="glyphicon glyphicon-log-in"></span> &nbsp;{{transl8;'navbar_sign_in' | transl8}}
+                    <span class="glyphicon glyphicon-log-in"></span> &nbsp;{{'navbar_sign_in' | transl8}}
                 </a>
                 <a ng-if="!userObject.username" class="btn btn-default navbar-btn" href="register">
-                    {{transl8;'navbar_sign_up' | transl8}}
+                    {{'navbar_sign_up' | transl8}}
                 </a>
 				
 				<a type="button" href="contact" class="btn btn-default navbar-btn" style="padding:8px;"><span class="glyphicon glyphicon-envelope"></span></a>
