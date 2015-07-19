@@ -14,11 +14,5 @@
     "karma-phantomjs-launcher": "~0.2.0",
     "karma-html2js-preprocessor": "~0.1.0",
     "angular-mocks": "~1.4.3"
-  },
-  "dependencies": {
-    "angular": "~1.4.3",
-    "angular-ui-bootstrap": "^0.12.1",
-    "bootstrap": "^3.3.5",
-    "jquery": "^2.1.4"
   }
 }

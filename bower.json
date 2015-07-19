@@ -1,0 +1,16 @@
+{
+  "name": "idai-components",
+  "version": "0.1.0",
+  "homepage": "https://github.com/codarchlab/idai-components",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test"
+  ],
+  "dependencies": {
+	  "angular": "~1.4.3",
+	  "angular-bootstrap": "~0.13.0",
+	  "bootstrap": "~3.3.5"
+  }
+}

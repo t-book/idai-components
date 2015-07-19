@@ -3,9 +3,9 @@
         <div class="pull-left">
             <ul class="nav navbar-nav">
                 <li><img src="img/kleinergreif.png" style="height: 36px; margin-left: 16px; margin-top: 8px; width: 36px;"></img></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">iDAI.welt <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
+                <li class="dropdown" dropdown>
+                    <a href="#" dropdown-toggle class="dropdown-toggle" data-toggle="dropdown">iDAI.welt <b class="caret"></b></a>
+                    <ul class="dropdown-menu" dropdown-menu>
                         <li><a href="http://www.dainst.org/de/forschung/forschung-digital/idai.welt" target="_blank">Übersicht</a></li>
                         <li class="divider"></li>
                         <li><a href="https://gazetteer.dainst.org/" target="_blank">iDAI.gazetteer</a></li>
@@ -52,11 +52,11 @@
             </li>
 
             <!-- user menu if logged in -->
-            <li ng-if="userObject.username" ng-cloak
+            <li ng-if="userObject.username" ng-cloak dropdown
                  class="btn-group btn-group-sm dropdown"
                  style="margin-top:2px; padding-left:20px; margin-right:5px;">
 
-                    <a href="bookmarks" class="btn btn-default navbar-btn" class="dropdown-toogle" data-toggle="dropdown">
+                    <a href="bookmarks" class="btn btn-default navbar-btn" dropdown-toggle class="dropdown-toggle" data-toggle="dropdown">
                     <span class="glyphicon glyphicon-user"></span>
                     &nbsp;{{userObject.username}}
                     <span class="caret"></span>
@@ -64,7 +64,7 @@
 
 					
 
-                <ul class="dropdown-menu" role="menu"
+                <ul dropdown-menu class="dropdown-menu" role="menu"
                     style="margin-top:-6px;">
 
                     <div ng-include="'partials/navbar-menu.html'" include-replace></div>

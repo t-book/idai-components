@@ -23,6 +23,8 @@ To build and test the library, these preparative steps are necessary:
 
 ```bash
 npm install
+npm install -g bower
+bower install
 npm install -g karma
 npm install -g karma-jasmine
 npm install -g karma-ng-html2js-preprocessor
