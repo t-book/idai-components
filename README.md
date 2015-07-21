@@ -4,18 +4,15 @@ Components library for use in other angular based dai projects.
 
 ## Versioning
 
-The current version is 0.1.x
+The current version is 0.9.x
 
-For functional additions to the library, the last digit gets incremented.
+For functional additions to the library, the middle digit gets incremented.
 
-For API breaking changes, we increment the middle digit and create a new branch.
+For API breaking changes, we increment the first digit and create a new branch.
 
 ## Usage in other projects
 
-Just copy the file to your project and link the source idai-components-[version].min.js 
-from the index.html
-of your project. Do this after the angular link and before the links to your application 
-scripts, which make use of the library.
+Please visit this [page](docs/usage.md).
 
 ## Installation
 
