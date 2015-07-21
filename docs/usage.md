@@ -22,6 +22,8 @@ angular.module('sampleApp',[
 ]);
 ```
 
+Note: For an example on the usage of the library, just run "grunt server".
+
 ## The navbar and footer directives
 
 idai-navbar:
