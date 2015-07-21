@@ -45,7 +45,7 @@ describe ('idaiNavbar', function() {
 			
 			template = $templateCache.get('partials/directives/idai-navbar.html');
 			$templateCache.put('app/partials/directives/idai-navbar.html',template);
-			
+
 			$httpBackend.expectGET('info/content.json').respond(200,'{\
 				"id": "",\
 				"children": [\
@@ -58,7 +58,9 @@ describe ('idaiNavbar', function() {
 								"de": "Über Arachne",\
 								"en": "About Arachne"\
 							}}]}]}');
-			
+
+			$httpBackend.expectGET('partials/navbar-project.html').respond(200,'');
+
 			
 		    scope = $rootScope.$new();
 			$templateCache.put();
