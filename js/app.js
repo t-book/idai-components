@@ -2,7 +2,7 @@
 
 angular.module('sampleApp',[
 	'ui.bootstrap',
-	'templates-main',	
+	'idai.components',
 	'ngRoute',
 	'idai.services',
 	'idai.filters',

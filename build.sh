@@ -3,5 +3,5 @@
 
 rm dest/*js
 grunt html2js
-sed 's/\.\.\/src\/partials/partials/g' dest/templates.js > dest/templates.seded.js
+sed -e 's/\.\.\/src\/partials/partials/g' -e 's/templates-main/idai\.components/g' dest/templates.js > dest/templates.seded.js
 grunt uglify
