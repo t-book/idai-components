@@ -22,10 +22,6 @@ To build and test the library, these preparative steps are necessary:
 npm install
 npm install -g bower
 bower install
-npm install -g karma
-npm install -g karma-jasmine
-npm install -g karma-ng-html2js-preprocessor
-npm install -g karma@canary phantomjs karma-phantomjs-launcher
 ```
 
 ## Building the library
@@ -33,10 +29,10 @@ npm install -g karma@canary phantomjs karma-phantomjs-launcher
 To build the library
 
 ```bash
-./build.sh
+grunt
 ```
 
-This will result in a file
+This will run the tests and build the project which results in the file
 
 ```bash
 dest/idai-components-[version].min.js
@@ -52,7 +48,7 @@ For easy development, you can start a grunt server
 grunt server
 ```
 
-which serves a demo app on port 1234, which consists of 
+which serves a demo app on port 1235, which consists of 
 
 ```bash
 index.html
@@ -61,23 +57,15 @@ js/**/*.js
 
 and includes the minified library.
 
-To reflect your libraries changes as you write them, the
-server watches dest/idai-components-[version].min.js continuosly and
-every call to
-
-```bash
-./build.sh 
-```
-
-will result in an update of the content shown by the server, 
-based on your edited library code from "src".
+Changes to partials and js files will automatically trigger a
+rebuild and also a reload in active browser windows.
 
 ## Testing the library
 
 To test the library, execute
 
 ```bash
-karma start test/karma.conf.js
+grunt test
 ````
 
 
