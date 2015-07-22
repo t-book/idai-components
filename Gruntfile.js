@@ -5,8 +5,8 @@ module.exports = function(grunt) {
 		uglify: {
 		    dist: {
 				files: {
-					'dest/<%= pkg.name %>-<%= pkg.version %>.min.js': [
-						'dest/templates.js',
+					'dist/<%= pkg.name %>-<%= pkg.version %>.min.js': [
+						'dist/templates.js',
 						'src/js/modules.js',
 						'src/js/**/services_*.js',
 						'src/js/**/filters_*.js',
@@ -22,7 +22,7 @@ module.exports = function(grunt) {
 			},
 		    main: {
 		    	src: ['src/partials/directives/**/*.html'],
-		    	dest: 'dest/templates.js'
+		    	dest: 'dist/templates.js'
 		    },
 		},
 		karma: {
