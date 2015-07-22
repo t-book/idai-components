@@ -20,7 +20,7 @@ To build and test the library, these preparative steps are necessary:
 
 ```bash
 npm install
-npm install -g bower
+npm install -g bower grunt-cli
 bower install
 ```
 
