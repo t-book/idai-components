@@ -2,8 +2,8 @@
 
 angular.module('sampleApp',[
 	'ui.bootstrap',
-	'idai.components',
 	'ngRoute',
+	'templates-main',
 	'idai.services',
 	'idai.filters',
 	'idai.directives',

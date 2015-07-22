@@ -1,16 +1,51 @@
 module.exports = function(grunt) {
 
 	grunt.initConfig({
+		pkg: grunt.file.readJSON('package.json'),
+		uglify: {
+		    dist: {
+				files: {
+					'dest/<%= pkg.name %>-<%= pkg.version %>.min.js': [
+						'dest/templates.js',
+						'src/js/modules.js',
+						'src/js/**/services_*.js',
+						'src/js/**/filters_*.js',
+						'src/js/**/directives_*.js'
+					]
+				}
+		    }
+		},
+		html2js: {
+			options: {
+				watch: true,
+			},
+		    main: {
+		    	src: ['src/partials/directives/**/*.html'],
+		    	dest: 'dest/templates.js'
+		    },
+		},
+		karma: {
+			unit: {
+    			configFile: 'test/karma.conf.js',
+			},
+			//continuous integration mode: run tests once in PhantomJS browser.
+			continuous: {
+				configFile: 'test/karma.conf.js',
+				singleRun: true,
+				browsers: ['PhantomJS']
+			}
+		},
 		watch: {
 	        livereload: {
 	            options: {
 	                livereload: '<%= connect.server.options.livereload %>'
 	            },
 	            files: [
-	                'dest/idai-components-*.min.js',
+	                'src/partials/directives/**/*.html',
 		            'js/**/*.js',
 		            'index.html'
-	            ]
+	            ],
+	            tasks: ['uglify']
 	        }
 	    },
 		connect: {
@@ -20,38 +55,26 @@ module.exports = function(grunt) {
 					livereload: 35730
 				}
 			}
-		},
-		html2js: {
-		    options: {
-		      // custom options, see below
-		    },
-		    main: {
-		      src: ['src/partials/directives/**/*.html'],
-		      dest: 'dest/templates.js'
-		    },
-		  },
-		uglify: {
-		    my_target: {
-		      files: {
-		        'dest/idai-components-0.1.0.min.js': [
-					'dest/templates.seded.js',
-					'src/js/modules.js',
-					'src/js/**/services_*.js',
-					'src/js/**/filters_*.js',
-					'src/js/**/directives_*.js']
-		      }
-		    }
-		  }
+		}
 	});
 
-	grunt.loadNpmTasks('grunt-contrib-connect');
-	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-html2js');
+	grunt.loadNpmTasks('grunt-karma');
+	grunt.loadNpmTasks('grunt-contrib-connect');
+	grunt.loadNpmTasks('grunt-contrib-watch');
 
 	grunt.registerTask('server', [
+		'html2js',
+		'uglify',
 		'connect:server',
 		'watch'
     ]);
+
+    grunt.registerTask('build', ['html2js','uglify']);
+
+    grunt.registerTask('test', ['karma:unit','karma:continuous']);
+
+    grunt.registerTask('default', ['test', 'build']);
 
 };
