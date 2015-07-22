@@ -25,6 +25,16 @@ module.exports = function(grunt) {
 		    	dest: 'dist/templates.js'
 		    },
 		},
+		cssmin: {
+			target: {
+				files: [{
+					expand: true,
+					src: ['css/*.css'],
+					dest: 'dist/',
+					ext: '.min.css'
+				}]
+			}
+		},
 		karma: {
 			unit: {
     			configFile: 'test/karma.conf.js',
@@ -44,9 +54,10 @@ module.exports = function(grunt) {
 	            files: [
 	                'src/partials/directives/**/*.html',
 		            'js/**/*.js',
+		            'css/*.css',
 		            'index.html'
 	            ],
-	            tasks: ['uglify']
+	            tasks: ['uglify','cssmin']
 	        }
 	    },
 		connect: {
@@ -61,6 +72,7 @@ module.exports = function(grunt) {
 
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-html2js');
+	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-karma');
 	grunt.loadNpmTasks('grunt-contrib-connect');
 	grunt.loadNpmTasks('grunt-contrib-watch');
@@ -68,11 +80,12 @@ module.exports = function(grunt) {
 	grunt.registerTask('server', [
 		'html2js',
 		'uglify',
+		'cssmin',
 		'connect:server',
 		'watch'
     ]);
 
-    grunt.registerTask('build', ['html2js','uglify']);
+    grunt.registerTask('build', ['html2js','uglify','cssmin']);
 
     grunt.registerTask('test', ['karma:unit','karma:continuous']);
 
