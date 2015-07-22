@@ -18,6 +18,7 @@ module.exports = function(grunt) {
 		html2js: {
 			options: {
 				watch: true,
+				module: 'idai.templates'
 			},
 		    main: {
 		    	src: ['src/partials/directives/**/*.html'],
