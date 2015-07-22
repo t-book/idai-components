@@ -29,7 +29,7 @@ bower install
 To build the library
 
 ```bash
-grunt
+grunt build
 ```
 
 This will run the tests and build the project which results in the file
