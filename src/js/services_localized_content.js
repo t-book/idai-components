@@ -11,7 +11,7 @@
  * 
  * @author: Daniel M. de Oliveira
  */
-angular.module('idai.services')
+angular.module('idai.components')
 
 .factory('localizedContent',
 	['languageSelection', function(languageSelection) {

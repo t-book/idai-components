@@ -3,9 +3,7 @@
 angular.module('sampleApp',[
 	'ui.bootstrap',
 	'ngRoute',
+	'idai.components',
 	'idai.templates',
-	'idai.services',
-	'idai.filters',
-	'idai.directives',
 	'sampleApp.controllers'
 ]);

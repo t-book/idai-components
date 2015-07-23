@@ -1,7 +1,7 @@
 'use strict';
 
 /* Directives */
-angular.module('idai.directives')
+angular.module('idai.components')
 
 
 /**

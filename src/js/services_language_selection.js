@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('idai.services')
+angular.module('idai.components')
 
 /**
  * Given a language, determines by a

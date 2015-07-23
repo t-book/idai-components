@@ -15,10 +15,8 @@ Include these dependencies from within your main module:
 
 ```javascript
 angular.module('sampleApp',[
-	'idai.templates',
-	'idai.services',
-	'idai.filters',
-	'idai.directives',
+	'idai.components',
+	'idai.templates'
 ]);
 ```
 

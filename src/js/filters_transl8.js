@@ -1,7 +1,7 @@
 'use strict';
 
 /* Services */
-angular.module('idai.filters')
+angular.module('idai.components')
 
 /**
  * Author: Daniel M. de Oliveira

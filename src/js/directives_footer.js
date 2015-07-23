@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('idai.directives')
+angular.module('idai.components')
 
 
 /** 

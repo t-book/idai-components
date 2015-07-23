@@ -6,7 +6,7 @@
  *
  * @author: Daniel M. de Oliveira
  */
-angular.module('idai.services')
+angular.module('idai.components')
 .factory('transl8', ['$http', 'language', function($http, primaryBrowserLanguage) {
 
 	var ENGLISH_LANG='en';

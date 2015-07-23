@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('idai.services')
+angular.module('idai.components')
 
 /**
  * @return: the users primary browser language.
