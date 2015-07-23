@@ -9,6 +9,10 @@ body {
   font-family: 'Source Sans Pro', sans-serif;
 }
 
+a {
+  color: #37588e;
+}
+
 .navbar-default {
   background-color: rgba(85, 114, 161, 0.9);
 }
@@ -27,4 +31,10 @@ body {
 
 .navbar-default .text-primary {
   color: #ccc;
+}
+
+.idai-footer {
+  margin-top: 10px;
+  padding: 30px;
+  background-color: #e2e2e2;
 }
