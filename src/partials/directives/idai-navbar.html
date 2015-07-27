@@ -53,52 +53,50 @@
                 <a href="info/{{link.id}}">{{link.title}}</a>
             </li>
 
-            <!-- user menu if logged in -->
-            <li ng-if="userObject.username" ng-cloak dropdown
-                 class="btn-group btn-group-sm dropdown"
-                 style="margin-top:2px; padding-left:20px; margin-right:5px;">
+            <li>
+
+                <!-- user menu if logged in -->
+                <div ng-if="userObject.username" ng-cloak dropdown keyboard-nav
+                        class="btn-group btn-group-sm"
+                        style="margin-top:2px; padding-left:20px; margin-right:5px;">
 
                     <a href="bookmarks" class="btn btn-default navbar-btn" dropdown-toggle class="dropdown-toggle" data-toggle="dropdown">
-                    <span class="glyphicon glyphicon-user"></span>
-                    &nbsp;{{userObject.username}}
-                    <span class="caret"></span>
+                        <span class="glyphicon glyphicon-user"></span>
+                        &nbsp;{{userObject.username}}
+                        <span class="caret"></span>
                     </a>
+                    <ul dropdown-menu class="dropdown-menu" role="menu"
+                            style="margin-top:-6px;">
+                        <div ng-include="'partials/navbar-menu.html'" include-replace></div>
+                        <li class="divider"></li>
+                        <li>
+                            <a ng-click="logoutFunction();" style="cursor:pointer;">
+                                <span class="glyphicon glyphicon-log-out"></span> &nbsp;{{'navbar_sign_out' | transl8}}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
 
-					
+                <!-- login and register if not logged in -->
+                <div ng-if="!userObject.username" ng-cloak
+                     class="btn-group btn-group-sm"
+                     style="margin-top:2px;">
+                    <a type="button" class="btn btn-primary navbar-btn" ng-click="loginFunction();">
+                        <span class="glyphicon glyphicon-log-in"></span> &nbsp;{{'navbar_sign_in' | transl8}}
+                    </a>
+                    <a ng-if="!userObject.username" class="btn btn-default navbar-btn" href="register">
+                        {{'navbar_sign_up' | transl8}}
+                    </a>
+                </div>
 
-                <ul dropdown-menu class="dropdown-menu" role="menu"
-                    style="margin-top:-6px;">
-
-                    <div ng-include="'partials/navbar-menu.html'" include-replace></div>
-
-                    <li class="divider"></li>
-                    <li>
-                        <a ng-click="logoutFunction();" style="cursor:pointer;">
-                            <span class="glyphicon glyphicon-log-out"></span> &nbsp;{{'navbar_sign_out' | transl8}}
-                        </a>
-                    </li>
-                </ul>
-				
-				<a type="button" href="contact" class="btn btn-default navbar-btn" style="padding-top:6px; padding-bottom:4px;"><span class="glyphicon glyphicon-envelope"></span></a>
             </li>
 
-            <!-- login and register if not logged in -->
-            <li ng-if="!userObject.username" ng-cloak
-                 class="btn-group btn-group-sm"
-                 style="margin-top:2px;">
-                <a  type="button" class="btn btn-primary navbar-btn" ng-click="loginFunction();">
-                    <span class="glyphicon glyphicon-log-in"></span> &nbsp;{{'navbar_sign_in' | transl8}}
-                </a>
-                <a ng-if="!userObject.username" class="btn btn-default navbar-btn" href="register">
-                    {{'navbar_sign_up' | transl8}}
-                </a>
-				
-				<a type="button" href="contact" class="btn btn-default navbar-btn" style="padding-top:6px; padding-bottom:4px;"><span class="glyphicon glyphicon-envelope"></span></a>
-            </li>
-
-            <li style="margin-top:2px; margin-right:30px;">
-               
-				
+            <li style="margin-right:30px;">
+                <div>
+                    <a type="button" href="contact" class="btn btn-sm btn-default navbar-btn">
+                        <span class="glyphicon glyphicon-envelope"></span>
+                    </a>
+                </div>
             </li>
 				
         </ul>
