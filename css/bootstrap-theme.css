@@ -38,3 +38,13 @@ a {
   padding: 30px;
   background-color: #e2e2e2;
 }
+
+.form-control:focus {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  border-color: #89B5FF;
+}
+
+.form-control:focus ~ .input-group-btn .btn-default {
+  border: 1px solid #89B5FF;
+}
