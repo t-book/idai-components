@@ -33,6 +33,20 @@ a {
   color: #ccc;
 }
 
+.navbar-default a:hover .navbar-brand {
+  color: #fff;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+  background-color: rgba(119, 142, 180, 0.9);
+  color: #fff;
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
+  background-color: rgba(119, 142, 180, 0.9);
+  color: #fff;
+}
+
 .idai-footer {
   margin-top: 10px;
   padding: 30px;
