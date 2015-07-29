@@ -62,3 +62,17 @@ a {
 .form-control:focus ~ .input-group-btn .btn-default {
   border: 1px solid #89B5FF;
 }
+
+.small, small {
+  font-size: 90%;
+}
+
+.btn-primary {
+  background-color: #5283d2;
+  border-color: #4A76BD;
+}
+
+.btn-primary:hover {
+  background-color: #5572a1;
+  border-color: #4C6791;
+}
