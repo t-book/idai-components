@@ -76,3 +76,7 @@ a {
   background-color: #5572a1;
   border-color: #4C6791;
 }
+
+.btn-group-sm>.btn, .btn-sm {
+  font-size: 13px;
+}
