@@ -80,3 +80,14 @@ a {
 .btn-group-sm>.btn, .btn-sm {
   font-size: 13px;
 }
+
+.navbar .nav > li > .dropdown-menu:before {
+  content: '';
+  display: inline-block;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-bottom: 7px solid #fff;
+  position: absolute;
+  top: -7px;
+  left: 25px;
+}
