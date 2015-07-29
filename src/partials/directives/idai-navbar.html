@@ -56,16 +56,15 @@
 
                 <!-- user menu if logged in -->
                 <div ng-if="userObject.username" ng-cloak dropdown keyboard-nav
-                        class="btn-group btn-group-sm"
-                        style="margin-top:2px; padding-left:20px; margin-right:5px;">
+                        style="padding-left:20px; margin-right:5px;">
 
-                    <a href="bookmarks" class="btn btn-default navbar-btn" dropdown-toggle class="dropdown-toggle" data-toggle="dropdown">
+                    <a href="bookmarks" class="btn btn-default btn-sm navbar-btn" dropdown-toggle class="dropdown-toggle" data-toggle="dropdown">
                         <span class="glyphicon glyphicon-user"></span>
                         &nbsp;{{userObject.username}}
                         <span class="caret"></span>
                     </a>
                     <ul dropdown-menu class="dropdown-menu" role="menu"
-                            style="margin-top:-6px;">
+                            style="margin-top:-11px; margin-right: 4px;">
                         <div ng-include="'partials/navbar-menu.html'" include-replace></div>
                         <li class="divider"></li>
                         <li>
