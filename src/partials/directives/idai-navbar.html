@@ -55,8 +55,7 @@
             <li>
 
                 <!-- user menu if logged in -->
-                <div ng-if="userObject.username" ng-cloak dropdown keyboard-nav
-                        style="padding-left:20px; margin-right:5px;">
+                <div ng-if="userObject.username" ng-cloak dropdown keyboard-nav>
 
                     <a href="bookmarks" class="btn btn-default btn-sm navbar-btn" dropdown-toggle class="dropdown-toggle" data-toggle="dropdown">
                         <span class="glyphicon glyphicon-user"></span>
@@ -79,8 +78,11 @@
                 <div ng-if="!userObject.username" ng-cloak
                      class="btn-group btn-group-sm"
                      style="margin-top:2px;">
-                    <a type="button" class="btn btn-primary navbar-btn" ng-click="loginFunction();">
-                        <span class="glyphicon glyphicon-log-in"></span> &nbsp;{{'navbar_sign_in' | transl8}}
+                    <a type="button" class="btn btn-default navbar-btn" ng-click="loginFunction();">
+                        <b>
+                            <span class="glyphicon glyphicon-log-in"></span>
+                            &nbsp;{{'navbar_sign_in' | transl8}}
+                        </b>
                     </a>
                     <a ng-if="!userObject.username" class="btn btn-default navbar-btn" href="register">
                         {{'navbar_sign_up' | transl8}}
@@ -89,7 +91,7 @@
 
             </li>
 
-            <li style="margin-right:30px;">
+            <li style="margin-right:30px; margin-left: 5px;">
                 <div>
                     <a type="button" href="contact" class="btn btn-sm btn-default navbar-btn">
                         <span class="glyphicon glyphicon-envelope"></span>
