@@ -55,7 +55,7 @@ module.exports = function(grunt) {
 	            files: [
 	                'src/partials/directives/**/*.html',
 		            'js/**/*.js',
-		            'css/*.css',
+		            'src/css/*.css',
 		            'index.html'
 	            ],
 	            tasks: ['uglify','cssmin']
