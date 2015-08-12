@@ -63,10 +63,12 @@ info/content.json - navbar and footer links are created automatically from here,
 which also provides automatic localization. More on this topic can be found [here](localizable_content.md).
 
 
-Further required artifacts:
+Further required artifacts (which can be found in the local img folder of this repo):
 
 ```
-img/project-logo.png - your projects logo, will appear in the navbar.
-img/greif.gif - will appear in the footer
-img/siegel_unikoeln.gif - will appear in the footer
+img/kleinergreif.png - will appear in the navbar.
+img/logo_project.png - your projects logo, will appear in the navbar.
+img/logo_unikoeln.png - will appear in the footer
+img/logo_codarchlab.png - will appear in the footer
+img/logo_dai.png - will appear in the footer
 ```
