@@ -12,11 +12,10 @@ angular.module('idai.components')
 		return {
 			restrict: 'E',
 			scope: {
-
-				userObject : '=',
-				loginFunction : '&',
-				logoutFunction : '&'
-
+				userObject: '=',
+				loginFunction: '&',
+				logoutFunction: '&',
+				hideSearchForm: '='
 			},
 			templateUrl: 'partials/directives/idai-navbar.html',
 			controller: [ '$scope', '$http', 'localizedContent', '$location',
@@ -39,6 +38,7 @@ angular.module('idai.components')
 							$location.url(url);
 						}
 					}
+					
 				}],
 			link: function(scope,element,attrs){
 				scope.getNavbarLinks(attrs.contentDir);
