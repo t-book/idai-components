@@ -8,9 +8,8 @@ module.exports = function(grunt) {
 					'dist/<%= pkg.name %>-<%= pkg.version %>.min.js': [
 						'dist/templates.js',
 						'src/js/modules.js',
-						'src/js/**/services_*.js',
-						'src/js/**/filters_*.js',
-						'src/js/**/directives_*.js'
+						'src/js/*.js',
+						'src/js/**/*.js'
 					]
 				}
 		    }
@@ -54,6 +53,7 @@ module.exports = function(grunt) {
 	            },
 	            files: [
 	                'src/partials/directives/**/*.html',
+	                'js/*.js',
 		            'js/**/*.js',
 		            'src/css/*.css',
 		            'index.html'
