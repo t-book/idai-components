@@ -15,11 +15,12 @@ angular.module('idai.components')
 				userObject: '=',
 				loginFunction: '&',
 				logoutFunction: '&',
-				hideSearchForm: '='
+				hideSearchForm: '=',
+				projectId: '@'
 			},
 			templateUrl: 'partials/directives/idai-navbar.html',
 			controller: [ '$scope', '$http', 'localizedContent', '$location',
-				function($scope,$http, localizedContent, $location) {
+				function($scope, $http, localizedContent, $location) {
 
 					$scope.getNavbarLinks = function(contentDir){
 						$http.get('info/content.json').success(function(data){
