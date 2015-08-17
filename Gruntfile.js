@@ -2,10 +2,10 @@ module.exports = function(grunt) {
 
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
-		uglify: {
+		concat: {
 		    dist: {
 				files: {
-					'dist/<%= pkg.name %>-<%= pkg.version %>.min.js': [
+					'dist/<%= pkg.name %>.js': [
 						'dist/templates.js',
 						'src/js/modules.js',
 						'src/js/*.js',
@@ -58,7 +58,7 @@ module.exports = function(grunt) {
 		            'src/css/*.css',
 		            'index.html'
 	            ],
-	            tasks: ['uglify','cssmin']
+	            tasks: ['concat','cssmin']
 	        }
 	    },
 		connect: {
@@ -71,7 +71,7 @@ module.exports = function(grunt) {
 		}
 	});
 
-	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-html2js');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-karma');
@@ -80,13 +80,13 @@ module.exports = function(grunt) {
 
 	grunt.registerTask('server', [
 		'html2js',
-		'uglify',
+		'concat',
 		'cssmin',
 		'connect:server',
 		'watch'
     ]);
 
-    grunt.registerTask('build', ['html2js','uglify','cssmin']);
+    grunt.registerTask('build', ['html2js','concat','cssmin']);
 
     grunt.registerTask('test', ['karma:unit','karma:continuous']);
 
