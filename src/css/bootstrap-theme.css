@@ -3,7 +3,7 @@
  * Copyright 2011-2015 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
-@import url(////fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic&subset=latin,latin-ext);
+@import url(////fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic,700italic&subset=latin,latin-ext);
 
 body {
   font-family: 'Source Sans Pro',Arial,Helvetica,sans-serif;
@@ -90,4 +90,30 @@ a {
   position: absolute;
   top: -7px;
   left: 25px;
+}
+
+.loading {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin: 0 auto;
+  border-width: 1px;
+  border-style: solid;
+  border-color: transparent rgb(66,139,202) rgb(66,139,202) rgba(0,0,0,0);
+  border-radius: 10px;
+  -webkit-animation: spin 1.5s linear infinite;
+  animation: spin 1.5s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0%{-webkit-transform: rotate(0deg);}
+  100%{-webkit-transform: rotate(720deg);}
+}
+@keyframes spin {
+  0%{transform: rotate(0deg);}
+  100%{transform: rotate(720deg);}
 }

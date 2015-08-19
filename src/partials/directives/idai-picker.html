@@ -1,0 +1,39 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<form class="input-group">
+			<input type="text" ng-model="query" class="form-control"></input>
+			<span class="input-group-btn">
+				<button type="submit" ng-click="newQuery()" class="btn btn-default">
+					<span class="glyphicon glyphicon-search"></span>
+				</button>
+			</span>
+		</form>
+	</div>	
+	<div class="panel-body">
+		<div ng-show="loading" class="loading"></div>
+		<em ng-show="result && total == 0 && !loading">{{ 'picker_no_result' | transl8 }}</em>
+		<em ng-show="!result && total == 0 && !loading">{{ 'picker_perform_search' | transl8 }}</em>
+		<div ng-show="total > 0 && !loading" class="text-center small">
+			<b><i>{{ total | number }} {{ 'results' | transl8 }}</i></b>
+		</div>
+	</div>
+	<div class="list-group">
+		<a href="#" ng-repeat="item in result" class="list-group-item">
+			<div class="row">
+				<div class="col-sm-8">{{getTitleField(item)}}</div>
+				<div class="col-sm-4 text-right">
+					<button class="btn btn-link btn-xs" ng-click="open(item['@id'])"
+							style="padding:0px 5px 1px; border: 0;">
+						{{item['@id']}}
+						<span class="glyphicon glyphicon-new-window" style="font-size:0.8em"></span>
+					</button>
+				</div>
+			</div>
+		</a>
+		<a ng-show="total > offset + limit"
+				href="#" class="list-group-item text-center"
+				ng-click="more()">
+			...
+  		</a>
+	</div>
+</div>
