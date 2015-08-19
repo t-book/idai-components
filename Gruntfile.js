@@ -4,14 +4,12 @@ module.exports = function(grunt) {
 		pkg: grunt.file.readJSON('package.json'),
 		concat: {
 		    dist: {
-				files: {
-					'dist/<%= pkg.name %>.js': [
-						'dist/templates.js',
-						'src/js/modules.js',
-						'src/js/*.js',
-						'src/js/**/*.js'
-					]
-				}
+				src: [
+					'dist/templates.js',
+					'src/js/modules.js',
+					'src/js/**/*.js'
+				],
+				dest: 'dist/<%= pkg.name %>.js'				
 		    }
 		},
 		html2js: {
@@ -53,8 +51,7 @@ module.exports = function(grunt) {
 	            },
 	            files: [
 	                'src/partials/directives/**/*.html',
-	                'js/*.js',
-		            'js/**/*.js',
+		            'src/js/**/*.js',
 		            'src/css/*.css',
 		            'index.html'
 	            ],
