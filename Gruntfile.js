@@ -12,6 +12,15 @@ module.exports = function(grunt) {
 				dest: 'dist/<%= pkg.name %>.js'				
 		    }
 		},
+		uglify: {
+			dist: {
+				files: {
+					'dist/<%= pkg.name %>.min.js': [
+						'dist/<%= pkg.name %>.js'
+					]
+				}
+			}
+		},
 		html2js: {
 			options: {
 				watch: true,
@@ -69,6 +78,7 @@ module.exports = function(grunt) {
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-concat');
+	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-html2js');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-karma');
@@ -83,7 +93,7 @@ module.exports = function(grunt) {
 		'watch'
     ]);
 
-    grunt.registerTask('build', ['html2js','concat','cssmin']);
+    grunt.registerTask('build', ['html2js','concat','uglify','cssmin']);
 
     grunt.registerTask('test', ['karma:unit','karma:continuous']);
 
