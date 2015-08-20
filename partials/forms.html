@@ -1,0 +1,89 @@
+<div class="row">
+
+	<div class="col-md-12">
+
+		<h1>Form elements</h1>
+
+		<h2>Picker</h2>
+
+		<div class="row">
+			<div class="col-md-6">
+				<pre>
+&lt;idai-picker
+	search-uri="restEndpointUri"
+	selected-item="selectedItem"
+	result-field="resultField"
+	title-field="titleField"
+	total-field="totalField"
+	query-param="queryParam"
+	offset-param="offsetParam"
+	add-params="addParams"&gt;
+&lt;/idai-picker&gt;</pre>
+			</div>
+			<div class="col-md-6">
+				<p>
+					The picker directives allows to query a rest endpoint for a search result
+					and provides an interface for selecting one of the result items for use
+					in the current application.
+				</p>
+				<p>
+					It can be configured with the following attributes:
+				</p>
+				<ul>
+					<li>
+						<code>search-uri</code>: <b>required</b>, the base uri for the search
+						endpoint. This endpoint has to return search results in JSON format.
+					</li>
+					<li>
+						<code>selected-item</code>: A scope variable that gets set to the returned
+						object when the user selects an item in the search result.
+					</li>
+					<li>
+						<code>result-field</code>: The name or the path to the field whose value
+						represents the array of result items. <em>default: "result"</em>
+					</li>
+					<li>
+						<code>title-field</code>: The name or the path to the field whose value
+						represents the the title of a single item. <em>default: "title"</em>
+					</li>
+					<li>
+						<code>total-field</code>: The name or the path to the field whose value
+						represents the total number of items in the result. <em>default: "total"</em>
+					</li>
+					<li>
+						<code>query-param</code>: The name of the get parameter that is used to set
+						the search term. <em>default: "q"</em>
+					</li>
+					<li>
+						<code>offset-param</code>: The name of the get parameter that is used to set
+						the offset when paging search results. <em>default: "offset"</em>
+					</li>
+					<li>
+						<code>limit-param</code>: The name of the get parameter that is used to set
+						the limit when paging search results. <em>default: "limit"</em>
+					</li>
+					<li>
+						<code>add-param</code>: An object containing additional get parameters as keys and the respective values.
+					</li>
+				</ul>
+				<p>
+					<b>Note:</b> If the returned items include the attribute <code>@id</code> the URIs
+					given as values will be used to generate links to the original datasets.
+				</p>
+			</div>
+		</div>
+
+		<h3>Example</h3>
+		<div class="row">
+			<div class="col-md-4">
+				<h4>Search for a place in the iDAI.gazetteer:</h4>
+				<idai-picker search-uri="http://gazetteer.dainst.org/search" title-field="prefName.title" selected-item="selectedItem"></idai-picker>
+			</div>
+			<div class="col-md-8">
+				<h4>Selected Item:</h4>
+				<pre>{{ selectedItem | json }}</pre>
+			</div>
+		</div>
+
+	</div>
+</div>

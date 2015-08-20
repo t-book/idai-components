@@ -1,41 +1,47 @@
-
-  {
-    "id": "Overview",
-    "title": {
-      "de": "Inhalte"
-    }
-    ,"children": [
-    {
-      "id": "navbar",
-      "children":[
-	 
+{
+  "id": "Overview",
+  "title": {
+    "de": "Inhalte",
+    "en": "Content"
+  },
+  "children": [{
+    "id": "navbar",
+    "children": [
       {
-        "id": "about",
+        "id": "layout",
         "title": {
-          "de": "Über Arachne"
-        }
-      }
-	  
-	  
-	  
-      ]
-    },
-    {
-      "id": "footer",
-      "children": [
-      {
-        "id": "imprint",
-        "title": {
-		  "de": "Impressum",
-          "en": "Imprint"
+          "de": "Layout",
+          "en": "Layout"
         }
       },
       {
-        "id": "privacy",
+        "id": "i18n",
         "title": {
-          "de": "Datenschutz"
+          "de": "i18n",
+          "en": "i18n"
         }
-      }]
-    }
-  ]
+      },
+      {
+        "id": "forms",
+        "title": {
+          "de": "Forms",
+          "en": "Forms"
+        }
+      }
+    ]
+  }, {
+    "id": "footer",
+    "children": [{
+      "id": "imprint",
+      "title": {
+        "de": "Impressum",
+        "en": "Imprint"
+      }
+    }, {
+      "id": "privacy",
+      "title": {
+        "de": "Datenschutz"
+      }
+    }]
+  }]
 }

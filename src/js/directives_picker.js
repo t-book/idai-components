@@ -11,9 +11,8 @@ angular.module('idai.components')
 		restrict: 'E',
 		scope: {
 			searchUri: '@',	resultField: '@', titleField: '@',
-			returnField: '@', totalField: '@',
-			queryParam: '@', limitParam: '@', offsetParam: '@',
-			addParams: '=', selectedItem: '='
+			totalField: '@', queryParam: '@', limitParam: '@',
+			offsetParam: '@', addParams: '=', selectedItem: '='
 		},
 		templateUrl: 'partials/directives/idai-picker.html',
 		controller: [ '$scope', '$parse', '$modal',

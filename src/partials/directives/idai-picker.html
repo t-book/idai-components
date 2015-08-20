@@ -27,8 +27,10 @@
 				<a href="#" ng-repeat="item in result" class="list-group-item"
 						ng-click="selectItem(item)" ng-class="{ active: $index == preselect }">
 					<div class="row">
-						<div class="col-sm-8">{{ getTitleField(item) }}</div>
-						<div class="col-sm-4 text-right">
+						<div ng-class="{ 'col-sm-8': item['@id'], 'col-sm-12': !item['@id']}">
+							{{ getTitleField(item) }}
+						</div>
+						<div class="col-sm-4 text-right" ng-show="item['@id']">
 							<button class="btn btn-link btn-xs" ng-click="open(item['@id'])"
 									style="padding:0px 5px 1px; border: 0;">
 								{{ item['@id'] }}
@@ -54,9 +56,11 @@
     	</span>
     	<span class="form-control">
 			<span ng-show="!selectedItem">{{ 'pick_an_item' | transl8 }}</span>
-			<a ng-show="selectedItem" ng-href="{{ selectedItem['@id'] }}" target="_blank">
+			<a ng-show="selectedItem && selectedItem['@id']"
+					ng-href="{{ selectedItem['@id'] }}" target="_blank">
 				{{ getTitleField(selectedItem) }}
 			</a>
+			<span ng-show="selectedItem && !selectedItem['@id']">{{ getTitleField(selectedItem) }}</span>
 			<button class="btn btn-link btn-xs" ng-show="selectedItem" ng-click="selectedItem = null">
 				<span class="glyphicon glyphicon-remove-sign text-muted"></span>
 			</button>

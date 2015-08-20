@@ -71,7 +71,16 @@ module.exports = function(grunt) {
 			server: {
 				options: {
 					port: 1235,
-					livereload: 35730
+					livereload: 35730,
+					middleware: function (connect, options) {
+						var modRewrite = require('connect-modrewrite');
+						return [
+							// rewrite for AngularJS HTML5 mode
+							modRewrite(['^[^\\.]*$ /index.html [L]']),
+							// Serve static files.
+							connect.static(options.base[0])
+						];
+					}
 				}
 			}
 		}

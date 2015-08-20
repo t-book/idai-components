@@ -10,10 +10,6 @@ For functional additions to the library, the middle digit gets incremented.
 
 For API breaking changes, we increment the first digit and create a new branch.
 
-## Usage in other projects
-
-Please visit this [page](docs/usage.md).
-
 ## Installation
 
 To build and test the library, these preparative steps are necessary:
@@ -48,14 +44,7 @@ For easy development, you can start a grunt server
 grunt server
 ```
 
-which serves a demo app on port 1235, which consists of 
-
-```bash
-index.html
-js/**/*.js
-```
-
-and includes the minified library.
+which serves a demo app and documentation on port 1235.
 
 Changes to partials and js files will automatically trigger a
 rebuild and also a reload in active browser windows.
