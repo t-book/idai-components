@@ -92,6 +92,11 @@ a {
   left: 25px;
 }
 
+/* as described in angular-ui bootstrap guide */
+.nav, .pagination, .carousel, .panel-title a {
+  cursor: pointer;
+}
+
 .loading {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
