@@ -1,7 +1,7 @@
 <div class="idai-picker">
 	
 	<script type="text/ng-template" id="picker_modal.html">
-		<div class="panel panel-default">
+		<div class="panel panel-default picker-modal">
 			<div class="panel-heading">
 				<form class="input-group">
 					<input ng-keydown="keydown($event)"
@@ -19,15 +19,17 @@
 				<div ng-show="loading" class="loading"></div>
 				<em ng-show="result && total == 0 && !loading">{{ 'picker_no_result' | transl8 }}</em>
 				<em ng-show="!result && total == 0 && !loading">{{ 'picker_perform_search' | transl8 }}</em>
-				<div ng-show="total > 0 && !loading" class="text-center small"> {{preselect}}
+				<div ng-show="total > 0 && !loading" class="text-center small">
 					<b><i>{{ total | number }} {{ 'results' | transl8 }}</i></b>
 				</div>
 			</div>
-			<div class="list-group" style="max-height:400px; overflow-y: auto;">
+			<div class="list-group" style="max-height:470px; overflow-y: auto;">
 				<a href="#" ng-repeat="item in result" class="list-group-item"
-						ng-click="selectItem(item)" ng-class="{ active: $index == preselect }">
+						ng-click="selectItem(item)" ng-class="{ preselected: $index == preselect }">
 					<div class="row">
 						<div ng-class="{ 'col-sm-8': item['@id'], 'col-sm-12': !item['@id']}">
+							<span ng-class="{ invisible: $index != preselect }"
+								class="glyphicon glyphicon-menu-right small"></span>
 							{{ getTitleField(item) }}
 						</div>
 						<div class="col-sm-4 text-right" ng-show="item['@id']">
@@ -61,7 +63,8 @@
 				{{ getTitleField(selectedItem) }}
 			</a>
 			<span ng-show="selectedItem && !selectedItem['@id']">{{ getTitleField(selectedItem) }}</span>
-			<button class="btn btn-link btn-xs" ng-show="selectedItem" ng-click="selectedItem = null">
+			<button class="btn btn-link btn-xs" ng-show="selectedItem"
+					ng-click="selectedItem = undefined">
 				<span class="glyphicon glyphicon-remove-sign text-muted"></span>
 			</button>
 		</span>

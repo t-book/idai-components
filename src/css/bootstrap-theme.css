@@ -122,3 +122,8 @@ a {
   0%{transform: rotate(0deg);}
   100%{transform: rotate(720deg);}
 }
+
+/* styles for picker directive */
+.picker-modal .list-group-item.preselected {
+  background-color: #f5f5f5;
+}
