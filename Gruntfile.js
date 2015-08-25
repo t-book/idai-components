@@ -59,12 +59,14 @@ module.exports = function(grunt) {
 	                livereload: '<%= connect.server.options.livereload %>'
 	            },
 	            files: [
-	                'src/partials/directives/**/*.html',
-		            'src/js/**/*.js',
-		            'src/css/*.css',
-		            'index.html'
+					'src/partials/directives/**/*.html',
+					'src/js/**/*.js',
+					'src/css/*.css',
+					'js/**/*.js',
+					'partials/**/*.html',
+					'index.html'
 	            ],
-	            tasks: ['concat','cssmin']
+	            tasks: ['html2js','concat','cssmin']
 	        }
 	    },
 		connect: {
