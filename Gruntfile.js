@@ -102,10 +102,10 @@ module.exports = function(grunt) {
 		'watch'
     ]);
 
-    grunt.registerTask('build', ['html2js','concat','uglify','cssmin']);
+    grunt.registerTask('test', ['karma:unit']);
 
-    grunt.registerTask('test', ['karma:unit','karma:continuous']);
+	grunt.registerTask('build', ['test','html2js','concat','uglify','cssmin']);
 
-    grunt.registerTask('default', ['test', 'build']);
+    grunt.registerTask('default', ['build']);
 
 };

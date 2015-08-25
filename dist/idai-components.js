@@ -709,28 +709,30 @@ angular.module('idai.components')
 		"translation/jsonp?application=arachne4_frontend&lang={LANG}&callback=JSON_CALLBACK";
 
 
-
 	var translationLang=ENGLISH_LANG;
+	var translationsLoaded = false;
+	var translations={}; // Map: [transl8_key,translation].
+
+
 	if (primaryBrowserLanguage.browserPrimaryLanguage()=='de') translationLang='de';
 	var transl8Url = TRANSL8_JSONP_URL.replace('{LANG}',translationLang);
 
 
 
-	var translations={}; // Map: [transl8_key,translation].
 	$http.jsonp(transl8Url).
 		success(function(data) {
-
 			for(var i = 0; i < data.length; i++) {
 				translations[data[i].key] = data[i].value;
 			}
+			translationsLoaded=true;
 		}).
 		error(function() {
 			alert("ERROR: Could not get translations. Try to reload the page or send a mail to arachne@uni-koeln.de");
 		});
 
 	return {
-
 		getTranslation: function(key) {
+			if (!translationsLoaded) return '';
 
 			var translation = translations[key];
 			if (!translation || 0 === translation.length)

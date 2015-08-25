@@ -95,4 +95,15 @@ describe('transl8', function (){
 		$httpBackend.flush();
 		expect(transl8.getTranslation(KEY_INVALID).substring(0,4)).toBe(TRANSLATION_MISSING);
 	});
+
+
+
+	it ('shows nothing if items not loaded yet', function () {
+
+		prepare('da');
+
+		expect(transl8.getTranslation(KEY)).toBe('');
+	});
+
+
 });
