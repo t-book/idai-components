@@ -4,9 +4,9 @@
  * creation of a menu item in the navigation bar.
  * 
  * The language selection mechanism if following the rules 
- * described in ../docs/feature_localization_con10t.md and is implemented
+ * described in codarchlab/arachnefrontend/docs/feature_localization_con10t.md and is implemented
  * on top of the same mechanisms which are already tested in
- * ../test/controllers_projects_spec.js. 
+ * codarchlab/arachnefrontend/test/controllers_projects_spec.js.
  * So these rules won't be tested here again.
  * 
  * Author: Daniel M. de Oliveira
@@ -15,8 +15,13 @@ describe ('idaiNavbar', function() {
 
 	var scope = {};
 
-	var prepare = function (primaryLanguage) {
-		module('idai.services', function($provide) {
+	/**
+	 * Done this way to make it configurable with primaryLanguage.
+	 * @param primaryLanguage
+	 */
+	function myBeforeEach(primaryLanguage) {
+
+		module('idai.components', function($provide) {
 			$provide.value('language', {
 				browserPrimaryLanguage: function () {
 					return primaryLanguage;
@@ -36,8 +41,6 @@ describe ('idaiNavbar', function() {
 				dataserviceUri: '/data'
 			});
 		});
-		module('idai.filters');
-		module('idai.directives');
 		module('templates');
 
 		
@@ -59,8 +62,6 @@ describe ('idaiNavbar', function() {
 								"en": "About Arachne"\
 							}}]}]}');
 
-			$httpBackend.expectGET('partials/navbar-project.html').respond(200,'');
-
 			
 		    scope = $rootScope.$new();
 			$templateCache.put();
@@ -75,13 +76,13 @@ describe ('idaiNavbar', function() {
 	};
 	
 	it ('show german menu item',function(){
-		prepare('de');
+		myBeforeEach('de');
 		expect(element.find('ul').eq(2).find('li').find('a').eq(0).text()).toBe("Über Arachne");
 	});
 	
 		
 	it ('show english menu item',function(){
-		prepare('en');
+		myBeforeEach('en');
 		expect(element.find('ul').eq(2).find('li').find('a').eq(0).text()).toBe("About Arachne");
 	});
 });

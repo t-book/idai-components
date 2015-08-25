@@ -27,7 +27,7 @@ describe('transl8', function (){
 
 	var prepare = function(primaryLang){
 
-		module('idai.services',function($provide) {
+		module('idai.components',function($provide) {
 				$provide.value('language', {
 					browserPrimaryLanguage: function () {
 						return primaryLang;

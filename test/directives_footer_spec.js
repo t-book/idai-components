@@ -17,7 +17,7 @@ describe ('idaiFooter', function() {
 	var scope = {};
 
 	var prepare = function (primaryLanguage) {
-		module('idai.services', function($provide) {
+		module('idai.components', function($provide) {
 			$provide.value('language', {
 				browserPrimaryLanguage: function () {
 					return primaryLanguage;
@@ -32,8 +32,6 @@ describe ('idaiFooter', function() {
 				dataserviceUri: '/data'
 			});
 		});
-		module('idai.filters');
-		module('idai.directives');
 		module('templates');
 
 		
@@ -71,12 +69,12 @@ describe ('idaiFooter', function() {
 		
 	it ('show german menu item',function(){
 		prepare('de');
-		expect(element.find('p').eq(1).find('a').eq(0).text()).toBe("Impressum");
+		expect(element.find('p').eq(1).find('a').eq(1).text()).toBe("Impressum");
 	});
 	
 		
 	it ('show english menu item',function(){
 		prepare('en');
-		expect(element.find('p').eq(1).find('a').eq(0).text()).toBe("Imprint");
+		expect(element.find('p').eq(1).find('a').eq(1).text()).toBe("Imprint");
 	});
 });
