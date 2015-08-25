@@ -5,15 +5,31 @@
 		<h1>Usage</h1>
 
 		<p>
-			Just copy the file to your project and link the source <code>idai-components-[version].min.js</code>
-			from your project's index.html.
+			To use the library in another project, download the latest release of the library from the idai-components
+			<a href="https://github.com/codarchlab/idai-components/releases">releases</a> page or
+			add a dependency
+        </p>
+
+        <pre>"idai-components": "codarchlab/idai-components#~version"</pre>
+
+
+        <p>
+            to the latest version of the library to your bower.json file
+			and run "bower install".
 		</p>
 
-		<pre>&lt;script src="dist/idai-components.min.js"&gt;&lt;/script&gt;</pre> 
+		<p>
+			Link the sources from your project's index.html.
+		</p>
+
+		<pre>&lt;link rel="stylesheet" href="dist/css/bootstrap-theme.min.css"&gt;</pre>
+
+		<pre>&lt;script src="dist/idai-components(.min).js"&gt;&lt;/script&gt;</pre>
 
 		<p>
-			Do this after the angular link and before the links to your application 
-			scripts, which make use of the library.
+			Make sure you link the stylesheet from the head section and link the javascript
+			between the angular link and your application
+			scripts, which use the library.
 		</p>
 
 		<p>
