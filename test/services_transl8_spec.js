@@ -24,8 +24,11 @@ describe('transl8', function (){
 	var transl8,$httpBackend;
 
 
-
-	var prepare = function(primaryLang){
+	/**
+	 * Done this way to make it configurable with primaryLanguage.
+	 * @param primaryLanguage
+	 */
+	function myBeforeEach(primaryLang){
 
 		module('idai.components',function($provide) {
 				$provide.value('language', {
@@ -47,7 +50,7 @@ describe('transl8', function (){
 
 	it('should provide german menu items for german users', function () {
 
-		prepare('de');
+		myBeforeEach('de');
 
 		$httpBackend.flush();
 		expect(transl8.getTranslation(KEY)).toBe(TRANSLATION_DE);
@@ -55,7 +58,7 @@ describe('transl8', function (){
 
 	it('should provide english menu items for english users', function () {
 
-		prepare('en-US');
+		myBeforeEach('en-US');
 
 		$httpBackend.flush();
 		expect(transl8.getTranslation(KEY)).toBe(TRANSLATION_EN);
@@ -63,7 +66,7 @@ describe('transl8', function (){
 
 	it('should provide english menu items for danish users', function () {
 
-		prepare('da');
+		myBeforeEach('da');
 
 		$httpBackend.flush();
 		expect(transl8.getTranslation(KEY)).toBe(TRANSLATION_EN);
@@ -74,7 +77,7 @@ describe('transl8', function (){
 
 	it('lacks a german translation (german user)', function () {
 
-		prepare('de');
+		myBeforeEach('de');
 
 		$httpBackend.flush();
 		expect(transl8.getTranslation(KEY_INVALID).substring(0,4)).toBe(TRANSLATION_MISSING);
@@ -82,7 +85,7 @@ describe('transl8', function (){
 
 	it('lacks an english translation (english user)', function () {
 
-		prepare('en');
+		myBeforeEach('en');
 
 		$httpBackend.flush();
 		expect(transl8.getTranslation(KEY_INVALID).substring(0,4)).toBe(TRANSLATION_MISSING);
@@ -90,7 +93,7 @@ describe('transl8', function (){
 
 	it('lacks an english translation (danish user)', function () {
 
-		prepare('da');
+		myBeforeEach('da');
 
 		$httpBackend.flush();
 		expect(transl8.getTranslation(KEY_INVALID).substring(0,4)).toBe(TRANSLATION_MISSING);
@@ -100,7 +103,7 @@ describe('transl8', function (){
 
 	it ('shows nothing if items not loaded yet', function () {
 
-		prepare('da');
+		myBeforeEach('da');
 
 		expect(transl8.getTranslation(KEY)).toBe('');
 	});

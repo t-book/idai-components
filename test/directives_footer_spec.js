@@ -16,7 +16,11 @@ describe ('idaiFooter', function() {
 
 	var scope = {};
 
-	var prepare = function (primaryLanguage) {
+	/**
+	 * Done this way to make it configurable with primaryLanguage.
+	 * @param primaryLanguage
+	 */
+	function myBeforeEach (primaryLanguage) {
 		module('idai.components', function($provide) {
 			$provide.value('language', {
 				browserPrimaryLanguage: function () {
@@ -68,13 +72,13 @@ describe ('idaiFooter', function() {
 	};
 		
 	it ('show german menu item',function(){
-		prepare('de');
+		myBeforeEach('de');
 		expect(element.find('p').eq(1).find('a').eq(1).text()).toBe("Impressum");
 	});
 	
 		
 	it ('show english menu item',function(){
-		prepare('en');
+		myBeforeEach('en');
 		expect(element.find('p').eq(1).find('a').eq(1).text()).toBe("Imprint");
 	});
 });
