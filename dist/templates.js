@@ -1,4 +1,4 @@
-angular.module('idai.templates', ['partials/directives/idai-footer.html', 'partials/directives/idai-navbar.html', 'partials/directives/idai-picker.html']);
+angular.module('idai.templates', ['partials/directives/idai-footer.html', 'partials/directives/idai-form.html', 'partials/directives/idai-navbar.html', 'partials/directives/idai-picker.html']);
 
 angular.module("partials/directives/idai-footer.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("partials/directives/idai-footer.html",
@@ -19,6 +19,22 @@ angular.module("partials/directives/idai-footer.html", []).run(["$templateCache"
     "			<a href=\"mailto:{{mailto}}\">{{mailto}}</a></p>\n" +
     "	</div>\n" +
     "</div>");
+}]);
+
+angular.module("partials/directives/idai-form.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("partials/directives/idai-form.html",
+    "<form name=\"form\" class=\"form-horizontal\">\n" +
+    "	<ng-transclude></ng-transclude>\n" +
+    "	<div class=\"form-group\">\n" +
+    "	    <div class=\"col-sm-offset-3 col-sm-9\">\n" +
+    "	    	<button ng-click=\"submit()\" class=\"btn btn-primary\">\n" +
+    "	    		{{ 'form_save' | transl8 }}\n" +
+    "	    	</button>	    	\n" +
+    "	    	<button ng-click=\"reset()\" class=\"btn btn-link\">{{ 'form_reset' | transl8 }}</button>\n" +
+    "	    </div>\n" +
+    "	</div>\n" +
+    "\n" +
+    "</form>");
 }]);
 
 angular.module("partials/directives/idai-navbar.html", []).run(["$templateCache", function($templateCache) {
