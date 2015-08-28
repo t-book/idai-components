@@ -27,7 +27,7 @@ angular.module("partials/directives/idai-form.html", []).run(["$templateCache", 
     "	<ng-transclude></ng-transclude>\n" +
     "	<div class=\"form-group\">\n" +
     "	    <div class=\"col-sm-offset-3 col-sm-9\">\n" +
-    "	    	<button ng-click=\"submit()\" class=\"btn btn-primary\">\n" +
+    "	    	<button ng-click=\"submit()\" class=\"btn btn-primary\" ng-class=\"{ disabled: form.$invalid }\">\n" +
     "	    		{{ 'form_save' | transl8 }}\n" +
     "	    	</button>	    	\n" +
     "	    	<button ng-click=\"reset()\" class=\"btn btn-link\">{{ 'form_reset' | transl8 }}</button>\n" +
