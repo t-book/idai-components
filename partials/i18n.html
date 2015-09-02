@@ -19,21 +19,26 @@
         <p>
             Users of iDAI.components can localize error messages through transl8. By injecting
             <code>message</code> to one of your controllers, and calling
-            <code>message.addMessageForCode("transl8_key")</code> from within it a localized error message
+            <code>message.addMessageForCode(transl8_key, level)</code> from within it a localized error message
             (for language selection rules see paragraph above) gets added to
             the messages array of the root scope. These messages can be shown in your application
             by using the <code>&lt;idai-message&gt;&lt;/idai-message&gt;</code> directive from your html.
         </p>
 
         <p>
-            In case there is no translation for a given key, a standard error message is shown, as you can check out by clicking
+            In case there is no translation for a given key, a standard error message is shown.
         </p>
 
         <p>
-            <button ng-click="addMsg('non_existing_transl8_key');">Show default error message</button>
+        	The parameter <code>level</code> is optional and will influence the css class of the alert box. Possible values are <code>success</code>, <code>info</code>, <code>warning</code> and <code>danger</code>. The default value is <code>warning</code>.
+        </p>
+
+        <h4>Example</h4>
+        <p>
+            <button class="btn btn-default" ng-click="addMsg('non_existing_transl8_key');">Show default error message</button>
         </p>
         <p>
-            <button ng-click="addMsg('backend_missing');">Show localized error message for transl8 key "backend_missing"</button>
+            <button class="btn btn-default" ng-click="addMsg('backend_missing','danger');">Show localized error message for transl8 key "backend_missing"</button>
         </p>
         <p>
             <idai-message></idai-message>

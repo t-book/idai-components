@@ -796,17 +796,26 @@ angular.module('idai.components')
         /**
          * @param transl8Key transl8 key error transl8Key
          */
-        addMessageForCode: function(transl8Key) {
+        addMessageForCode: function(transl8Key, level) {
 
             var translation = transl8.getTranslation(transl8Key);
+            // set standard level to warning
+            if (!level || ['success', 'info', 'warning', 'danger'].indexOf(level) == -1) {
+                level = "warning";
+            }
+
+            var message = { level: level };
+            var key = transl8Key;
 
             if (translation==""||translation.substring(0,4)=="TRL8") {
-                $rootScope.messages['default'] = {};
-                $rootScope.messages['default'].body = 'An unknown error has occured.';
+                key = 'default';
+                message.body = 'An unknown error has occured.';
             } else {
-                $rootScope.messages[transl8Key] = {};
-                $rootScope.messages[transl8Key].body = translation;
+                message.body = translation;
             }
+
+            $rootScope.messages[transl8Key] = message;
+
         },
 
         // TODO write test for it
