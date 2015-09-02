@@ -2,50 +2,53 @@
 
 
 /**
+ *
+ * $rootScope
+ *   messages
+ *
  * @author: Sebastian Cuy
  * @author: Daniel M. de Oliveira
  */
-
 angular.module('idai.components')
 
 .factory('message', [ '$rootScope', 'transl8', function( $rootScope, transl8 ) {
 
-    var messages = {};
+    $rootScope.messages = {};
 
     /**
      * Close old messages when location changes
      */
     $rootScope.$on("$locationChangeSuccess", function(event, newState, oldState) {
-        angular.forEach(messages, function(msg, key) {
-            delete messages[key];
+        angular.forEach($rootScope.messages, function(msg, key) {
+            delete $rootScope.messages[key];
         });
     });
 
     return {
 
         /**
-         * @param code transl8 key error code
+         * @param transl8Key transl8 key error transl8Key
          */
-        addMessageForCode: function(code) {
+        addMessageForCode: function(transl8Key) {
 
-            var translation = transl8.getTranslation(code);
+            var translation = transl8.getTranslation(transl8Key);
 
-            if (translation.substring(0,4)=="TRL8") {
-                messages['default'] = {};
-                messages['default'].body = 'default';
+            if (translation==""||translation.substring(0,4)=="TRL8") {
+                $rootScope.messages['default'] = {};
+                $rootScope.messages['default'].body = 'An unknown error has occured.';
             } else {
-                messages[code] = {};
-                messages[code].body = translation;
+                $rootScope.messages[transl8Key] = {};
+                $rootScope.messages[transl8Key].body = translation;
             }
         },
 
         // TODO write test for it
-        removeMessage: function(code) {
-            delete messages[code].body;
+        removeMessage: function(transl8Key) {
+            delete $rootScope.messages[transl8Key];
         },
 
         getMessages: function() {
-            return messages;
+            return $rootScope.messages;
         }
     }
 }]);

@@ -2,28 +2,129 @@
 
 	<div class="col-md-12">
 
-		<h1>Localizable Static Content</h1>
+		<h1>Localization | transl8 | i18n</h1>
 
-		<p>Arachne frontend at the moment contains two resources from which it provides static content.
-		The folder "info" contains the material for the links of the navigation bar and the footer
-		section, "con10t" (which is a separate git repository) contains the projects, reachable
-		from the projects overview page.</p>
+        <p>iDAI.componentes provides a localization system which comprises two components. First it
+        let applications using the library translate
+        various items through the transl8 service from the arachne ecosystem. Second static content pages
+        can delivered in language specific versions, guided by a language selection rule</p>
 
-		<p>The links from the navigation bar and footer route to /info/[title].html. Following this route
-		the content from the "static" folders language sub directories are served. The links from the projects page route
-		to <code>/project/[title].html</code>. This route serves content from the "con10t" language folders.</p>
 
-		<p>The contents can be localized, which means, the language in which the link titles are visible and
-		in which the content is delivered, is
-		 automatically determined by the system. This is explained in the paragraph on
-		 <a href="#automatic-localization">Automatic Localization</a>.</p>
-		
-		<p>But first lets have a look on the basic data structure and folder layout for localizable static content.</p>
+        <h2>Transl8</h2>
 
-		<h2>Data and Content Structure</h2>
+        TODO describe transl8 external service, service, filter, language selction rule
+
+        <h3>Error messages</h3>
+
+        <p>
+            Users of iDAI.components can localize error messages through transl8. By injecting
+            <code>message</code> to one of your controllers, and calling
+            <code>message.addMessageForCode("transl8_key")</code> from within it a localized error message
+            (for language selection rules see paragraph above) gets added to
+            the messages array of the root scope. These messages can be shown in your application
+            by using the <code>&lt;idai-message&gt;&lt;/idai-message&gt;</code> directive from your html.
+        </p>
+
+        <p>
+            In case there is no translation for a given key, a standard error message is shown, as you can check out by clicking
+        </p>
+
+        <p>
+            <button ng-click="addMsg('non_existing_transl8_key');">Show default error message</button>
+        </p>
+        <p>
+            <button ng-click="addMsg('backend_missing');">Show localized error message for transl8 key "backend_missing"</button>
+        </p>
+        <p>
+            <idai-message></idai-message>
+        </p>
+
+    </div>
+
+</div>
+<div class="row">
+
+
+    <div class="col-md-12">
+        <h2>Localizable static content</h2>
+
+        <p>Arachne frontend at the moment contains two resources from which it provides static content.
+            The folder "info" contains the material for the links of the navigation bar and the footer
+            section, "con10t" (which is a separate git repository) contains the projects, reachable
+            from the projects overview page.</p>
+
+        <p>The links from the navigation bar and footer route to /info/[title].html. Following this route
+            the content from the "static" folders language sub directories are served. The links from the projects page route
+            to <code>/project/[title].html</code>. This route serves content from the "con10t" language folders.</p>
+
+        <p>The contents can be localized, which means, the language in which the link titles are visible and
+            in which the content is delivered, is
+            automatically determined by the system. This is explained in the paragraph on
+            <a href="#automatic-localization">Automatic Localization</a>.</p>
+
+        <p>But first lets have a look on the basic data structure and folder layout for localizable static content.</p>
+
+    </div>
+
+    <div class="col-md-6">
+
+        <h3><a name="automatic-localization">Content localization: Automatic Localization</a></h3>
+
+        <p>The system is able to automatically determine a suitable language for links and contents. The selection is performed
+            based on a rule, taking into consideration the browsers primary language and the availability of the language for
+            items.</p>
+
+        <p>From a usage or content management perspective it is important to make follow some guidelines for the system to behave
+            properly as far as localization concerns:</p>
+
+        <ol>
+            <li>Every content, identified by its id, must at least be present in german (de).</li>
+            <li>There should be a html named de/id.html and a corresponding node in content.json.</li>
+            <li>For each additional language a html should be placed in the language folder and a title entry should be added to
+                the corresponding node.</li>
+        </ol>
+
+        <p><b>Note 1:</b> The language selection gets performed for each item individually. If the user is italian for example,
+            and a certain page is available in italian, it will be served in italian, while another item is served in english or
+            german, depending on which language the item is present. There is a link to the actual language selection rule
+            in the <a href="#artifacts">artifacts</a> section.</p>
+
+        <p><b>Note 2:</b> Only "short" forms of language identifiers are usable within the localization system. For example <code>de</code>, but not <code>de-AT</code> or <code>de-DE</code>.</p>
+
+        <p><b>Note 3:</b> Localization of other items, like user interface messages, texts, other menu items, facets etc. is not handled by the system under discussion here.</p>
+
+        <p><b>Note 4:</b> For development purposes, content available on the file system but not configured via content.json can be accessed exclicitely via <code>/[info|con10t]/[title]?lang=[lang]</code>. If the <code>?lang=[lang]</code> part is omitted, the content from the "de" directory gets delivered. In both cases the requested content should be present on the file system. The system shows a blank view if it can't find the corresponding html file.</p>
+
+
+
+
+        <h3><a name="artifacts">Artifacts</a></h3>
+
+        <p>Here are the main artifacts comprising the content / localization system:</p>
+
+        <ol>
+            <li>The language selection rule [specification](https://github.com/codarchlab/arachnefrontend/blob/master/docs/feature_localization_con10t.md)</li>
+            <li>The language selection rule [code](../src/js/services_language_selection.js)</li>
+            <li>The data structure handling [code](../src/js/services_localized_content.js)</li>
+            <li>The browsers language determination [code](../src/js/services_language.js)</li>
+        </ol>
+
+        <p>Here are further artifacts using the core components:</p>
+
+        <ol>
+            <li>The content delivery [code](../src/js/controllers_static_content.js)</li>
+            <li>The navbar [code](../js/src/directives_navbar.js)</li>
+            <li>The footer [code](../js/src/directives_footer.js)</li>
+            <li>The projects overview [code](../src/js/controllers_projects.js)</li>
+        </ol>
+
+    </div>
+    <div class="col-md-6">
+
+        <h3>Content localization: Data structures</h3>
 
 		<p>The links from the footer and navigation bar section are directly generated from the contents
-		of static/content.json. The links from the project overview get generated from
+		of info/content.json. The links from the project overview get generated from
 		<code>con10t/content.json</code>.</p>
 
 		The following excerpt shows a valid example of such a data structure:
@@ -72,52 +173,11 @@
 			<li>The file system structure does not reflect the nesting. This is no problem since the identifiers are required to be unique.</li>
 		</ol>
 
-		<h2><a name="automatic-localization">Automatic Localization</a></h2>
 
-		<p>The system is able to automatically determine a suitable language for links and contents. The selection is performed
-		 based on a rule, taking into consideration the browsers primary language and the availability of the language for
-		 items.</p>
+    </div>
+</div>
+<div class="row">
 
-		<p>From a usage or content management perspective it is important to make follow some guidelines for the system to behave
-		properly as far as localization concerns:</p>
 
-		<ol>
-			<li>Every content, identified by its id, must at least be present in german (de).</li>
-			<li>There should be a html named de/id.html and a corresponding node in content.json.</li>
-		<li>For each additional language a html should be placed in the language folder and a title entry should be added to
-		  the corresponding node.</li>
-		</ol>
-
-		<p><b>Note 1:</b> The language selection gets performed for each item individually. If the user is italian for example,
-		and a certain page is available in italian, it will be served in italian, while another item is served in english or
-		german, depending on which language the item is present. There is a link to the actual language selection rule
-		in the <a href="#artifacts">artifacts</a> section.</p>
-
-		<p><b>Note 2:</b> Only "short" forms of language identifiers are usable within the localization system. For example <code>de</code>, but not <code>de-AT</code> or <code>de-DE</code>.</p>
-
-		<p><b>Note 3:</b> Localization of other items, like user interface messages, texts, other menu items, facets etc. is not handled by the system under discussion here.</p>
-
-		<p><b>Note 4:</b> For development purposes, content available on the file system but not configured via content.json can be accessed exclicitely via <code>/[static|con10t]/[title]?lang=[lang]</code>. If the <code>?lang=[lang]</code> part is omitted, the content from the "de" directory gets delivered. In both cases the requested content should be present on the file system. The system shows a blank view if it can't find the corresponding html file.</p>
-
-		<h2><a name="artifacts">Artifacts</a></h2>
-
-		<p>Here are the main artifacts comprising the content / localization system:</p>
-
-		<ol>
-			<li>The language selection rule [specification](https://github.com/codarchlab/arachnefrontend/blob/master/docs/feature_localization_con10t.md)</li>
-			<li>The language selection rule [code](../src/js/services_language_selection.js)</li>
-			<li>The data structure handling [code](../src/js/services_localized_content.js)</li>
-			<li>The browsers language determination [code](../src/js/services_language.js)</li>
-		</ol>
-
-		<p>Here are further artifacts using the core components:</p>
-
-		<ol>
-			<li>The content delivery [code](../src/js/controllers_static_content.js)</li>
-			<li>The navbar [code](../js/src/directives_navbar.js)</li>
-			<li>The footer [code](../js/src/directives_footer.js)</li>
-			<li>The projects overview [code](../src/js/controllers_projects.js)</li>
-		</ol>
-
-	</div>
+</div>
 </div>

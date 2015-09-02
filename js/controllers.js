@@ -4,24 +4,14 @@
 
 angular.module('sampleApp.controllers',[])
 
-.controller('MenuController',	[ '$scope', '$location', '$window',
-	function ($scope, $location, $window) {
+.controller('MainController',	[ '$scope', 'message',
+	function ($scope, message) {
 
 		$scope.user = {username:"daniel"};
 
-		$scope.currentPath = $location.path();
-		$scope.$on("$locationChangeSuccess", function() {
-			$scope.currentPath = $location.path();
-		});
-
-		$scope.openLoginModal = function() {
-			console.log('openLoginModal')
-		};
-
-		$scope.logout = function() {
-			//authService.clearCredentials();
-			console.log('logout')
-		}
+        $scope.addMsg = function(transl8Key) {
+            message.addMessageForCode(transl8Key)
+        }
 
 	}
 ]);

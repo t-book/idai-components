@@ -30,46 +30,53 @@ describe('message', function () {
     it('should store and recall messages', function () {
 
         myBeforeEach("translation");
-        message.addMessageForCode("error_404");
-        message.addMessageForCode("error_454");
-        message.addMessageForCode("error_464");
-        expect(message.getMessages()["error_404"].body).toBe("translation");
-        expect(message.getMessages()["error_454"].body).toBe("translation");
-        expect(message.getMessages()["error_464"].body).toBe("translation");
-        expect(message.getMessages()["error_474"]).toBe(undefined);
+        message.addMessageForCode("error_a");
+        message.addMessageForCode("error_b");
+        message.addMessageForCode("error_c");
+        expect(message.getMessages()["error_a"].body).toBe("translation");
+        expect(message.getMessages()["error_b"].body).toBe("translation");
+        expect(message.getMessages()["error_c"].body).toBe("translation");
+        expect(message.getMessages()["error_d"]).toBe(undefined);
     });
 
     it('should translate messages', function () {
 
         myBeforeEach("translation");
-        message.addMessageForCode("error_404");
-        expect(message.getMessages()["error_404"].body).toBe("translation");
+        message.addMessageForCode("error_a");
+        expect(message.getMessages()["error_a"].body).toBe("translation");
     });
 
     it('should show a default error message if no translation found', function () {
 
         myBeforeEach("TRL8 MISSING");
-        message.addMessageForCode("error_404");
-        expect(message.getMessages()["default"].body).toBe("default");
+        message.addMessageForCode("error_a");
+        expect(message.getMessages()["default"].body).toBe("An unknown error has occured.");
+    });
+
+    it('should show a default error message if translation not yet loaded', function () {
+
+        myBeforeEach("");
+        message.addMessageForCode("error_a");
+        expect(message.getMessages()["default"].body).toBe("An unknown error has occured.");
     });
 
     it ('should clear messages when location changes', function() {
 
         myBeforeEach("translation");
-        message.addMessageForCode("error_404");
-        message.addMessageForCode("error_454");
-        expect(message.getMessages()["error_404"].body).toBe("translation");
-        expect(message.getMessages()["error_454"].body).toBe("translation");
+        message.addMessageForCode("error_a");
+        message.addMessageForCode("error_b");
+        expect(message.getMessages()["error_a"].body).toBe("translation");
+        expect(message.getMessages()["error_b"].body).toBe("translation");
         $rootScope.$broadcast('$locationChangeSuccess');
-        expect(message.getMessages()["error_404"]).toBe(undefined);
-        expect(message.getMessages()["error_454"]).toBe(undefined);
+        expect(message.getMessages()["error_a"]).toBe(undefined);
+        expect(message.getMessages()["error_b"]).toBe(undefined);
     });
 
     it ('should clear default msg when location changes', function() {
 
         myBeforeEach("TRL8 MISSING");
-        message.addMessageForCode("error_404");
-        expect(message.getMessages()["default"].body).toBe("default");
+        message.addMessageForCode("error_a");
+        expect(message.getMessages()["default"].body).toBe("An unknown error has occured.");
         $rootScope.$broadcast('$locationChangeSuccess');
         expect(message.getMessages()["default"]).toBe(undefined);
     });

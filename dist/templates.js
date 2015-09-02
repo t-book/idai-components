@@ -1,4 +1,4 @@
-angular.module('idai.templates', ['partials/directives/idai-footer.html', 'partials/directives/idai-form.html', 'partials/directives/idai-navbar.html', 'partials/directives/idai-picker.html']);
+angular.module('idai.templates', ['partials/directives/idai-footer.html', 'partials/directives/idai-form.html', 'partials/directives/idai-message.html', 'partials/directives/idai-navbar.html', 'partials/directives/idai-picker.html']);
 
 angular.module("partials/directives/idai-footer.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("partials/directives/idai-footer.html",
@@ -35,6 +35,17 @@ angular.module("partials/directives/idai-form.html", []).run(["$templateCache", 
     "	</div>\n" +
     "\n" +
     "</form>");
+}]);
+
+angular.module("partials/directives/idai-message.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("partials/directives/idai-message.html",
+    "<div ng-repeat=\"(transl8Key,message) in messages\"\n" +
+    "     ng-class=\"'alert-' + message.level\"\n" +
+    "     class=\"col-md-10 col-md-offset-1 alert text-center\">\n" +
+    "    <button class=\"close\" ng-click=\"removeMessage(transl8Key)\" class=\"pull-right\" style=\"cursor:pointer;\">&times;</button>\n" +
+    "    <b>{{message.body}}</b><br>\n" +
+    "    Please contact arachne@uni-koeln.org if the errors persist.\n" +
+    "</div>");
 }]);
 
 angular.module("partials/directives/idai-navbar.html", []).run(["$templateCache", function($templateCache) {

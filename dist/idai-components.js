@@ -1,4 +1,4 @@
-angular.module('idai.templates', ['partials/directives/idai-footer.html', 'partials/directives/idai-form.html', 'partials/directives/idai-navbar.html', 'partials/directives/idai-picker.html']);
+angular.module('idai.templates', ['partials/directives/idai-footer.html', 'partials/directives/idai-form.html', 'partials/directives/idai-message.html', 'partials/directives/idai-navbar.html', 'partials/directives/idai-picker.html']);
 
 angular.module("partials/directives/idai-footer.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("partials/directives/idai-footer.html",
@@ -35,6 +35,17 @@ angular.module("partials/directives/idai-form.html", []).run(["$templateCache", 
     "	</div>\n" +
     "\n" +
     "</form>");
+}]);
+
+angular.module("partials/directives/idai-message.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("partials/directives/idai-message.html",
+    "<div ng-repeat=\"(transl8Key,message) in messages\"\n" +
+    "     ng-class=\"'alert-' + message.level\"\n" +
+    "     class=\"col-md-10 col-md-offset-1 alert text-center\">\n" +
+    "    <button class=\"close\" ng-click=\"removeMessage(transl8Key)\" class=\"pull-right\" style=\"cursor:pointer;\">&times;</button>\n" +
+    "    <b>{{message.body}}</b><br>\n" +
+    "    Please contact arachne@uni-koeln.org if the errors persist.\n" +
+    "</div>");
 }]);
 
 angular.module("partials/directives/idai-navbar.html", []).run(["$templateCache", function($templateCache) {
@@ -307,6 +318,26 @@ angular.module('idai.components')
            	el.replaceWith(el.children());
        	}  
 	}});
+'use strict';
+
+angular.module('idai.components')
+
+
+/**
+ * @author: Daniel M. de Oliveira
+ */
+
+.directive('idaiMessage', function() {
+    return {
+        restrict: 'E',
+        templateUrl: 'partials/directives/idai-message.html',
+        controller: [ '$scope', 'message',
+            function($scope,message) {
+                $scope.removeMessage = function(transl8Key){
+                    message.removeMessage(transl8Key)
+                }
+            }]
+    }});
 'use strict';
 
 /* Directives */
@@ -734,6 +765,60 @@ angular.module('idai.components')
 	};
 }]);
 
+'use strict';
+
+
+/**
+ *
+ * $rootScope
+ *   messages
+ *
+ * @author: Sebastian Cuy
+ * @author: Daniel M. de Oliveira
+ */
+angular.module('idai.components')
+
+.factory('message', [ '$rootScope', 'transl8', function( $rootScope, transl8 ) {
+
+    $rootScope.messages = {};
+
+    /**
+     * Close old messages when location changes
+     */
+    $rootScope.$on("$locationChangeSuccess", function(event, newState, oldState) {
+        angular.forEach($rootScope.messages, function(msg, key) {
+            delete $rootScope.messages[key];
+        });
+    });
+
+    return {
+
+        /**
+         * @param transl8Key transl8 key error transl8Key
+         */
+        addMessageForCode: function(transl8Key) {
+
+            var translation = transl8.getTranslation(transl8Key);
+
+            if (translation==""||translation.substring(0,4)=="TRL8") {
+                $rootScope.messages['default'] = {};
+                $rootScope.messages['default'].body = 'An unknown error has occured.';
+            } else {
+                $rootScope.messages[transl8Key] = {};
+                $rootScope.messages[transl8Key].body = translation;
+            }
+        },
+
+        // TODO write test for it
+        removeMessage: function(transl8Key) {
+            delete $rootScope.messages[transl8Key];
+        },
+
+        getMessages: function() {
+            return $rootScope.messages;
+        }
+    }
+}]);
 'use strict';
 
 /**
