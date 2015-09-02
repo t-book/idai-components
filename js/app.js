@@ -3,6 +3,7 @@
 angular.module('sampleApp',[
 	'ui.bootstrap',
 	'ngRoute',
+	'ngAnimate',
 	'idai.components',
 	'idai.templates',
 	'sampleApp.controllers'

@@ -40,11 +40,13 @@ angular.module("partials/directives/idai-form.html", []).run(["$templateCache", 
 angular.module("partials/directives/idai-message.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("partials/directives/idai-message.html",
     "<div ng-repeat=\"(transl8Key,message) in messages\"\n" +
-    "     ng-class=\"'alert-' + message.level\"\n" +
-    "     class=\"col-md-10 col-md-offset-1 alert text-center\">\n" +
-    "    <button class=\"close\" ng-click=\"removeMessage(transl8Key)\" class=\"pull-right\" style=\"cursor:pointer;\">&times;</button>\n" +
-    "    <b>{{message.body}}</b><br>\n" +
-    "    Please contact arachne@uni-koeln.org if the errors persist.\n" +
+    "        ng-class=\"'alert-' + message.level\"\n" +
+    "        class=\"col-md-10 col-md-offset-1 alert text-center\">\n" +
+    "    <div class=\"alert-message\">\n" +
+    "	    <button class=\"close\" ng-click=\"removeMessage(transl8Key)\" class=\"pull-right\" style=\"cursor:pointer;\">&times;</button>\n" +
+    "	    <b>{{message.body}}</b><br>\n" +
+    "	    Please contact arachne@uni-koeln.org if the errors persist.\n" +
+    "	</div>\n" +
     "</div>");
 }]);
 
@@ -333,9 +335,13 @@ angular.module('idai.components')
         templateUrl: 'partials/directives/idai-message.html',
         controller: [ '$scope', 'message',
             function($scope,message) {
+
+                $scope.messages = message.getMessages();
+
                 $scope.removeMessage = function(transl8Key){
                     message.removeMessage(transl8Key)
-                }
+                };
+
             }]
     }});
 'use strict';
@@ -780,14 +786,14 @@ angular.module('idai.components')
 
 .factory('message', [ '$rootScope', 'transl8', function( $rootScope, transl8 ) {
 
-    $rootScope.messages = {};
+    var messages = {};
 
     /**
      * Close old messages when location changes
      */
     $rootScope.$on("$locationChangeSuccess", function(event, newState, oldState) {
-        angular.forEach($rootScope.messages, function(msg, key) {
-            delete $rootScope.messages[key];
+        angular.forEach(messages, function(msg, key) {
+            delete messages[key];
         });
     });
 
@@ -814,17 +820,17 @@ angular.module('idai.components')
                 message.body = translation;
             }
 
-            $rootScope.messages[transl8Key] = message;
+            messages[transl8Key] = message;
 
         },
 
         // TODO write test for it
         removeMessage: function(transl8Key) {
-            delete $rootScope.messages[transl8Key];
+            delete messages[transl8Key];
         },
 
         getMessages: function() {
-            return $rootScope.messages;
+            return messages;
         }
     }
 }]);

@@ -40,11 +40,13 @@ angular.module("partials/directives/idai-form.html", []).run(["$templateCache", 
 angular.module("partials/directives/idai-message.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("partials/directives/idai-message.html",
     "<div ng-repeat=\"(transl8Key,message) in messages\"\n" +
-    "     ng-class=\"'alert-' + message.level\"\n" +
-    "     class=\"col-md-10 col-md-offset-1 alert text-center\">\n" +
-    "    <button class=\"close\" ng-click=\"removeMessage(transl8Key)\" class=\"pull-right\" style=\"cursor:pointer;\">&times;</button>\n" +
-    "    <b>{{message.body}}</b><br>\n" +
-    "    Please contact arachne@uni-koeln.org if the errors persist.\n" +
+    "        ng-class=\"'alert-' + message.level\"\n" +
+    "        class=\"col-md-10 col-md-offset-1 alert text-center\">\n" +
+    "    <div class=\"alert-message\">\n" +
+    "	    <button class=\"close\" ng-click=\"removeMessage(transl8Key)\" class=\"pull-right\" style=\"cursor:pointer;\">&times;</button>\n" +
+    "	    <b>{{message.body}}</b><br>\n" +
+    "	    Please contact arachne@uni-koeln.org if the errors persist.\n" +
+    "	</div>\n" +
     "</div>");
 }]);
 
