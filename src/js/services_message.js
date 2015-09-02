@@ -13,14 +13,14 @@ angular.module('idai.components')
 
 .factory('message', [ '$rootScope', 'transl8', function( $rootScope, transl8 ) {
 
-    $rootScope.messages = {};
+    var messages = {};
 
     /**
      * Close old messages when location changes
      */
     $rootScope.$on("$locationChangeSuccess", function(event, newState, oldState) {
-        angular.forEach($rootScope.messages, function(msg, key) {
-            delete $rootScope.messages[key];
+        angular.forEach(messages, function(msg, key) {
+            delete messages[key];
         });
     });
 
@@ -47,17 +47,17 @@ angular.module('idai.components')
                 message.body = translation;
             }
 
-            $rootScope.messages[transl8Key] = message;
+            messages[transl8Key] = message;
 
         },
 
         // TODO write test for it
         removeMessage: function(transl8Key) {
-            delete $rootScope.messages[transl8Key];
+            delete messages[transl8Key];
         },
 
         getMessages: function() {
-            return $rootScope.messages;
+            return messages;
         }
     }
 }]);
