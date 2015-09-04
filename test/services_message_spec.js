@@ -33,9 +33,9 @@ describe('message', function () {
         message.addMessageForCode("error_a");
         message.addMessageForCode("error_b");
         message.addMessageForCode("error_c");
-        expect(message.getMessages()["error_a"].body).toBe("translation");
-        expect(message.getMessages()["error_b"].body).toBe("translation");
-        expect(message.getMessages()["error_c"].body).toBe("translation");
+        expect(message.getMessages()["error_a"].text).toBe("translation");
+        expect(message.getMessages()["error_b"].text).toBe("translation");
+        expect(message.getMessages()["error_c"].text).toBe("translation");
         expect(message.getMessages()["error_d"]).toBe(undefined);
     });
 
@@ -43,7 +43,7 @@ describe('message', function () {
 
         myBeforeEach("translation");
         message.addMessageForCode("error_a");
-        expect(message.getMessages()["error_a"].body).toBe("translation");
+        expect(message.getMessages()["error_a"].text).toBe("translation");
     });
 
     it('should throw an error if translation key invalid', function () {
@@ -69,7 +69,7 @@ describe('message', function () {
 
         myBeforeEach("");
         message.addMessageForCode("error_a");
-        expect(message.getMessages()["error_a"].body).toBe("");
+        expect(message.getMessages()["error_a"].text).toBe("");
     });
 
     it('should throw an error if level param is set to non allowed value', function () {
@@ -84,8 +84,8 @@ describe('message', function () {
         myBeforeEach("translation");
         message.addMessageForCode("error_a");
         message.addMessageForCode("error_b");
-        expect(message.getMessages()["error_a"].body).toBe("translation");
-        expect(message.getMessages()["error_b"].body).toBe("translation");
+        expect(message.getMessages()["error_a"].text).toBe("translation");
+        expect(message.getMessages()["error_b"].text).toBe("translation");
         $rootScope.$broadcast('$locationChangeSuccess');
         expect(message.getMessages()["error_a"]).toBe(undefined);
         expect(message.getMessages()["error_b"]).toBe(undefined);

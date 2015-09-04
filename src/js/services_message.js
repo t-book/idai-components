@@ -59,10 +59,10 @@ angular.module('idai.components')
                 newMessage.level='warning';
             }
 
-            var messageText = transl8.getTranslation(transl8Key);
-            if (messageText===null)
+            var textForTransl8Key = transl8.getTranslation(transl8Key);
+            if (textForTransl8Key===null)
                 throw new Error("Unknown transl8 key: "+transl8Key);
-            newMessage.body=messageText;
+            newMessage.text=textForTransl8Key;
 
             messages[transl8Key] = newMessage;
         },
