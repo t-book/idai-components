@@ -10,7 +10,6 @@ angular.module('idai.components')
 .factory('transl8', ['$http', 'language', function($http, primaryBrowserLanguage) {
 
 	var ENGLISH_LANG='en';
-	var TRANSLATION_MISSING = 'TRL8 MISSING';
 	var TRANSL8_JSONP_URL = "http://crazyhorse.archaeologie.uni-koeln.de/transl8/" +
 		"translation/jsonp?application=arachne4_frontend&lang={LANG}&callback=JSON_CALLBACK";
 
@@ -37,12 +36,18 @@ angular.module('idai.components')
 		});
 
 	return {
+
+        /**
+         *
+         * @param key
+         * @returns null there is no translation for the given key.
+         */
 		getTranslation: function(key) {
 			if (!translationsLoaded) return '';
 
 			var translation = translations[key];
 			if (!translation || 0 === translation.length)
-				translation=TRANSLATION_MISSING+' ('+key+')';
+				return null;
 
 			return translation;
 		}

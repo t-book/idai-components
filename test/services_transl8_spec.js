@@ -80,7 +80,7 @@ describe('transl8', function (){
 		myBeforeEach('de');
 
 		$httpBackend.flush();
-		expect(transl8.getTranslation(KEY_INVALID).substring(0,4)).toBe(TRANSLATION_MISSING);
+		expect(transl8.getTranslation(KEY_INVALID)).toBeNull();
 	});
 
 	it('lacks an english translation (english user)', function () {
@@ -88,7 +88,7 @@ describe('transl8', function (){
 		myBeforeEach('en');
 
 		$httpBackend.flush();
-		expect(transl8.getTranslation(KEY_INVALID).substring(0,4)).toBe(TRANSLATION_MISSING);
+		expect(transl8.getTranslation(KEY_INVALID)).toBeNull();
 	});
 
 	it('lacks an english translation (danish user)', function () {
@@ -96,7 +96,7 @@ describe('transl8', function (){
 		myBeforeEach('da');
 
 		$httpBackend.flush();
-		expect(transl8.getTranslation(KEY_INVALID).substring(0,4)).toBe(TRANSLATION_MISSING);
+		expect(transl8.getTranslation(KEY_INVALID)).toBeNull();
 	});
 
 

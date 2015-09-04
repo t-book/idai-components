@@ -2,10 +2,6 @@
 
 
 /**
- *
- * $rootScope
- *   messages
- *
  * @author: Sebastian Cuy
  * @author: Daniel M. de Oliveira
  */
@@ -13,12 +9,21 @@ angular.module('idai.components')
 
 .factory('message', [ '$rootScope', 'transl8', function( $rootScope, transl8 ) {
 
+
+    /**
+     * key, value pairs of
+     * transl8Key, messageObject
+     * with
+     * messageObject
+     *   level - any of 'success', 'info', 'warning', 'danger'
+     *   body - localized message text for transl8 key
+     */
     var messages = {};
 
     /**
      * Close old messages when location changes
      */
-    $rootScope.$on("$locationChangeSuccess", function(event, newState, oldState) {
+    $rootScope.$on("$locationChangeSuccess", function() {
         angular.forEach(messages, function(msg, key) {
             delete messages[key];
         });
@@ -27,31 +32,36 @@ angular.module('idai.components')
     return {
 
         /**
-         * @param transl8Key transl8 key error transl8Key
+         * Adds an error msg to the actual messages array.
+         * If no translation for transl8 key could be found, add message at 'default'
+         * key of messages array.
+         *
+         * @param transl8Key transl8 key for localized error description
+         * @param level (optional) can be set to one of the following values:
+         *   'success', 'info', 'warning', 'danger'. If not set, level defaults to 'warning'.
+         * @throws Error if level set but matches none of the allowed values.
+         * @throws Error if transl8Key is unknown.
          */
         addMessageForCode: function(transl8Key, level) {
 
-            var translation = transl8.getTranslation(transl8Key);
-            // set standard level to warning
-            if (!level || ['success', 'info', 'warning', 'danger'].indexOf(level) == -1) {
-                level = "warning";
-            }
+            if (level){
+                if (['success', 'info', 'warning', 'danger'].indexOf(level) === -1) {
+                    throw new Error("If used, level must be set to an allowed value.");
+                }}
+            else
+                level = 'warning';
 
-            var message = { level: level };
-            var key = transl8Key;
+            var messageText = transl8.getTranslation(transl8Key);
+            if (messageText===null)
+                throw new Error("Unknown transl8 key: "+transl8Key);
 
-            if (translation==""||translation.substring(0,4)=="TRL8") {
-                key = 'default';
-                message.body = 'An unknown error has occured.';
-            } else {
-                message.body = translation;
-            }
-
-            messages[transl8Key] = message;
-
+            var newMessage = {
+                level: level,
+                body: messageText
+            };
+            messages[transl8Key] = newMessage;
         },
 
-        // TODO write test for it
         removeMessage: function(transl8Key) {
             delete messages[transl8Key];
         },

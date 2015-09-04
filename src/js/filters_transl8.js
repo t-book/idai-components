@@ -10,6 +10,11 @@ angular.module('idai.components')
 	
 	var filterFunction = function(key) {
 		var trans = transl8.getTranslation(key);
+        if (trans==null) {
+            var msg = "TRL8 MISSING ('"+key+"')";
+            console.log(msg);
+            return msg;
+        }
 		return trans;
 	}
 	filterFunction.$stateful=true;

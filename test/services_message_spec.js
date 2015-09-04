@@ -46,19 +46,38 @@ describe('message', function () {
         expect(message.getMessages()["error_a"].body).toBe("translation");
     });
 
-    it('should show a default error message if no translation found', function () {
-
-        myBeforeEach("TRL8 MISSING");
-        message.addMessageForCode("error_a");
-        expect(message.getMessages()["default"].body).toBe("An unknown error has occured.");
+    it('should throw an error if translation key invalid', function () {
+        myBeforeEach(null);
+        expect(function(){message.addMessageForCode("error_a")})
+            .toThrow();
     });
 
-    it('should show a default error message if translation not yet loaded', function () {
+
+    iit ('should store the message level', function() {
+        myBeforeEach("translation");
+        message.addMessageForCode("error_a",'danger');
+        expect(message.getMessages()["error_a"].level).toBe('danger');
+    });
+
+    iit ('should default to the message level warning ', function() {
+        myBeforeEach("translation");
+        message.addMessageForCode("error_a");
+        expect(message.getMessages()["error_a"].level).toBe('warning');
+    });
+
+    it('should generate a message with an empty body if translations not yet loaded', function () {
 
         myBeforeEach("");
         message.addMessageForCode("error_a");
-        expect(message.getMessages()["default"].body).toBe("An unknown error has occured.");
+        expect(message.getMessages()["error_a"].body).toBe("");
     });
+
+    it('should throw an error if level param is set to non allowed value', function () {
+        myBeforeEach("");
+        expect(function(){message.addMessageForCode("error_a","successs")})
+            .toThrow();
+    });
+
 
     it ('should clear messages when location changes', function() {
 
@@ -70,14 +89,5 @@ describe('message', function () {
         $rootScope.$broadcast('$locationChangeSuccess');
         expect(message.getMessages()["error_a"]).toBe(undefined);
         expect(message.getMessages()["error_b"]).toBe(undefined);
-    });
-
-    it ('should clear default msg when location changes', function() {
-
-        myBeforeEach("TRL8 MISSING");
-        message.addMessageForCode("error_a");
-        expect(message.getMessages()["default"].body).toBe("An unknown error has occured.");
-        $rootScope.$broadcast('$locationChangeSuccess');
-        expect(message.getMessages()["default"]).toBe(undefined);
     });
 });
