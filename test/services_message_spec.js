@@ -53,13 +53,13 @@ describe('message', function () {
     });
 
 
-    iit ('should store the message level', function() {
+    it ('should store the message level', function() {
         myBeforeEach("translation");
         message.addMessageForCode("error_a",'danger');
         expect(message.getMessages()["error_a"].level).toBe('danger');
     });
 
-    iit ('should default to the message level warning ', function() {
+    it ('should default to the message level warning ', function() {
         myBeforeEach("translation");
         message.addMessageForCode("error_a");
         expect(message.getMessages()["error_a"].level).toBe('warning');
