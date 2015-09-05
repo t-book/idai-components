@@ -15,13 +15,31 @@ angular.module('idai.components')
      * transl8Key, messageObject
      * with
      * messageObject
-     *   level - any of 'success', 'info', 'warning', 'danger'
-     *   body - localized message text for transl8 key
+     *   level - one of 'success', 'info', 'warning', 'danger'
+     *   text  - localized message text
      */
     var messages = {};
 
     function isUnknown(level){
         return (['success', 'info', 'warning', 'danger'].indexOf(level) === -1);
+    }
+
+    function determineMessageLevel (level) {
+        if (level) {
+            if (isUnknown(level))
+                throw new Error("If used, level must be set to an allowed value.");
+            return level;
+        }
+        else {
+            return 'warning';
+        }
+    }
+
+    function fetchTransl8Translation(transl8Key) {
+        var transl8Translation = transl8.getTranslation(transl8Key);
+        if (transl8Translation===null)
+            throw new Error("Unknown transl8 key: "+transl8Key);
+        return transl8Translation;
     }
 
     /**
@@ -36,37 +54,32 @@ angular.module('idai.components')
     return {
 
         /**
-         * Adds an error msg to the actual messages array.
-         * If no translation for transl8 key could be found, add message at 'default'
-         * key of messages array.
+         * Adds an error message to the actual messages.
          *
-         * @param transl8Key transl8 key for localized error description
-         * @param level (optional) can be set to one of the following values:
-         *   'success', 'info', 'warning', 'danger'. If not set, level defaults to 'warning'.
-         * @throws Error if level set but matches none of the allowed values.
-         * @throws Error if transl8Key is unknown.
+         * @param transl8Key transl8 is used to identify the message
+         *   within the messages map as well as for retrieval of
+         *   a localized message text from transl8.
+         * @param level (optional) should be set to one of
+         *   'success', 'info', 'warning', 'danger', which are terms from bootstrap.
+         *   If not set, level defaults to 'warning'.
+         * @throws Error if level if set but does not match one of the allowed values.
+         * @throws Error if there exists no translation for transl8Key.
          */
         addMessageForCode: function(transl8Key, level) {
 
-            var newMessage = {};
-
-            if (level) {
-                if (isUnknown(level))
-                    throw new Error("If used, level must be set to an allowed value.");
-                newMessage.level = level;
-            }
-            else {
-                newMessage.level='warning';
-            }
-
-            var textForTransl8Key = transl8.getTranslation(transl8Key);
-            if (textForTransl8Key===null)
-                throw new Error("Unknown transl8 key: "+transl8Key);
-            newMessage.text=textForTransl8Key;
+            var newMessage = {
+                level: determineMessageLevel(level),
+                text:  fetchTransl8Translation(transl8Key)
+            };
 
             messages[transl8Key] = newMessage;
         },
 
+        /**
+         * Removes an error message from the actual messages.
+         *
+         * @param transl8Key the identifier of the message to be removed.
+         */
         removeMessage: function(transl8Key) {
             delete messages[transl8Key];
         },
