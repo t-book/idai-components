@@ -1,7 +1,15 @@
 'use strict';
 
-
 /**
+ * Message store which holds one or more messages for a
+ * certain amount of time for the purpose of beeing displayed to
+ * the user. They are automatically removed on location changes,
+ * but also can be removed selectively on demand.
+ *
+ * The message access is based on
+ * transl8keys, which are also used to automatically
+ * retrieve the message texts via transl8.
+ *
  * @author: Sebastian Cuy
  * @author: Daniel M. de Oliveira
  */
@@ -9,14 +17,8 @@ angular.module('idai.components')
 
 .factory('message', [ '$rootScope', 'transl8', function( $rootScope, transl8 ) {
 
-
     /**
-     * key, value pairs of
-     * transl8Key, messageObject
-     * with
-     * messageObject
-     *   level - one of 'success', 'info', 'warning', 'danger'
-     *   text  - localized message text
+     * A Map.
      */
     var messages = {};
 
@@ -43,7 +45,7 @@ angular.module('idai.components')
     }
 
     /**
-     * Close old messages when location changes
+     * Clear actual messages when location changes.
      */
     $rootScope.$on("$locationChangeSuccess", function() {
         angular.forEach(messages, function(msg, key) {
@@ -56,12 +58,11 @@ angular.module('idai.components')
         /**
          * Adds an error message to the actual messages.
          *
-         * @param transl8Key transl8 is used to identify the message
-         *   within the messages map as well as for retrieval of
-         *   a localized message text from transl8.
+         * @param transl8Key an existing transl8 key.
+         *   Used to identify the message and retrieve the message text from transl8.
          * @param level (optional) should be set to one of
          *   'success', 'info', 'warning', 'danger', which are terms from bootstrap.
-         *   If not set, level defaults to 'warning'.
+         *   If not set, the messages level will default to 'warning'.
          * @throws Error if level if set but does not match one of the allowed values.
          * @throws Error if there exists no translation for transl8Key.
          */
