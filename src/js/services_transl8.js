@@ -38,17 +38,19 @@ angular.module('idai.components')
 	return {
 
         /**
-         *
-         * @param key
-         * @returns null there is no translation for the given key.
+         * @param key an existing key in transl8 with
+         *   translations for all existing language sets.
+         * @returns translation text
+         * @throws Error if the key does not exist in transl8 or
+         *   there is no translation for the given key.
          */
 		getTranslation: function(key) {
 			if (!translationsLoaded) return '';
 
 			var translation = translations[key];
-			if (!translation || 0 === translation.length)
-				return null;
-
+			if (!translation || 0 === translation.length) {
+                throw new Error("No translation found for key '" + key + "'");
+            }
 			return translation;
 		}
 	}

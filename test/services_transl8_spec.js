@@ -8,7 +8,6 @@ describe('transl8', function (){
 	var KEY_INVALID = "navbar_xyz";
 	var TRANSL8_JSONP_URL = "http://crazyhorse.archaeologie.uni-koeln.de/transl8/" +
 		"translation/jsonp?application=arachne4_frontend&lang={LANG}&callback=JSON_CALLBACK";
-	var TRANSLATION_MISSING = 'TRL8';
 	var TRANSLATION_EN = 'About Arachne';
 	var TRANSLATION_DE = 'Über Arachne';
 
@@ -80,7 +79,7 @@ describe('transl8', function (){
 		myBeforeEach('de');
 
 		$httpBackend.flush();
-		expect(transl8.getTranslation(KEY_INVALID)).toBeNull();
+		expect(function(){transl8.getTranslation(KEY_INVALID)}).toThrow();
 	});
 
 	it('lacks an english translation (english user)', function () {
@@ -88,7 +87,7 @@ describe('transl8', function (){
 		myBeforeEach('en');
 
 		$httpBackend.flush();
-		expect(transl8.getTranslation(KEY_INVALID)).toBeNull();
+		expect(function(){transl8.getTranslation(KEY_INVALID)}).toThrow();
 	});
 
 	it('lacks an english translation (danish user)', function () {
@@ -96,7 +95,7 @@ describe('transl8', function (){
 		myBeforeEach('da');
 
 		$httpBackend.flush();
-		expect(transl8.getTranslation(KEY_INVALID)).toBeNull();
+		expect(function(){transl8.getTranslation(KEY_INVALID)}).toThrow();
 	});
 
 

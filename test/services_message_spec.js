@@ -15,6 +15,7 @@ describe('message', function () {
         module('idai.components',function($provide) {
                 $provide.value('transl8', {
                     getTranslation: function () {
+                        if (translation=="throwError") throw new Error();
                         return translation;
                     }
                 });
@@ -47,7 +48,7 @@ describe('message', function () {
     });
 
     it('should throw an error if translation key invalid', function () {
-        myBeforeEach(null);
+        myBeforeEach("throwError");
         expect(function(){message.addMessageForCode("error_a")})
             .toThrow();
     });

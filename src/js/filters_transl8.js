@@ -4,13 +4,15 @@
 angular.module('idai.components')
 
 /**
- * Author: Daniel M. de Oliveira
+ * @author: Daniel M. de Oliveira
  */
 .filter('transl8', ['transl8',function(transl8){
 	
 	var filterFunction = function(key) {
-		var trans = transl8.getTranslation(key);
-        if (trans==null) {
+        var trans;
+        try {
+            trans = transl8.getTranslation(key);
+        } catch (err) {
             var msg = "TRL8 MISSING ('"+key+"')";
             console.log(msg);
             return msg;

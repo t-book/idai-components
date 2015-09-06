@@ -26,24 +26,6 @@ angular.module('idai.components')
         return (['success', 'info', 'warning', 'danger'].indexOf(level) === -1);
     }
 
-    function determineMessageLevel (level) {
-        if (level) {
-            if (isUnknown(level))
-                throw new Error("If used, level must be set to an allowed value.");
-            return level;
-        }
-        else {
-            return 'warning';
-        }
-    }
-
-    function fetchTransl8Translation(transl8Key) {
-        var transl8Translation = transl8.getTranslation(transl8Key);
-        if (transl8Translation===null)
-            throw new Error("Unknown transl8 key: "+transl8Key);
-        return transl8Translation;
-    }
-
     /**
      * Clear actual messages when location changes.
      */
@@ -68,12 +50,16 @@ angular.module('idai.components')
          */
         addMessageForCode: function(transl8Key, level) {
 
-            var newMessage = {
-                level: determineMessageLevel(level),
-                text:  fetchTransl8Translation(transl8Key)
+            messages[transl8Key] = {
+                text:  transl8.getTranslation(transl8Key),
+                level: 'warning'
             };
 
-            messages[transl8Key] = newMessage;
+            if (level) {
+                if (isUnknown(level))
+                    throw new Error("If used, level must be set to an allowed value.");
+                messages[transl8Key].level = level;
+            }
         },
 
         /**
