@@ -15,6 +15,7 @@ a {
 
 .navbar-default {
   background-color: rgba(85, 114, 161, 0.9);
+  border-color: transparent;
 }
 
 .navbar-default .navbar-nav > li > a {
