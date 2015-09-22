@@ -22,7 +22,7 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
 
-      'node_modules/angular/angular.js',
+      'bower_components/angular/angular.js',
       'node_modules/angular-mocks/angular-mocks.js',
 	  'src/js/modules.js',
 	  'src/js/services_*.js',
