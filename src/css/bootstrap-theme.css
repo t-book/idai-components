@@ -15,6 +15,11 @@
     box-shadow: none;
 }
 
+.navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:hover {
+
+    color: #fff;
+}
+
 @media (max-width: 925px) {
 
     .navbar-default {
