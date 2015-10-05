@@ -5,6 +5,171 @@
  */
 @import url(////fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic,700italic&subset=latin,latin-ext);
 
+.navbar-default .navbar-collapse, .navbar-default .navbar-form {
+
+    border: none;
+}
+
+.navbar-form {
+
+    box-shadow: none;
+}
+
+.navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:hover {
+
+    color: #fff;
+}
+
+@media (max-width: 925px) {
+
+    .navbar-default {
+
+        padding: 0;
+        margin: 0;
+    }
+
+    .navbar-header {
+
+        float: none;
+    }
+
+    .navbar-toggle {
+
+        display: block;
+        padding: 7px 7px;
+        margin-top: 10px;
+        margin-right: 10px;
+    }
+
+    .navbar-fixed-bottom .navbar-collapse, .navbar-fixed-top .navbar-collapse, .navbar-static-top .navbar-collapse {
+
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .navbar-collapse.collapse {
+
+        display: none !important;
+    }
+
+    .navbar-nav {
+
+        float: none !important;
+        margin: 0;
+    }
+
+    .navbar-nav>li {
+
+        float: none;
+    }
+}
+
+/* Spread form input item over whole width */
+@media (min-width: 768px) and (max-width: 925px) {
+
+    .navbar-form {
+
+        margin: 8px -15px;
+        padding: 10px 15px;
+    }
+
+    .input-group .form-control, .input-group-addon, .input-group-btn {
+
+        display: table-cell;
+    }
+
+    .input-group .form-control {
+        float: left;
+        margin-bottom: 0;
+        position: relative;
+        width: 100%;
+        z-index: 2;
+    }
+
+    .navbar-left {
+        float: none !important;
+    }
+}
+
+/* / First breakpoint */
+
+/* Second breakpoint */
+@media (max-width: 767px) {
+
+    .navbar-nav > li > a {
+
+        padding-bottom: 15px;
+        padding-top: 15px;
+    }
+
+    .navbar-collapse {
+
+        box-shadow: none;
+    }
+
+    .navbar .nav > li > .dropdown-menu::before {
+
+        border-bottom: 7px solid #fff;
+        border-left: 7px solid transparent;
+        border-right: 7px solid transparent;
+        content: "";
+        display: inline-block;
+        left: 25px;
+        position: absolute;
+        top: -7px;
+    }
+
+    .navbar-nav > li > .dropdown-menu {
+
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        margin-top: 0;
+    }
+
+    .open > .dropdown-menu {
+        display: block;
+    }
+
+    .dropdown-menu {
+
+        background-clip: padding-box !important;
+        background-color: #fff !important;
+        border: 1px solid rgba(0, 0, 0, 0.15) !important;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.176) !important;
+        font-size: 14px !important;
+        left: 0;
+        list-style: outside none none;
+        margin: 0 !important;
+        min-width: 160px !important;
+        padding: 5px 0 !important;
+        position: absolute !important;
+        text-align: left !important;
+        top: 100% !important;
+        z-index: 1000 !important;
+    }
+
+    .dropdown-menu > li > a {
+
+        clear: both !important;
+        color: #333 !important;
+        display: block !important;
+        font-weight: 400 !important;
+        line-height: 1.42857 !important;
+        padding: 3px 20px !important;
+        white-space: nowrap !important;
+    }
+}
+
+/* / Second breakpoint */
+
+#kleinerGreif {
+
+    height: 36px;
+    width: 36px;
+    margin-top: -8px;
+    margin-bottom: -8px;
+}
+
 body {
   font-family: 'Source Sans Pro',Arial,Helvetica,sans-serif;
 }
@@ -19,7 +184,9 @@ a {
 }
 
 .navbar-default .navbar-nav > li > a {
+
   color: #fff;
+    line-height: 23px;
 }
 
 .navbar-default .navbar-brand {
@@ -46,6 +213,11 @@ a {
 .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
   background-color: rgba(119, 142, 180, 0.9);
   color: #fff;
+}
+
+.navbar-form {
+
+    padding-top: 1px;
 }
 
 .idai-footer {
@@ -83,6 +255,7 @@ a {
 }
 
 .navbar .nav > li > .dropdown-menu:before {
+
   content: '';
   display: inline-block;
   border-left: 7px solid transparent;
@@ -91,6 +264,21 @@ a {
   position: absolute;
   top: -7px;
   left: 25px;
+}
+
+.navbar-default .navbar-toggle {
+
+    border-color: #fff;
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+
+    background-color: #fff;
+}
+
+.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover {
+
+    background-color: #6E8BBA;
 }
 
 /* as described in angular-ui bootstrap guide */
