@@ -44,7 +44,7 @@ angular.module("partials/directives/idai-message.html", []).run(["$templateCache
     "        class=\"col-md-10 col-md-offset-1 alert text-center\">\n" +
     "    <div class=\"alert-message\">\n" +
     "	    <button class=\"close\" ng-click=\"removeMessage(transl8Key)\" class=\"pull-right\" style=\"cursor:pointer;\">&times;</button>\n" +
-    "	    <b>{{message.body}}</b><br>\n" +
+    "	    <b>{{message.text}}</b><br>\n" +
     "	    Please contact arachne@uni-koeln.org if the errors persist.\n" +
     "	</div>\n" +
     "</div>");
@@ -58,8 +58,7 @@ angular.module("partials/directives/idai-navbar.html", []).run(["$templateCache"
     "            <ul class=\"nav navbar-nav\">\n" +
     "                <li class=\"dropdown\" dropdown>\n" +
     "                    <a href=\"#\" dropdown-toggle class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n" +
-    "                        <img src=\"img/kleinergreif.png\"\n" +
-    "                            style=\"height: 36px; width: 36px; margin-top: -8px; margin-bottom: -8px\">\n" +
+    "                        <img src=\"img/kleinergreif.png\" id=\"kleinerGreif\">\n" +
     "                        <b class=\"caret\"></b>\n" +
     "                    </a>\n" +
     "                    <ul class=\"dropdown-menu\" dropdown-menu>\n" +
@@ -537,13 +536,15 @@ angular.module('idai.components')
 angular.module('idai.components')
 
 /**
- * Author: Daniel M. de Oliveira
+ * @author: Daniel M. de Oliveira
  */
 .filter('transl8', ['transl8',function(transl8){
 	
 	var filterFunction = function(key) {
-		var trans = transl8.getTranslation(key);
-        if (trans==null) {
+        var trans;
+        try {
+            trans = transl8.getTranslation(key);
+        } catch (err) {
             var msg = "TRL8 MISSING ('"+key+"')";
             console.log(msg);
             return msg;
@@ -778,8 +779,16 @@ angular.module('idai.components')
 
 'use strict';
 
-
 /**
+ * Message store which holds one or more messages for a
+ * certain amount of time for the purpose of beeing displayed to
+ * the user. They are automatically removed on location changes,
+ * but also can be removed selectively on demand.
+ *
+ * The message access is based on
+ * transl8keys, which are also used to automatically
+ * retrieve the message texts via transl8.
+ *
  * @author: Sebastian Cuy
  * @author: Daniel M. de Oliveira
  */
@@ -787,19 +796,17 @@ angular.module('idai.components')
 
 .factory('message', [ '$rootScope', 'transl8', function( $rootScope, transl8 ) {
 
-
     /**
-     * key, value pairs of
-     * transl8Key, messageObject
-     * with
-     * messageObject
-     *   level - any of 'success', 'info', 'warning', 'danger'
-     *   body - localized message text for transl8 key
+     * A Map.
      */
     var messages = {};
 
+    function isUnknown(level){
+        return (['success', 'info', 'warning', 'danger'].indexOf(level) === -1);
+    }
+
     /**
-     * Close old messages when location changes
+     * Clear actual messages when location changes.
      */
     $rootScope.$on("$locationChangeSuccess", function() {
         angular.forEach(messages, function(msg, key) {
@@ -810,36 +817,35 @@ angular.module('idai.components')
     return {
 
         /**
-         * Adds an error msg to the actual messages array.
-         * If no translation for transl8 key could be found, add message at 'default'
-         * key of messages array.
+         * Adds an error message to the actual messages.
          *
-         * @param transl8Key transl8 key for localized error description
-         * @param level (optional) can be set to one of the following values:
-         *   'success', 'info', 'warning', 'danger'. If not set, level defaults to 'warning'.
-         * @throws Error if level set but matches none of the allowed values.
-         * @throws Error if transl8Key is unknown.
+         * @param transl8Key an existing transl8 key.
+         *   Used to identify the message and retrieve the message text from transl8.
+         * @param level (optional) should be set to one of
+         *   'success', 'info', 'warning', 'danger', which are terms from bootstrap.
+         *   If not set, the messages level will default to 'warning'.
+         * @throws Error if level if set but does not match one of the allowed values.
+         * @throws Error if there exists no translation for transl8Key.
          */
         addMessageForCode: function(transl8Key, level) {
 
-            if (level){
-                if (['success', 'info', 'warning', 'danger'].indexOf(level) === -1) {
-                    throw new Error("If used, level must be set to an allowed value.");
-                }}
-            else
-                level = 'warning';
-
-            var messageText = transl8.getTranslation(transl8Key);
-            if (messageText===null)
-                throw new Error("Unknown transl8 key: "+transl8Key);
-
-            var newMessage = {
-                level: level,
-                body: messageText
+            messages[transl8Key] = {
+                text:  transl8.getTranslation(transl8Key),
+                level: 'warning'
             };
-            messages[transl8Key] = newMessage;
+
+            if (level) {
+                if (isUnknown(level))
+                    throw new Error("If used, level must be set to an allowed value.");
+                messages[transl8Key].level = level;
+            }
         },
 
+        /**
+         * Removes an error message from the actual messages.
+         *
+         * @param transl8Key the identifier of the message to be removed.
+         */
         removeMessage: function(transl8Key) {
             delete messages[transl8Key];
         },
@@ -889,17 +895,19 @@ angular.module('idai.components')
 	return {
 
         /**
-         *
-         * @param key
-         * @returns null there is no translation for the given key.
+         * @param key an existing key in transl8 with
+         *   translations for all existing language sets.
+         * @returns translation text
+         * @throws Error if the key does not exist in transl8 or
+         *   there is no translation for the given key.
          */
 		getTranslation: function(key) {
 			if (!translationsLoaded) return '';
 
 			var translation = translations[key];
-			if (!translation || 0 === translation.length)
-				return null;
-
+			if (!translation || 0 === translation.length) {
+                throw new Error("No translation found for key '" + key + "'");
+            }
 			return translation;
 		}
 	}

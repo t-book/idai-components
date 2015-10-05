@@ -44,7 +44,7 @@ angular.module("partials/directives/idai-message.html", []).run(["$templateCache
     "        class=\"col-md-10 col-md-offset-1 alert text-center\">\n" +
     "    <div class=\"alert-message\">\n" +
     "	    <button class=\"close\" ng-click=\"removeMessage(transl8Key)\" class=\"pull-right\" style=\"cursor:pointer;\">&times;</button>\n" +
-    "	    <b>{{message.body}}</b><br>\n" +
+    "	    <b>{{message.text}}</b><br>\n" +
     "	    Please contact arachne@uni-koeln.org if the errors persist.\n" +
     "	</div>\n" +
     "</div>");
@@ -58,8 +58,7 @@ angular.module("partials/directives/idai-navbar.html", []).run(["$templateCache"
     "            <ul class=\"nav navbar-nav\">\n" +
     "                <li class=\"dropdown\" dropdown>\n" +
     "                    <a href=\"#\" dropdown-toggle class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n" +
-    "                        <img src=\"img/kleinergreif.png\"\n" +
-    "                            style=\"height: 36px; width: 36px; margin-top: -8px; margin-bottom: -8px\">\n" +
+    "                        <img src=\"img/kleinergreif.png\" id=\"kleinerGreif\">\n" +
     "                        <b class=\"caret\"></b>\n" +
     "                    </a>\n" +
     "                    <ul class=\"dropdown-menu\" dropdown-menu>\n" +
