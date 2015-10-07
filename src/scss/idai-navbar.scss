@@ -1,0 +1,26 @@
+#brand-img {
+  height: 38px;
+  margin-top: -16px;
+  margin-bottom: -14px;
+}
+
+// display arrow on top of dropdown menu for idai.world menu
+.navbar .nav > li > .dropdown-menu:before {
+  content: '';
+  display: inline-block;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-bottom: 7px solid #fff;
+  position: absolute;
+  top: -7px;
+  left: 25px;
+}
+
+.navbar .form-control:focus {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.navbar .form-control:focus ~ .input-group-btn .btn-default {
+  border: 1px solid $input-border-focus;
+}

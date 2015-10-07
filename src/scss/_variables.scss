@@ -1,0 +1,34 @@
+//
+// Variables
+// --------------------------------------------------
+
+
+//== Colors
+$brand-primary:         #37588e !default;
+
+//== Typography
+$font-family-sans-serif:  'Source Sans Pro', Arial,Helvetica, sans-serif;
+
+//== Media queries breakpoints
+$screen-xs:                  480px !default;
+$screen-sm:                  768px !default;
+$screen-md:                  992px !default;
+$screen-lg:                  1200px !default;
+
+//== Navbar
+$navbar-default-color:             #fff !default;
+$navbar-default-bg:                rgba(85, 114, 161, 0.9) !default;
+$navbar-default-border:            transparent !default;
+
+// Navbar links
+$navbar-default-link-color:                #fff !default;
+$navbar-default-link-hover-color:          #fff !default;
+$navbar-default-link-hover-bg:             lighten($navbar-default-bg, 10%) !default;
+
+// Navbar toggle
+$navbar-default-toggle-hover-bg:           #ddd !default;
+$navbar-default-toggle-icon-bar-bg:        #888 !default;
+$navbar-default-toggle-border-color:       #ddd !default;
+
+//== Forms
+$input-border-focus:             lighten($brand-primary, 40%) !default;

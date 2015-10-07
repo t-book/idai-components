@@ -58,7 +58,7 @@ angular.module("partials/directives/idai-navbar.html", []).run(["$templateCache"
     "            <ul class=\"nav navbar-nav\">\n" +
     "                <li class=\"dropdown\" dropdown>\n" +
     "                    <a href=\"#\" dropdown-toggle class=\"dropdown-toggle\" data-toggle=\"dropdown\">\n" +
-    "                        <img src=\"img/kleinergreif.png\" id=\"kleinerGreif\">\n" +
+    "                        <img src=\"img/kleinergreif.png\" id=\"brand-img\">\n" +
     "                        <b class=\"caret\"></b>\n" +
     "                    </a>\n" +
     "                    <ul class=\"dropdown-menu\" dropdown-menu>\n" +
@@ -123,7 +123,7 @@ angular.module("partials/directives/idai-navbar.html", []).run(["$templateCache"
     "                        <div ng-include=\"'partials/navbar-menu.html'\" include-replace></div>\n" +
     "                        <li class=\"divider\"></li>\n" +
     "                        <li>\n" +
-    "                            <a ng-click=\"logoutFunction();\" style=\"cursor:pointer;\">\n" +
+    "                            <a ng-click=\"logoutFunction();\">\n" +
     "                                <span class=\"glyphicon glyphicon-log-out\"></span> &nbsp;{{'navbar_sign_out' | transl8}}\n" +
     "                            </a>\n" +
     "                        </li>\n" +
@@ -132,8 +132,7 @@ angular.module("partials/directives/idai-navbar.html", []).run(["$templateCache"
     "\n" +
     "                <!-- login and register if not logged in -->\n" +
     "                <div ng-if=\"!userObject.username\" ng-cloak\n" +
-    "                     class=\"btn-group btn-group-sm\"\n" +
-    "                     style=\"margin-top:2px;\">\n" +
+    "                     class=\"btn-group btn-group-sm\">\n" +
     "                    <a type=\"button\" class=\"btn btn-default navbar-btn\" ng-click=\"loginFunction();\">\n" +
     "                        <b>\n" +
     "                            <span class=\"glyphicon glyphicon-log-in\"></span>\n" +

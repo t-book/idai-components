@@ -4,7 +4,7 @@
             <ul class="nav navbar-nav">
                 <li class="dropdown" dropdown>
                     <a href="#" dropdown-toggle class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="img/kleinergreif.png" id="kleinerGreif">
+                        <img src="img/kleinergreif.png" id="brand-img">
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu" dropdown-menu>
@@ -69,7 +69,7 @@
                         <div ng-include="'partials/navbar-menu.html'" include-replace></div>
                         <li class="divider"></li>
                         <li>
-                            <a ng-click="logoutFunction();" style="cursor:pointer;">
+                            <a ng-click="logoutFunction();">
                                 <span class="glyphicon glyphicon-log-out"></span> &nbsp;{{'navbar_sign_out' | transl8}}
                             </a>
                         </li>
@@ -78,8 +78,7 @@
 
                 <!-- login and register if not logged in -->
                 <div ng-if="!userObject.username" ng-cloak
-                     class="btn-group btn-group-sm"
-                     style="margin-top:2px;">
+                     class="btn-group btn-group-sm">
                     <a type="button" class="btn btn-default navbar-btn" ng-click="loginFunction();">
                         <b>
                             <span class="glyphicon glyphicon-log-in"></span>

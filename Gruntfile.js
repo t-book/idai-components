@@ -1,7 +1,21 @@
 module.exports = function(grunt) {
 
+	var paths = {
+		bootstrap: 'bower_components/bootstrap-sass/assets/'
+	};
+
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
+		sass: {
+			options: {				
+				includePaths: [paths.bootstrap + 'stylesheets/', '.']
+			},
+			dist: {
+				files: {
+					'dist/css/<%= pkg.name %>.css': 'src/scss/theme.scss'
+				}
+			}
+		},
 		concat: {
 		    dist: {
 				src: [
@@ -26,20 +40,23 @@ module.exports = function(grunt) {
 				watch: true,
 				module: 'idai.templates'
 			},
-		    main: {
+		    dist: {
 		    	src: ['src/partials/directives/**/*.html'],
 		    	dest: 'dist/templates.js'
 		    },
 		},
 		cssmin: {
-			target: {
-				files: [{
-					expand: true,
-					cwd: 'src/css',
-					src: ['*.css'],
-					dest: 'dist/css/',
-					ext: '.min.css'
-				}]
+			dist: {
+				src: 'dist/css/<%= pkg.name %>.css',
+				dest: 'dist/css/<%= pkg.name %>.min.css'
+			}
+		},
+		copy: {
+			dist: {
+				expand: true,
+				cwd: paths.bootstrap,
+				src: 'fonts/bootstrap/**',
+				dest: 'dist/'
 			}
 		},
 		karma: {
@@ -61,12 +78,12 @@ module.exports = function(grunt) {
 	            files: [
 					'src/partials/directives/**/*.html',
 					'src/js/**/*.js',
-					'src/css/*.css',
+					'src/scss/**/*.scss',
 					'js/**/*.js',
 					'partials/**/*.html',
 					'index.html'
 	            ],
-	            tasks: ['html2js','concat','cssmin']
+	            tasks: ['html2js','concat','sass','cssmin']
 	        }
 	    },
 		connect: {
@@ -95,18 +112,22 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-karma');
 	grunt.loadNpmTasks('grunt-contrib-connect');
 	grunt.loadNpmTasks('grunt-contrib-watch');
+	grunt.loadNpmTasks('grunt-sass');
+	grunt.loadNpmTasks('grunt-contrib-copy');
 
 	grunt.registerTask('server', [
 		'html2js',
 		'concat',
+		'sass',
 		'cssmin',
+		'copy',
 		'connect:server',
 		'watch'
     ]);
 
     grunt.registerTask('test', ['karma:unit']);
 
-	grunt.registerTask('build', ['test','html2js','concat','uglify','cssmin']);
+	grunt.registerTask('build', ['test','html2js','concat','uglify','sass','cssmin', 'copy']);
 
     grunt.registerTask('default', ['build']);
 
