@@ -9,6 +9,7 @@ var minifyCss = require('gulp-minify-css');
 var uglify = require('gulp-uglify');
 var ngHtml2Js = require("gulp-ng-html2js");
 var minifyHtml = require("gulp-minify-html");
+var Server = require('karma').Server;
 
 var pkg = require('./package.json');
 
@@ -82,6 +83,13 @@ gulp.task('copy-fonts', function() {
   	.pipe(gulp.dest(paths.build + '/fonts'));
 });
 
+gulp.task('test', function (done) {
+  new Server({
+    configFile: __dirname + '/test/karma.conf.js',
+    singleRun: true
+  }, done).start();
+});
+
 gulp.task('build', [
 	'sass',
 	'minify-css',
@@ -113,5 +121,5 @@ gulp.task('server', ['sass', 'concat-js', 'html2js', 'copy-fonts'], function() {
 });
 
 gulp.task('default', function() {
-	runSequence('clean', 'build');
+	runSequence('clean', 'test', 'build');
 });
