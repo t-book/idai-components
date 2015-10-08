@@ -7,7 +7,7 @@ Components library for use in other angular based dai projects.
 A sample application can get started via
 
 ```bash
-grunt server
+gulp server
 ```
 
 The demo app is then served on port 1235. 
@@ -25,7 +25,7 @@ In order to make additions to the library, these preparative steps are necessary
 
 ```bash
 npm install
-npm install -g bower grunt-cli
+npm install -g bower gulp
 bower install
 ```
 
@@ -34,40 +34,44 @@ bower install
 If changes to the library code are beeing made, 
 
 ```bash
-grunt build
+gulp build
 ```
 
 has to be called after changing the source code. This will run the tests,
 (which can also be done solo by calling
 
 ```bash
-grunt test
+gulp test
 ```
 
-) and build the project which results in the files
+) and build the project which results in the files:
 
 ```bash
-dist/idai-components.js
-dist/idai-components.min.js
-dist/css/bootstrap-theme.min.css
+dist/idai-components.js # full js library without depencies
+dist/idai-components.min.js # minified full js library without dependencies
+dist/idai-components-deps.js # concatenated and minified dependencies
+dist/idai-components-no-tpls.js # js library without the templates
+dist/idai-components-tpls.js # angular templates
+dist/css/idai-components.css # full css including bootstrap
+dist/css/idai-components.min.css # minified full css including bootstrap
 ```
 
-which represent the library binaries.
+In most cases only `idai-components.min.js` and `idai-components.min.css` are needed.
 
 ### Deployment and versioning
 
 The resulting files under dist are to be pushed to GitHub, together with the changes to the source code.
-These are the resulting binaries which clients can get via bower, adding a dependency
+These are the resulting libraries which clients can get via bower, adding a dependency
 in their local bower.json:
 
-```json
-"idai-components": "codarchlab/idai-components#~version"
+```bash
+bower install codarchlab/idai-components --save
 ```
 
 Bower and GitHub play well together so that bower will know to fetch the library automatically from GitHub.
 
-When pushing the changes and binaries to GitHub, a new branch for the changes has
-to be made in order to make the changes available to clients as a new library version.
+When pushing the changes to GitHub, a new release has
+to be created in order to make the changes available to clients as a new library version.
 
 The new tag should follow the guidelines for [semantic versioning](http://semver.org/), which means basically
 that for functional additions to the library the middle digit gets incremented and for API breaking changes the first digit gets incremented.
