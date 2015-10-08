@@ -10,7 +10,7 @@ angular.module('idai.components')
 .factory('transl8', ['$http', 'language', function($http, primaryBrowserLanguage) {
 
 	var ENGLISH_LANG='en';
-	var TRANSL8_JSONP_URL = "http://crazyhorse.archaeologie.uni-koeln.de/transl8/" +
+	var TRANSL8_JSONP_URL = "//crazyhorse.archaeologie.uni-koeln.de/transl8/" +
 		"translation/jsonp?application=arachne4_frontend&lang={LANG}&callback=JSON_CALLBACK";
 
 
