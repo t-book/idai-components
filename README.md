@@ -34,17 +34,11 @@ bower install
 If changes to the library code are beeing made, 
 
 ```bash
-gulp build
+gulp
 ```
 
-has to be called after changing the source code. This will run the tests,
-(which can also be done solo by calling
-
-```bash
-gulp test
-```
-
-) and build the project which results in the files:
+has to be called after changing the source code. This will run the tests
+and all necessary build steps which results in the follwing files:
 
 ```bash
 dist/idai-components.js # full js library without depencies
@@ -56,7 +50,8 @@ dist/css/idai-components.css # full css including bootstrap
 dist/css/idai-components.min.css # minified full css including bootstrap
 ```
 
-In most cases only `idai-components.min.js` and `idai-components.min.css` are needed.
+In most cases only `idai-components.min.js` and `idai-components.min.css` need
+to be referenced by applications making use of idai-components.
 
 ### Deployment and versioning
 
