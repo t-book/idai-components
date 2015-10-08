@@ -12,7 +12,7 @@ module.exports = function(grunt) {
 			},
 			dist: {
 				files: {
-					'dist/css/<%= pkg.name %>.css': 'src/scss/theme.scss'
+					'dist/css/<%= pkg.name %>.css': 'src/scss/idai-components.scss'
 				}
 			}
 		},

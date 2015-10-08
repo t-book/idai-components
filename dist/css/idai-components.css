@@ -4127,8 +4127,8 @@ tbody.collapse.in {
   .navbar-default .navbar-nav > .active > a,
   .navbar-default .navbar-nav > .active > a:hover,
   .navbar-default .navbar-nav > .active > a:focus {
-    color: #555;
-    background-color: rgba(74, 99, 139, 0.9); }
+    color: #fff;
+    background-color: rgba(116, 141, 181, 0.9); }
   .navbar-default .navbar-nav > .disabled > a,
   .navbar-default .navbar-nav > .disabled > a:hover,
   .navbar-default .navbar-nav > .disabled > a:focus {
@@ -4147,8 +4147,8 @@ tbody.collapse.in {
   .navbar-default .navbar-nav > .open > a,
   .navbar-default .navbar-nav > .open > a:hover,
   .navbar-default .navbar-nav > .open > a:focus {
-    background-color: rgba(74, 99, 139, 0.9);
-    color: #555; }
+    background-color: rgba(116, 141, 181, 0.9);
+    color: #fff; }
   @media (max-width: 767px) {
     .navbar-default .navbar-nav .open .dropdown-menu > li > a {
       color: #fff; }
@@ -4159,8 +4159,8 @@ tbody.collapse.in {
     .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
     .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
     .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
-      color: #555;
-      background-color: rgba(74, 99, 139, 0.9); }
+      color: #fff;
+      background-color: rgba(116, 141, 181, 0.9); }
     .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a,
     .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:hover,
     .navbar-default .navbar-nav .open .dropdown-menu > .disabled > a:focus {

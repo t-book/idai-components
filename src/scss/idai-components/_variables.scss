@@ -24,6 +24,8 @@ $navbar-default-border:            transparent !default;
 $navbar-default-link-color:                #fff !default;
 $navbar-default-link-hover-color:          #fff !default;
 $navbar-default-link-hover-bg:             lighten($navbar-default-bg, 10%) !default;
+$navbar-default-link-active-color:         #fff !default;
+$navbar-default-link-active-bg:            lighten($navbar-default-bg, 10%) !default;
 
 // Navbar toggle
 $navbar-default-toggle-hover-bg:           #ddd !default;
