@@ -13,8 +13,9 @@ var minifyHtml = require("gulp-minify-html");
 var pkg = require('./package.json');
 
 var paths = {
-	'build': 'dist',
-  'bootstrap': './bower_components/bootstrap-sass/assets/'
+	'build': 'dist/',
+  'lib': 'bower_components/',
+  'bootstrap': 'bower_components/bootstrap-sass/assets/'
 };
 
 // compile sass and concatenate to single css file in build dir
@@ -40,6 +41,19 @@ gulp.task('concat-js', function() {
 		.pipe(concat(pkg.name + '-no-tpls.js'))
 		.pipe(gulp.dest(paths.build))
     .pipe(reload({ stream:true }));
+});
+
+// concatenates and minifies all dependecies into a single file in build dir
+gulp.task('concat-deps', function() {
+	return gulp.src([
+			paths.lib + 'angular/angular.min.js',
+			paths.lib + 'angular-bootstrap/ui-bootstrap-tpls.min.js',
+			paths.lib + 'angular-route/angular-route.min.js',
+			paths.lib + 'angular-animate/angular-animate.min.js'
+		])
+		.pipe(concat(pkg.name + '-deps.js'))
+    .pipe(uglify())
+		.pipe(gulp.dest(paths.build));
 });
 
 // minifies and concatenates js files in build dir
@@ -72,6 +86,7 @@ gulp.task('build', [
 	'sass',
 	'minify-css',
 	'concat-js',
+	'concat-deps',
 	'html2js',
 	'minify-js',
 	'copy-fonts'
