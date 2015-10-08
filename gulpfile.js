@@ -110,7 +110,8 @@ gulp.task('server', ['sass', 'concat-js', 'html2js', 'copy-fonts'], function() {
   browserSync({
     server: {
       baseDir: '.'
-    }
+    },
+    port: 1235
   });
 
   gulp.watch('src/scss/**/*.scss', ['sass']);
