@@ -5,6 +5,7 @@
     "angular-mocks": "~1.4.3",
     "browser-sync": "^2.9.10",
     "connect-modrewrite": "^0.8.1",
+    "del": "^2.0.2",
     "grunt": "~0.4.5",
     "grunt-contrib-concat": "~0.5.1",
     "grunt-contrib-connect": "~0.10.1",
@@ -18,12 +19,15 @@
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",
     "gulp-minify-css": "^1.2.1",
+    "gulp-minify-html": "^1.0.4",
+    "gulp-ng-html2js": "^0.2.0",
     "gulp-sass": "^2.0.4",
     "gulp-uglify": "^1.4.1",
     "karma": "~0.13.0",
     "karma-jasmine": "~0.1.6",
     "karma-ng-html2js-preprocessor": "^0.1.2",
     "karma-phantomjs-launcher": "~0.2.0",
-    "phantomjs": "~1.9.17"
+    "phantomjs": "~1.9.17",
+    "run-sequence": "^1.1.4"
   }
 }

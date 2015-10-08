@@ -1,46 +1,89 @@
 var gulp = require('gulp');
+var del = require('del');
+var runSequence = require('run-sequence');
 var browserSync = require('browser-sync');
 var reload = browserSync.reload;
 var sass = require('gulp-sass');
 var concat = require('gulp-concat');
 var minifyCss = require('gulp-minify-css');
 var uglify = require('gulp-uglify');
+var ngHtml2Js = require("gulp-ng-html2js");
+var minifyHtml = require("gulp-minify-html");
 
 var pkg = require('./package.json');
 
 var paths = {
-    'bootstrap': './bower_components/bootstrap-sass/assets/'
+	'build': 'dist',
+  'bootstrap': './bower_components/bootstrap-sass/assets/'
 };
 
+// compile sass and concatenate to single css file in build dir
 gulp.task('sass', function() {
   return gulp.src('src/scss/theme.scss')
   	.pipe(sass({includePaths: [paths.bootstrap + 'stylesheets/'], precision: 8}))
   	.pipe(concat(pkg.name + '.css'))
-    .pipe(gulp.dest('dist/css'))
+    .pipe(gulp.dest(paths.build + '/css'))
     .pipe(reload({ stream:true }));
 });
 
-gulp.task('minify-css', function() {
-	return gulp.src('dist/css/*.css')
+// minify css files in build dir
+gulp.task('minify-css', ['sass'], function() {
+	return gulp.src(paths.build + '/css/*.css')
 		.pipe(minifyCss())
   	.pipe(concat(pkg.name + '.min.css'))
-		.pipe(gulp.dest('dist/css'));
+		.pipe(gulp.dest(paths.build + '/css'));
 });
 
+// concatenates all js files in src into a single file in build dir
 gulp.task('concat-js', function() {
-	return gulp.src('src/js/**/*.js')
-		.pipe(concat(pkg.name + '.js'))
-		.pipe(gulp.dest('dist'))
+	return gulp.src(['src/js/modules.js','src/js/**/*.js'])
+		.pipe(concat(pkg.name + '-no-tpls.js'))
+		.pipe(gulp.dest(paths.build))
     .pipe(reload({ stream:true }));
 });
 
-gulp.task('minify-js', function() {
-	return gulp.src('dist/*.js')
+// minifies and concatenates js files in build dir
+gulp.task('minify-js', ['concat-js', 'html2js'], function() {
+	return gulp.src([paths.build + '/' + pkg.name + '-no-tpls.js',
+			paths.build + '/' + pkg.name + '-tpls.js'])
+		.pipe(concat(pkg.name + '.js'))
+    .pipe(gulp.dest(paths.build))
     .pipe(uglify())
-    .pipe(gulp.dest('dist'));
+		.pipe(concat(pkg.name + '.min.js'))
+    .pipe(gulp.dest(paths.build));
 });
 
-gulp.task('server', ['sass', 'concat-js'], function() {
+// converts, minifies and concatenates html partials
+// in src to a single js file in build dir
+gulp.task('html2js', function() {
+	return gulp.src('src/partials/**/*.html')
+		.pipe(minifyHtml())
+		.pipe(ngHtml2Js({ moduleName: 'idai.templates', prefix: 'partials/' }))
+		.pipe(concat(pkg.name + '-tpls.js'))
+		.pipe(gulp.dest(paths.build));
+});
+
+gulp.task('copy-fonts', function() {
+	return gulp.src(paths.bootstrap + '/fonts/**/*', { base: paths.bootstrap + '/fonts' })
+  	.pipe(gulp.dest(paths.build + '/fonts'));
+});
+
+gulp.task('build', [
+	'sass',
+	'minify-css',
+	'concat-js',
+	'html2js',
+	'minify-js',
+	'copy-fonts'
+]);
+
+// clean
+gulp.task('clean', function() {
+	return del(paths.build + '/**/*');
+});
+
+// runs the development server and sets up browser reloading
+gulp.task('server', ['sass', 'concat-js', 'html2js', 'copy-fonts'], function() {
   browserSync({
     server: {
       baseDir: '.'
@@ -49,10 +92,11 @@ gulp.task('server', ['sass', 'concat-js'], function() {
 
   gulp.watch('src/scss/**/*.scss', ['sass']);
   gulp.watch('src/js/**/*.js', ['concat-js']);
+  gulp.watch('src/partials/**/*.html', ['html2js']);
 
-  gulp.watch(['**/*.html', 'js/**/*.js'], reload);
+  gulp.watch(['index.html', 'partials/**/*.html', 'js/**/*.js'], reload);
 });
 
 gulp.task('default', function() {
-  // place code for your default task here
+	runSequence('clean', 'build');
 });
