@@ -38,6 +38,13 @@
 					<li><code>partials/navbar-menu.html</code> - will be inserted as html into the dropdown menu</li>
 					<li><code>partials/navbar-project.html</code> - will be inserted as brand text next to your projects logo.</li>
 				</ul>
+				<p>
+					The navbar auto-generates its link titles with help of the content localization system described
+					<a href="info/i18n">here</a>. The configuration of the shown links is required to be found
+					at
+					<code>info/content.json</code>. The localization system will
+					search for a subtree with the id "navbar".
+				</p>
 			</div>
 		</div>
 
@@ -52,22 +59,19 @@
 					Use <code>mailto</code> to pass an eMail address that should appear as
 					a contact for bugreports in the footer.
 				</p>
+				<p>
+					The footer auto-generates its link titles with help of the content localization system described
+					<a href="/info/i18n">here</a>. The configuration of the shown links is required to be found
+					at
+					<code>info/content.json</code>. The localization system will
+					search for a subtree with the id "footer".
+				</p>
 			</div>
 		</div>
 
-		<h2>Required components</h2>
+		<h2>Images</h2>
 
-		<p>
-			The links of the navbar and footer get automatically generated from a static
-			content dir:
-		</p>				
-		<ul>
-			<li><code>info/</code> - folder from which static pages can get served
-			<li><code>info/content.json</code> - navbar and footer links are created automatically from here.
-		</ul>
-		<p>
-			This also provides automatic localization. More on this topic can be found under <a href="/info/i18n">i18n</a>.
-		</p>
+
 		<p>
 			Further required artifacts (which can be found in the local img folder of this repo):
 		</p>
@@ -76,7 +80,7 @@
 			<li><code>img/logo_unikoeln.png</code> - will appear in the footer</li>
 			<li><code>img/logo_codarchlab.png</code> - will appear in the footer</li>
 			<li><code>img/logo_dai.png</code> - will appear in the footer</li>
-		</pre>
+		</ul>
 
 	</div>
 
