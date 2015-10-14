@@ -2,7 +2,6 @@
 // Variables
 // --------------------------------------------------
 
-
 //== Colors
 $brand-primary:         #37588e !default;
 
@@ -28,9 +27,16 @@ $navbar-default-link-active-color:         #fff !default;
 $navbar-default-link-active-bg:            lighten($navbar-default-bg, 10%) !default;
 
 // Navbar toggle
-$navbar-default-toggle-hover-bg:           #ddd !default;
-$navbar-default-toggle-icon-bar-bg:        #888 !default;
+$navbar-default-toggle-hover-bg:           lighten($navbar-default-bg, 10%) !default;
 $navbar-default-toggle-border-color:       #ddd !default;
+$navbar-default-toggle-icon-bar-bg:        $navbar-default-toggle-border-color;
 
 //== Forms
 $input-border-focus:             lighten($brand-primary, 40%) !default;
+
+// Navbar collapse
+//** Point at which the navbar becomes uncollapsed.
+// Bootstrap default: $grid-float-breakpoint:     $screen-sm-min !default;
+$grid-float-breakpoint:     $screen-md !default;
+//** Point at which the navbar begins collapsing.
+$grid-float-breakpoint-max: ($grid-float-breakpoint - 1) !default;
