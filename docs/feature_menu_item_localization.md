@@ -1,0 +1,54 @@
+# Feature: Localization of user interface elements
+
+[Specification](../test/services_transl8_spec.js)
+
+## Scenario: Britisch User
+
+```gherkin
+Given a user has chosen "en" as his primary browser language.
+When the user opens the landing page.
+Then the "navbar_about"-Item is entitled "About Arachne".
+```
+
+## Scenario: German User
+
+```gherkin
+Given a user has chosen "de" as his primary browser language.
+When the user opens the landing page.
+Then the "navbar_about"-item is entitled "Über Arachne".
+```
+
+## Scenario: Danish User
+
+```gherkin
+Given a user has chosen "da"  as his primary browser language.
+When  the user opens the landing page.
+Then  the "navbar_about"-item is entitled "About Arachne".
+```
+
+## Scenario: missing translation (english user)
+
+```gherkin
+Given a user has chosen "en"  as his primary browser language.
+ And the "navbar_about"-item lacks an English translation
+When the user opens the landing page.
+Then the "navbar_about"-item is entitled „TRL8_MISSING“.
+```
+
+## Scenario: missing translation (danish user)
+
+```gherkin
+Given a user has chosen "da"  as his primary browser language.
+ And the "navbar_about"-item lacks an English translation
+When the user opens the landing page.
+Then the "navbar_about"-item is entitled „TRL8_MISSING“.
+```
+
+## Scenario: missing translation (german user)
+
+```gherkin
+Given a user has chosen "de"  as his primary browser language.
+ And the "navbar_about"-item lacks an German translation
+ When the user opens the landing page.
+ Then the "navbar_about"-item is entitled "TRL8_MISSING".
+```
