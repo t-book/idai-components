@@ -15,7 +15,7 @@ angular.module('idai.components')
 .directive('idaiFooter', function() {
 return {
 	restrict: 'E',
-	scope: { mailto: '@' },
+	scope: { mailto: '@', institutions: '=' },
 	templateUrl: 'partials/directives/idai-footer.html',
 	controller: [ '$scope', '$http', 'localizedContent', 
 		function($scope,$http, localizedContent) {
