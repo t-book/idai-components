@@ -15,8 +15,13 @@ angular.module('idai.components')
 		navigator.languages[0] :
 		(navigator.language || navigator.userLanguage);
 
-	if (lang.substring(0,2)=='de') lang='de';
-	if (lang.substring(0,2)=='en') lang='en';
+	if (typeof lang === 'undefined') {
+		lang = 'de';
+	} else {
+
+		if (lang.substring(0,2)=='de') lang='de';
+		if (lang.substring(0,2)=='en') lang='en';
+	}
 
 	return {
 		browserPrimaryLanguage : function(){
