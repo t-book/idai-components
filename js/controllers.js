@@ -9,8 +9,8 @@ angular.module('sampleApp.controllers',[])
 
 		$scope.user = {username:"daniel"};
 
-        $scope.addMsg = function(transl8Key, level) {
-            message.addMessageForCode(transl8Key, level);
+        $scope.addMsg = function(transl8Key, level, showContactInfo) {
+            message.addMessageForCode(transl8Key, level, showContactInfo);
         }
 
 	}

@@ -552,8 +552,8 @@ angular.module('idai.components')
  * transl8keys, which are also used to automatically
  * retrieve the message texts via transl8.
  *
- * @author: Sebastian Cuy
- * @author: Daniel M. de Oliveira
+ * @author Sebastian Cuy
+ * @author Daniel M. de Oliveira
  */
 angular.module('idai.components')
 
@@ -584,21 +584,29 @@ angular.module('idai.components')
     return {
 
         /**
-         * Adds an error message to the actual messages.
+         * Adds a message to the actual messages. By default, an extra line
+         * is appended below the message containing a standard contact info text.
+         * This info text will not appear if level is success.
          *
          * @param transl8Key an existing transl8 key.
          *   Used to identify the message and retrieve the message text from transl8.
          * @param level (optional) should be set to one of
          *   'success', 'info', 'warning', 'danger', which are terms from bootstrap.
          *   If not set, the messages level will default to 'warning'.
+         * @param showContactInfo boolean. If set and set to false the contact info
+         *   line will not be created.
+         *
+         * If set to true or level is not success an additional line
+         *
          * @throws Error if level if set but does not match one of the allowed values.
          * @throws Error if there exists no translation for transl8Key.
          */
-        addMessageForCode: function(transl8Key, level) {
+        addMessageForCode: function(transl8Key, level, showContactInfo) {
 
             messages[transl8Key] = {
                 text:  transl8.getTranslation(transl8Key),
-                level: 'warning'
+                level: 'warning',
+                contactInfo: 'Please contact arachne@uni-koeln.org if the errors persist.'
             };
 
             if (level) {
@@ -606,6 +614,9 @@ angular.module('idai.components')
                     throw new Error("If used, level must be set to an allowed value.");
                 messages[transl8Key].level = level;
             }
+
+            if (showContactInfo==false||messages[transl8Key].level=='success')
+                delete messages[transl8Key].contactInfo;
         },
 
         /**
@@ -719,7 +730,7 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('partials/directives/idai-message.html',
-    '<div ng-repeat="(transl8Key,message) in messages" ng-class="\'alert-\' + message.level" class="col-md-10 col-md-offset-1 alert text-center"><div class=alert-message><button class=close ng-click=removeMessage(transl8Key) style=cursor:pointer;>&times;</button> <b>{{message.text}}</b><br>Please contact arachne@uni-koeln.org if the errors persist.</div></div>');
+    '<div ng-repeat="(transl8Key,message) in messages" ng-class="\'alert-\' + message.level" class="col-md-10 col-md-offset-1 alert text-center"><div class=alert-message><button class=close ng-click=removeMessage(transl8Key) style=cursor:pointer;>&times;</button> <b>{{message.text}}</b><br><span>{{message.contactInfo}}</span></div></div>');
 }]);
 })();
 

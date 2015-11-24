@@ -101,4 +101,25 @@ describe('message', function () {
         expect(message.getMessages()["error_a"]).toBe(undefined);
         expect(message.getMessages()["error_b"]).toBe(undefined);
     });
+
+    it ('should show contact info by default', function() {
+        myBeforeEach("translation");
+        message.addMessageForCode("error_a");
+        expect(message.getMessages()["error_a"].contactInfo)
+            .toBe('Please contact arachne@uni-koeln.org if the errors persist.');
+    });
+
+    it ('should hide contact info on demand', function() {
+        myBeforeEach("translation");
+        message.addMessageForCode("error_a",'warning',false);
+        expect(message.getMessages()["error_a"].contactInfo)
+            .toBe(undefined);
+    });
+
+    it ('should hide contact info on success', function() {
+        myBeforeEach("translation");
+        message.addMessageForCode("error_a",'success');
+        expect(message.getMessages()["error_a"].contactInfo)
+            .toBe(undefined);
+    });
 });
