@@ -596,8 +596,6 @@ angular.module('idai.components')
          * @param showContactInfo boolean. If set and set to false the contact info
          *   line will not be created.
          *
-         * If set to true or level is not success an additional line
-         *
          * @throws Error if level if set but does not match one of the allowed values.
          * @throws Error if there exists no translation for transl8Key.
          */
