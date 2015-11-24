@@ -1,7 +1,7 @@
 /**
  * @author: Daniel M. de Oliveira
  */
-describe('message', function () {
+ddescribe('message', function () {
 
     var $rootScope;
     var message;
@@ -79,6 +79,16 @@ describe('message', function () {
             .toThrow();
     });
 
+    it('should clear all the messages', function() {
+        myBeforeEach("translation");
+        message.addMessageForCode("error_a");
+        message.addMessageForCode("error_b");
+        expect(message.getMessages()["error_a"].text).toBe("translation");
+        expect(message.getMessages()["error_b"].text).toBe("translation");
+        message.clear();
+        expect(message.getMessages()["error_a"]).toBe(undefined);
+        expect(message.getMessages()["error_b"]).toBe(undefined);
+    });
 
     it ('should clear messages when location changes', function() {
 
