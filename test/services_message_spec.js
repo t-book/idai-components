@@ -1,7 +1,7 @@
 /**
  * @author: Daniel M. de Oliveira
  */
-ddescribe('message', function () {
+describe('message', function () {
 
     var $rootScope;
     var message;

@@ -25,9 +25,9 @@ module.exports = function(config) {
       'bower_components/angular/angular.js',
       'node_modules/angular-mocks/angular-mocks.js',
 	  'src/js/modules.js',
-	  'src/js/services_*.js',
-	  'src/js/filters_*.js',
-	  'src/js/directives_*.js',
+	  'src/js/services/*.js',
+	  'src/js/filters/*.js',
+	  'src/js/directives/*.js',
       'test/*_spec.js',
 	  'src/partials/directives/*.html'
     ],

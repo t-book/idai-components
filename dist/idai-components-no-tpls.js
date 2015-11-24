@@ -361,7 +361,6 @@ angular.module('idai.components')
 		/**
 		 * The language selection rule.
 		 *
-		 * @param prefered_lang - the language initially prefered by the client
 		 * @param isLangApplicable - callback function(lang,param) for testing
 		 *   if lang is applicable in the clients context
 		 * @param applyLang - callback function(lang_,param) for applying
@@ -371,7 +370,7 @@ angular.module('idai.components')
 		__ : function(isLangApplicable,applyLang,param){
 
 			if (language.browserPrimaryLanguage()==GERMAN_LANG){
-				applyLang(GERMAN_LANG,param)
+				applyLang(GERMAN_LANG,param);
 				return;
 			}
 
@@ -539,9 +538,9 @@ angular.module('idai.components')
 
 /**
  * Message store which holds one or more messages for a
- * certain amount of time for the purpose of beeing displayed to
+ * certain amount of time for the purpose of being displayed to
  * the user. They are automatically removed on location changes,
- * but also can be removed selectively on demand.
+ * but also can be removed on demand.
  *
  * The message access is based on
  * transl8keys, which are also used to automatically
@@ -563,13 +562,17 @@ angular.module('idai.components')
         return (['success', 'info', 'warning', 'danger'].indexOf(level) === -1);
     }
 
+    function _clear() {
+        angular.forEach(messages, function(msg, key) {
+            delete messages[key];
+        });
+    }
+
     /**
      * Clear actual messages when location changes.
      */
     $rootScope.$on("$locationChangeSuccess", function() {
-        angular.forEach(messages, function(msg, key) {
-            delete messages[key];
-        });
+        _clear();
     });
 
     return {
@@ -606,6 +609,14 @@ angular.module('idai.components')
          */
         removeMessage: function(transl8Key) {
             delete messages[transl8Key];
+        },
+
+
+        /**
+         * Removes all messages.
+         */
+        clear: function() {
+            _clear();
         },
 
         getMessages: function() {

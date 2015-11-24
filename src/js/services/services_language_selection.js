@@ -21,7 +21,6 @@ angular.module('idai.components')
 		/**
 		 * The language selection rule.
 		 *
-		 * @param prefered_lang - the language initially prefered by the client
 		 * @param isLangApplicable - callback function(lang,param) for testing
 		 *   if lang is applicable in the clients context
 		 * @param applyLang - callback function(lang_,param) for applying
@@ -31,7 +30,7 @@ angular.module('idai.components')
 		__ : function(isLangApplicable,applyLang,param){
 
 			if (language.browserPrimaryLanguage()==GERMAN_LANG){
-				applyLang(GERMAN_LANG,param)
+				applyLang(GERMAN_LANG,param);
 				return;
 			}
 
