@@ -9,6 +9,7 @@ angular.module('idai.components')
 .filter('transl8', ['transl8',function(transl8){
 	
 	var filterFunction = function(key) {
+        if (typeof key == 'undefined') return undefined;
         var trans;
         try {
             trans = transl8.getTranslation(key);

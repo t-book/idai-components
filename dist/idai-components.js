@@ -15,7 +15,7 @@ angular.module('idai.components')
 .directive('idaiFooter', function() {
 return {
 	restrict: 'E',
-	scope: { mailto: '@' },
+	scope: { mailto: '@', institutions: '=' },
 	templateUrl: 'partials/directives/idai-footer.html',
 	controller: [ '$scope', '$http', 'localizedContent', 
 		function($scope,$http, localizedContent) {
@@ -299,6 +299,7 @@ angular.module('idai.components')
 .filter('transl8', ['transl8',function(transl8){
 	
 	var filterFunction = function(key) {
+        if (typeof key == 'undefined') return undefined;
         var trans;
         try {
             trans = transl8.getTranslation(key);
@@ -329,8 +330,13 @@ angular.module('idai.components')
 		navigator.languages[0] :
 		(navigator.language || navigator.userLanguage);
 
-	if (lang.substring(0,2)=='de') lang='de';
-	if (lang.substring(0,2)=='en') lang='en';
+	if (typeof lang === 'undefined') {
+		lang = 'de';
+	} else {
+
+		if (lang.substring(0,2)=='de') lang='de';
+		if (lang.substring(0,2)=='en') lang='en';
+	}
 
 	return {
 		browserPrimaryLanguage : function(){
@@ -689,7 +695,7 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('partials/directives/idai-footer.html',
-    '<div class="row idai-footer"><div class="col-md-12 text-center"><p><a href="http://www.dainst.org/" target=_blank><img src=img/logo_dai.png height=60px style="margin-right: 20px;"></a> <a href=http://archaeologie.uni-koeln.de target=_blank><img src=img/logo_unikoeln.png height=50px style="margin-right: 20px;"></a> <a href=http://archaeologie.uni-koeln.de/node/23 target=_blank><img src=img/logo_codarchlab.png height=25px></a></p><p>{{\'footer_licensed_under\'|transl8}} <a rel=license href=info/order>Creative Commons</a> | <span ng-repeat="link in dynamicLinkList"><a href=info/{{link.id}}>{{link.title}}</a> |</span> {{\'footer_bugs_to\'|transl8}} <a href=mailto:{{mailto}}>{{mailto}}</a></p></div></div>');
+    '<div class="row idai-footer"><div class="col-md-12 text-center"><p><a ng-repeat="(key, uri) in institutions" ng-href={{uri}}><img ng-src=img/logo_{{key}}.png style="height:60px; margin:0 10px;"></a></p><p>{{\'footer_licensed_under\'|transl8}} <a rel=license href=info/order>Creative Commons</a> | <span ng-repeat="link in dynamicLinkList"><a href=info/{{link.id}}>{{link.title}}</a> |</span> {{\'footer_bugs_to\'|transl8}} <a href=mailto:{{mailto}}>{{mailto}}</a></p></div></div>');
 }]);
 })();
 

@@ -15,7 +15,7 @@ angular.module('idai.components')
 .directive('idaiFooter', function() {
 return {
 	restrict: 'E',
-	scope: { mailto: '@' },
+	scope: { mailto: '@', institutions: '=' },
 	templateUrl: 'partials/directives/idai-footer.html',
 	controller: [ '$scope', '$http', 'localizedContent', 
 		function($scope,$http, localizedContent) {
@@ -299,6 +299,7 @@ angular.module('idai.components')
 .filter('transl8', ['transl8',function(transl8){
 	
 	var filterFunction = function(key) {
+        if (typeof key == 'undefined') return undefined;
         var trans;
         try {
             trans = transl8.getTranslation(key);
@@ -329,8 +330,13 @@ angular.module('idai.components')
 		navigator.languages[0] :
 		(navigator.language || navigator.userLanguage);
 
-	if (lang.substring(0,2)=='de') lang='de';
-	if (lang.substring(0,2)=='en') lang='en';
+	if (typeof lang === 'undefined') {
+		lang = 'de';
+	} else {
+
+		if (lang.substring(0,2)=='de') lang='de';
+		if (lang.substring(0,2)=='en') lang='en';
+	}
 
 	return {
 		browserPrimaryLanguage : function(){
