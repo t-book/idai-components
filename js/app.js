@@ -18,6 +18,6 @@ angular.module('sampleApp',[
 			.when('/info/forms', {templateUrl: 'partials/forms.html'});
 	}
 ]).constant('componentsSettings', {
-		transl8Uri: "translation/jsonp?application=arachne4_frontend&lang={LANG}&callback=JSON_CALLBACK"
+		transl8Uri: "http://bogusman01.dai-cloud.uni-koeln.de/transl8/translation/jsonp?application=arachne4_frontend&lang={LANG}&callback=JSON_CALLBACK"
 	}
 );
