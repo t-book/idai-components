@@ -648,20 +648,19 @@ angular.module('idai.components')
  * @author: Daniel M. de Oliveira
  */
 angular.module('idai.components')
-.factory('transl8', ['$http', 'language', function($http, primaryBrowserLanguage) {
+.factory('transl8', ['$http', 'language', 'componentsSettings',
+		function($http, language, componentsSettings) {
 
-	var ENGLISH_LANG='en';
-	var TRANSL8_JSONP_URL = "//crazyhorse.archaeologie.uni-koeln.de/transl8/" +
-		"translation/jsonp?application=arachne4_frontend&lang={LANG}&callback=JSON_CALLBACK";
-
+	var ENGLISH_LANG= 'en';
+	var GERMAN_LANG= 'de';
 
 	var translationLang=ENGLISH_LANG;
 	var translationsLoaded = false;
 	var translations={}; // Map: [transl8_key,translation].
 
 
-	if (primaryBrowserLanguage.browserPrimaryLanguage()=='de') translationLang='de';
-	var transl8Url = TRANSL8_JSONP_URL.replace('{LANG}',translationLang);
+	if (language.browserPrimaryLanguage()==GERMAN_LANG) translationLang=GERMAN_LANG;
+	var transl8Url = componentsSettings.transl8Uri.replace('{LANG}',translationLang);
 
 
 
