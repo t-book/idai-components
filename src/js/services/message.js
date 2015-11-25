@@ -10,6 +10,17 @@
  * transl8keys, which are also used to automatically
  * retrieve the message texts via transl8.
  *
+ * <b>Note</b> that the basic assumption here is that the
+ * iDAI transl8 service tool is up and running and the translations have
+ * been fetched when calling methods of the message service.
+ * The assumption is made because we say that if the transl8 service is
+ * down you cannot navigate anyway so you will not try to perform actions
+ * that require communication with users, which is the purpose of this service.
+ *
+ * Another assumption is that a transl8Key used to add a message exists and
+ * that the developer is responsible for creating it prior to using it. For this
+ * reason exceptions get thrown if unkown transl8Keys are used.
+ *
  * @author Sebastian Cuy
  * @author Daniel M. de Oliveira
  */
@@ -18,19 +29,46 @@ angular.module('idai.components')
 .factory('message', [ '$rootScope', 'transl8', function( $rootScope, transl8 ) {
 
     /**
-     * A Map.
+     * A Map [transl8Key,message].
      */
     var messages = {};
+
+    /**
+     * The message data structure.
+     * @param transl8Key
+     */
+    function Message(transl8Key) {
+        this.text = transl8.getTranslation(transl8Key);
+        this.level = 'warning';
+        this.contactInfo = transl8.getTranslation('components.message.contact')
+            .replace('CONTACT', 'arachne@uni-koeln.org');
+    }
 
     function isUnknown(level){
         return (['success', 'info', 'warning', 'danger'].indexOf(level) === -1);
     }
 
+    /**
+     * Clears all the actual messages.
+     * @private
+     */
     function _clear() {
         angular.forEach(messages, function(msg, key) {
             delete messages[key];
         });
     }
+
+    /**
+     * Creates a new message and adds it to the actual messages.
+     * @param transl8Key
+     * @returns {*}
+     * @private
+     */
+    function _create(transl8Key) {
+        messages[transl8Key]=  new Message(transl8Key);
+        return messages[transl8Key];
+    }
+
 
     /**
      * Clear actual messages when location changes.
@@ -59,20 +97,16 @@ angular.module('idai.components')
          */
         addMessageForCode: function(transl8Key, level, showContactInfo) {
 
-            messages[transl8Key] = {
-                text:  transl8.getTranslation(transl8Key),
-                level: 'warning',
-                contactInfo: 'Please contact arachne@uni-koeln.org if the errors persist.'
-            };
+            var message = _create(transl8Key);
 
             if (level) {
                 if (isUnknown(level))
                     throw new Error("If used, level must be set to an allowed value.");
-                messages[transl8Key].level = level;
+                message.level = level;
             }
 
-            if (showContactInfo==false||messages[transl8Key].level=='success')
-                delete messages[transl8Key].contactInfo;
+            if (showContactInfo==false||message.level=='success')
+                delete message.contactInfo;
         },
 
         /**

@@ -14,7 +14,9 @@ describe('message', function () {
 
         module('idai.components',function($provide) {
                 $provide.value('transl8', {
-                    getTranslation: function () {
+                    getTranslation: function (transl8Key) {
+                        if (transl8Key=='components.message.contact')
+                            return 'Please contact CONTACT if the errors persist.';
                         if (translation=="throwError") throw new Error();
                         return translation;
                     }
@@ -23,7 +25,7 @@ describe('message', function () {
         );
 
         inject(function(_message_,$injector) {
-            $rootScope = $injector.get('$rootScope')
+            $rootScope = $injector.get('$rootScope');
             message = _message_;
         });
     }
