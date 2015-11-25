@@ -18,8 +18,6 @@ describe('transl8', function (){
 	var transl8UrlDe = TRANSL8_JSONP_URL.replace('{LANG}','de');
 
 
-
-
 	var transl8,$httpBackend;
 
 
@@ -34,6 +32,9 @@ describe('transl8', function (){
 					browserPrimaryLanguage: function () {
 						return primaryLang;
 					}
+				});
+				$provide.constant('componentsSettings', {
+					transl8Uri: TRANSL8_JSONP_URL
 				});
 			}
 		);

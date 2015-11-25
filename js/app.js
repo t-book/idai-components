@@ -17,4 +17,7 @@ angular.module('sampleApp',[
 			.when('/info/i18n', {templateUrl: 'partials/i18n.html'})
 			.when('/info/forms', {templateUrl: 'partials/forms.html'});
 	}
-]);
+]).constant('componentsSettings', {
+		transl8Uri: "translation/jsonp?application=arachne4_frontend&lang={LANG}&callback=JSON_CALLBACK"
+	}
+);
