@@ -104,6 +104,20 @@ describe('message', function () {
         expect(message.getMessages()["error_b"]).toBe(undefined);
     });
 
+
+    it ('should not clear messages on demand when location changes', function() {
+
+        myBeforeEach("translation");
+
+        message.addMessageForCode("error_a");
+        expect(message.getMessages()["error_a"].text).toBe("translation");
+
+        message.dontClearOnNextLocationChange();
+
+        $rootScope.$broadcast('$locationChangeSuccess');
+        expect(message.getMessages()["error_a"].text).toBe("translation");
+    });
+
     it ('should show contact info by default', function() {
         myBeforeEach("translation");
         message.addMessageForCode("error_a");

@@ -2,9 +2,11 @@
 
 /**
  * Message store which holds one or more messages for a
- * certain amount of time for the purpose of being displayed to
- * the user. They are automatically removed on location changes,
- * but also can be removed on demand.
+ * for the purpose of being displayed to the user.
+ *
+ * Messages are automatically removed on location changes,
+ * though this default behavior can be overridden. Messages
+ * also can be removed selectively.
  *
  * The message access is based on
  * transl8keys, which are also used to automatically
@@ -32,6 +34,8 @@ angular.module('idai.components')
      * A Map [transl8Key,message].
      */
     var messages = {};
+
+    var clearOnLocationChange = true;
 
     /**
      * The message data structure.
@@ -74,10 +78,25 @@ angular.module('idai.components')
      * Clear actual messages when location changes.
      */
     $rootScope.$on("$locationChangeSuccess", function() {
-        _clear();
+        if (clearOnLocationChange) _clear();
+        clearOnLocationChange= true;
     });
 
     return {
+
+        /**
+         * Allows clients to specify that the messages are not cleared
+         * during the next location change, which would be the default behavior
+         * of the message service.
+         *
+         * NOTE that in order for this to work the angular $location.path()
+         * has to be used. It will not work with window.location.href because
+         * then everything gets reloaded, including the default
+         * value for clearOnLocationChange.
+         */
+        dontClearOnNextLocationChange: function() {
+            clearOnLocationChange= false;
+        },
 
         /**
          * Adds a message to the actual messages. By default, an extra line
