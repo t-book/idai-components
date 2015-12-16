@@ -5,31 +5,6 @@ angular.module('idai.components',[]);
 
 'use strict';
 
-/* Services */
-angular.module('idai.components')
-
-/**
- * @author: Daniel M. de Oliveira
- */
-.filter('transl8', ['transl8',function(transl8){
-	
-	var filterFunction = function(key) {
-        if (typeof key == 'undefined') return undefined;
-        var trans;
-        try {
-            trans = transl8.getTranslation(key);
-        } catch (err) {
-            var msg = "TRL8 MISSING ('"+key+"')";
-            console.log(msg);
-            return msg;
-        }
-		return trans;
-	}
-	filterFunction.$stateful=true;
-	return filterFunction;
-}]);
-'use strict';
-
 angular.module('idai.components')
 
 
@@ -313,6 +288,31 @@ angular.module('idai.components')
 	}
 ]);
 
+'use strict';
+
+/* Services */
+angular.module('idai.components')
+
+/**
+ * @author: Daniel M. de Oliveira
+ */
+.filter('transl8', ['transl8',function(transl8){
+	
+	var filterFunction = function(key) {
+        if (typeof key == 'undefined') return undefined;
+        var trans;
+        try {
+            trans = transl8.getTranslation(key);
+        } catch (err) {
+            var msg = "TRL8 MISSING ('"+key+"')";
+            console.log(msg);
+            return msg;
+        }
+		return trans;
+	}
+	filterFunction.$stateful=true;
+	return filterFunction;
+}]);
 'use strict';
 
 angular.module('idai.components')
@@ -756,7 +756,7 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('partials/directives/idai-footer.html',
-    '<div class="row idai-footer"><div class="col-md-12 text-center"><p><a ng-repeat="(key, uri) in institutions" ng-href={{uri}}><img ng-src=img/logo_{{key}}.png style="height:60px; margin:0 10px;"></a></p><p>{{\'footer_licensed_under\'|transl8}} <a rel=license href=info/order>Creative Commons</a> | <span ng-repeat="link in dynamicLinkList"><a href=info/{{link.id}}>{{link.title}}</a> |</span> {{\'footer_bugs_to\'|transl8}} <a href=mailto:{{mailto}}>{{mailto}}</a></p></div></div>');
+    '<div class=row><div class="col-md-12 text-center"><p><a ng-repeat="(key, uri) in institutions" ng-href={{uri}}><img class=logoImage ng-src=img/logo_{{key}}.png></a></p><p>{{\'footer_licensed_under\'|transl8}} <a rel=license href=info/order>Creative Commons</a> | <span ng-repeat="link in dynamicLinkList"><a href=info/{{link.id}}>{{link.title}}</a> |</span> {{\'footer_bugs_to\'|transl8}} <a href=mailto:{{mailto}}>{{mailto}}</a></p></div></div>');
 }]);
 })();
 
@@ -792,7 +792,7 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('partials/directives/idai-navbar.html',
-    '<nav class="navbar navbar-default navbar-fixed-top" role=navigation><div style="padding-left:0px; position:relative"><div class=pull-left><ul class="nav navbar-nav"><li class=dropdown dropdown><a href=# dropdown-toggle class=dropdown-toggle data-toggle=dropdown><img src=img/kleinergreif.png id=brand-img> <b class=caret></b></a><ul class=dropdown-menu dropdown-menu><li><a href=http://www.dainst.org/de/forschung/forschung-digital/idai.welt target=_blank>iDAI.welt</a></li><li class=divider></li><li><a href="https://gazetteer.dainst.org/" target=_blank>iDAI.gazetteer</a></li><li><a href="http://geoserver.dainst.org/" target=_blank>iDAI.geoserver</a></li><li><a href="http://arachne.uni-koeln.de/" target=_blank>iDAI.objects&nbsp;/&nbsp;Arachne</a></li><li><a href=http://zenon.dainst.org target=_blank>iDAI.bibliography&nbsp;/&nbsp;Zenon</a></li><li><a href=http://archwort.dainst.org/thesaurus/de/vocab target=_blank>iDAI.vocab</a></li><li><a href=http://hellespont.dainst.org target=_blank>Hellespont</a></li></ul></li></ul></div><a href="/"><img class=pull-left ng-src=img/logo_{{projectId}}.png style="height: 36px; margin-top: 8px;"></a></div><div class=navbar-header ng-init="isCollapsed = true"><button class=navbar-toggle ng-click="isCollapsed = !isCollapsed" type=button><span class=sr-only>Toggle navigation</span> <span class=icon-bar></span> <span class=icon-bar></span> <span class=icon-bar></span></button></div><div class="collapse navbar-collapse" collapse=isCollapsed style=padding-left:10px><form ng-submit=search() ng-hide=hideSearchForm class="navbar-left navbar-form input-group form-inline" role=search><input autofocus type=text class=form-control placeholder="neue Suche" ng-model=q name=q> <span class="navbar-left input-group-btn"><button type=submit class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button></span></form><ul class="nav navbar-nav navbar-right"><li ng-repeat="link in dynamicLinkList"><a ng-href=info/{{link.id}}>{{link.title}}</a></li><li><div ng-if=userObject.username ng-cloak dropdown keyboard-nav><a href=bookmarks class="btn btn-default btn-sm navbar-btn" dropdown-toggle data-toggle=dropdown><span class="glyphicon glyphicon-user"></span> &nbsp;{{userObject.username}} <span class=caret></span></a><ul dropdown-menu class=dropdown-menu role=menu style="margin-top:-11px; margin-right: 4px;"><div ng-include="\'partials/navbar-menu.html\'" include-replace></div><li class=divider></li><li><a ng-click=logoutFunction();><span class="glyphicon glyphicon-log-out"></span> &nbsp;{{\'navbar_sign_out\' | transl8}}</a></li></ul></div><div ng-if=!userObject.username ng-cloak class="btn-group btn-group-sm"><a type=button class="btn btn-default navbar-btn" ng-click=loginFunction();><b><span class="glyphicon glyphicon-log-in"></span> &nbsp;{{\'navbar_sign_in\' | transl8}}</b></a> <a ng-if=!userObject.username class="btn btn-default navbar-btn" href=register>{{\'navbar_sign_up\' | transl8}}</a></div></li><li style="margin-right:30px; margin-left: 5px;"><div><a type=button href=contact class="btn btn-sm btn-default navbar-btn"><span class="glyphicon glyphicon-envelope"></span></a></div></li></ul></div></nav>');
+    '<nav class="navbar navbar-default navbar-fixed-top" role=navigation><div style="padding-left:0px; position:relative"><div class=pull-left><ul class="nav navbar-nav"><li class=dropdown dropdown><a href=# dropdown-toggle class=dropdown-toggle data-toggle=dropdown><img src=img/kleinergreif.png id=brand-img> <b class=caret></b></a><ul class=dropdown-menu dropdown-menu><li><a href=http://www.dainst.org/de/forschung/forschung-digital/idai.welt target=_blank>iDAI.welt</a></li><li class=divider></li><li><a href="https://gazetteer.dainst.org/" target=_blank>iDAI.gazetteer</a></li><li><a href="http://geoserver.dainst.org/" target=_blank>iDAI.geoserver</a></li><li><a href="http://arachne.uni-koeln.de/" target=_blank>iDAI.objects&nbsp;/&nbsp;Arachne</a></li><li><a href=http://zenon.dainst.org target=_blank>iDAI.bibliography&nbsp;/&nbsp;Zenon</a></li><li><a href=http://archwort.dainst.org/thesaurus/de/vocab target=_blank>iDAI.vocab</a></li><li><a href=http://hellespont.dainst.org target=_blank>Hellespont</a></li></ul></li></ul></div><a href="/" id=projectLogo><img class=pull-left ng-src=img/logo_{{projectId}}.png style="height: 36px; margin-top: 8px;"></a></div><div class=navbar-header ng-init="isCollapsed = true"><button class=navbar-toggle ng-click="isCollapsed = !isCollapsed" type=button><span class=sr-only>Toggle navigation</span> <span class=icon-bar></span> <span class=icon-bar></span> <span class=icon-bar></span></button></div><div class="collapse navbar-collapse" collapse=isCollapsed style=padding-left:10px><form ng-submit=search() ng-hide=hideSearchForm class="navbar-left navbar-form input-group form-inline" role=search><input autofocus type=text class=form-control placeholder="neue Suche" ng-model=q name=q> <span class="navbar-left input-group-btn"><button type=submit class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button></span></form><ul class="nav navbar-nav navbar-right"><li ng-repeat="link in dynamicLinkList"><a ng-href=info/{{link.id}}>{{link.title}}</a></li><li><div ng-if=userObject.username ng-cloak dropdown keyboard-nav><a href=bookmarks class="btn btn-default btn-sm navbar-btn" dropdown-toggle data-toggle=dropdown><span class="glyphicon glyphicon-user"></span> &nbsp;{{userObject.username}} <span class=caret></span></a><ul dropdown-menu class=dropdown-menu role=menu style="margin-top:-11px; margin-right: 4px;"><div ng-include="\'partials/navbar-menu.html\'" include-replace></div><li class=divider></li><li><a ng-click=logoutFunction();><span class="glyphicon glyphicon-log-out"></span> &nbsp;{{\'navbar_sign_out\' | transl8}}</a></li></ul></div><div ng-if=!userObject.username ng-cloak class="btn-group btn-group-sm"><a type=button class="btn btn-default navbar-btn" ng-click=loginFunction();><b><span class="glyphicon glyphicon-log-in"></span> &nbsp;{{\'navbar_sign_in\' | transl8}}</b></a> <a ng-if=!userObject.username class="btn btn-default navbar-btn" href=register>{{\'navbar_sign_up\' | transl8}}</a></div></li><li style="margin-right:30px; margin-left: 5px;"><div><a type=button href=contact class="btn btn-sm btn-default navbar-btn"><span class="glyphicon glyphicon-envelope"></span></a></div></li></ul></div></nav>');
 }]);
 })();
 
