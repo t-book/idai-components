@@ -162,3 +162,11 @@
     float: none !important;
   }
 }
+
+@media screen and (max-width: 372px) {
+
+  #projectLogo {
+
+    display: none;
+  }
+}

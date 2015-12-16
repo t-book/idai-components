@@ -6164,6 +6164,10 @@ button.close {
   .navbar-left {
     float: none !important; } }
 
+@media screen and (max-width: 372px) {
+  #projectLogo {
+    display: none; } }
+
 html {
   position: relative;
   min-height: 100%; }
