@@ -118,7 +118,10 @@ gulp.task('server', ['sass', 'concat-js', 'html2js', 'copy-fonts'], function() {
 	gulp.watch('src/js/**/*.js', ['concat-js']);
 	gulp.watch('src/partials/**/*.html', ['html2js']);
 
-	gulp.watch(['index.html', 'partials/**/*.html', 'js/**/*.js'], reload);
+	gulp.watch(['index.html',
+		'partials/**/*.html',
+		'src/partials/**/*.html',
+		'js/**/*.js'], reload);
 });
 
 gulp.task('default', function() {
