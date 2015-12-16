@@ -14,7 +14,21 @@ idai-footer {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 150px;
   padding: 30px;
   background-color: #e2e2e2;
+}
+
+idai-footer .logoImage {
+
+  height: 60px;
+  margin: 0 10px;
+}
+
+@media screen and (max-width: 440px) {
+
+  idai-footer .logoImage {
+
+    height: 35px;
+  }
+
 }
