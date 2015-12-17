@@ -5,6 +5,31 @@ angular.module('idai.components',[]);
 
 'use strict';
 
+/* Services */
+angular.module('idai.components')
+
+/**
+ * @author: Daniel M. de Oliveira
+ */
+.filter('transl8', ['transl8',function(transl8){
+	
+	var filterFunction = function(key) {
+        if (typeof key == 'undefined') return undefined;
+        var trans;
+        try {
+            trans = transl8.getTranslation(key);
+        } catch (err) {
+            var msg = "TRL8 MISSING ('"+key+"')";
+            console.log(msg);
+            return msg;
+        }
+		return trans;
+	}
+	filterFunction.$stateful=true;
+	return filterFunction;
+}]);
+'use strict';
+
 angular.module('idai.components')
 
 
@@ -132,7 +157,7 @@ angular.module('idai.components')
 							localizedContent.reduceTitles(navbarLinks)
 							$scope.dynamicLinkList=navbarLinks.children;
 						});
-					}
+					};
 
 					$scope.search = function(fq) {
 						if ($scope.q) {
@@ -141,7 +166,15 @@ angular.module('idai.components')
 							$scope.q = null;
 							$location.url(url);
 						}
-					}
+					};
+
+					$scope.toggleNavbar = function() {
+
+							$scope.isCollapsed = true;
+							$scope.$on('$routeChangeSuccess', function () {
+								$scope.isCollapsed = true;
+							});
+					};
 					
 				}],
 			link: function(scope,element,attrs){
@@ -288,31 +321,6 @@ angular.module('idai.components')
 	}
 ]);
 
-'use strict';
-
-/* Services */
-angular.module('idai.components')
-
-/**
- * @author: Daniel M. de Oliveira
- */
-.filter('transl8', ['transl8',function(transl8){
-	
-	var filterFunction = function(key) {
-        if (typeof key == 'undefined') return undefined;
-        var trans;
-        try {
-            trans = transl8.getTranslation(key);
-        } catch (err) {
-            var msg = "TRL8 MISSING ('"+key+"')";
-            console.log(msg);
-            return msg;
-        }
-		return trans;
-	}
-	filterFunction.$stateful=true;
-	return filterFunction;
-}]);
 'use strict';
 
 angular.module('idai.components')

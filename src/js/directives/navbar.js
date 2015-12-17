@@ -29,7 +29,7 @@ angular.module('idai.components')
 							localizedContent.reduceTitles(navbarLinks)
 							$scope.dynamicLinkList=navbarLinks.children;
 						});
-					}
+					};
 
 					$scope.search = function(fq) {
 						if ($scope.q) {
@@ -38,7 +38,15 @@ angular.module('idai.components')
 							$scope.q = null;
 							$location.url(url);
 						}
-					}
+					};
+
+					$scope.toggleNavbar = function() {
+
+							$scope.isCollapsed = true;
+							$scope.$on('$routeChangeSuccess', function () {
+								$scope.isCollapsed = true;
+							});
+					};
 					
 				}],
 			link: function(scope,element,attrs){
