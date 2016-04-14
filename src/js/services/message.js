@@ -21,14 +21,14 @@
  *
  * Another assumption is that a transl8Key used to add a message exists and
  * that the developer is responsible for creating it prior to using it. For this
- * reason exceptions get thrown if unkown transl8Keys are used.
+ * reason exceptions get thrown if unknown transl8Keys are used.
  *
  * @author Sebastian Cuy
  * @author Daniel M. de Oliveira
  */
 angular.module('idai.components')
 
-.factory('message', [ '$rootScope', 'transl8', function( $rootScope, transl8 ) {
+.factory('message', [ '$rootScope', 'transl8', '$sce', function( $rootScope, transl8, $sce ) {
 
     /**
      * A Map [transl8Key,message].
@@ -43,6 +43,7 @@ angular.module('idai.components')
      */
     function Message(transl8Key) {
         this.text = transl8.getTranslation(transl8Key);
+        this.text = $sce.trustAsHtml(this.text);
         this.level = 'warning';
         this.contactInfo = transl8.getTranslation('components.message.contact')
             .replace('CONTACT', 'arachne@uni-koeln.org');
