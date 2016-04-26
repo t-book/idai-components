@@ -2,7 +2,8 @@ var gulp = require('gulp');
 var del = require('del');
 var runSequence = require('run-sequence');
 var browserSync = require('browser-sync');
-var reload = browserSync.reload;
+var reload = browserSync.reload;;
+var modRewrite = require('connect-modrewrite');
 var sass = require('gulp-sass');
 var concat = require('gulp-concat');
 var minifyCss = require('gulp-minify-css');
@@ -109,7 +110,11 @@ gulp.task('clean', function() {
 gulp.task('server', ['sass', 'concat-js', 'html2js', 'copy-fonts'], function() {
 	browserSync({
 		server: {
-		  baseDir: '.'
+			baseDir: '.',
+        	middleware: [
+        		// rewrite for AngularJS HTML5 mode, redirect all non-file urls to index.html
+				modRewrite(['!\\.html|\\.js|\\.svg|\\.css|\\.png|\\.jpg|\\.gif|\\.json|\\.woff2|\\.woff|\\.ttf$ /index.html [L]']),
+        	]
 		},
 		port: 1235
 	});
