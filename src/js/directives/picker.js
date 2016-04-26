@@ -15,7 +15,7 @@ angular.module('idai.components')
 			offsetParam: '@', addParams: '=', selectedItem: '='
 		},
 		templateUrl: 'partials/directives/idai-picker.html',
-		controller: [ '$scope', '$parse', '$modal',
+		controller: [ '$scope', '$parse', '$uibModal',
 			function($scope, $parse, $modal) {
 
 				$scope.openModal = function() {
@@ -41,7 +41,7 @@ angular.module('idai.components')
 	}
 })
 
-.controller('PickerModalController', [ '$scope', '$http', '$q', '$parse', '$modalInstance',
+.controller('PickerModalController', [ '$scope', '$http', '$q', '$parse', '$uibModalInstance',
 	function($scope, $http, $q, $parse, $modalInstance) {
 		
 		var canceler;
