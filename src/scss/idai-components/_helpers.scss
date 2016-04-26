@@ -20,6 +20,11 @@
   animation: spin 1.5s linear infinite;
 }
 
+.loading.ng-animate {
+    -webkit-animation: none 0s;
+    animation: none 0s;
+}
+
 @-webkit-keyframes spin {
   0%{-webkit-transform: rotate(0deg);}
   100%{-webkit-transform: rotate(720deg);}

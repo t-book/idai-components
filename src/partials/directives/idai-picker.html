@@ -16,7 +16,7 @@
 				</form>
 			</div>	
 			<div class="panel-body">
-				<div ng-show="loading" class="loading"></div>
+				<div ng-if="loading" class="loading"></div>
 				<em ng-show="result && total == 0 && !loading">{{ 'picker_no_result' | transl8 }}</em>
 				<em ng-show="!result && total == 0 && !loading">{{ 'picker_perform_search' | transl8 }}</em>
 				<div ng-show="total > 0 && !loading" class="text-center small">

@@ -5,6 +5,31 @@ angular.module('idai.components',[]);
 
 'use strict';
 
+/* Services */
+angular.module('idai.components')
+
+/**
+ * @author: Daniel M. de Oliveira
+ */
+.filter('transl8', ['transl8',function(transl8){
+	
+	var filterFunction = function(key) {
+        if (typeof key == 'undefined') return undefined;
+        var trans;
+        try {
+            trans = transl8.getTranslation(key);
+        } catch (err) {
+            var msg = "TRL8 MISSING ('"+key+"')";
+            console.log(msg);
+            return msg;
+        }
+		return trans;
+	}
+	filterFunction.$stateful=true;
+	return filterFunction;
+}]);
+'use strict';
+
 angular.module('idai.components')
 
 
@@ -173,7 +198,7 @@ angular.module('idai.components')
 			offsetParam: '@', addParams: '=', selectedItem: '='
 		},
 		templateUrl: 'partials/directives/idai-picker.html',
-		controller: [ '$scope', '$parse', '$modal',
+		controller: [ '$scope', '$parse', '$uibModal',
 			function($scope, $parse, $modal) {
 
 				$scope.openModal = function() {
@@ -199,7 +224,7 @@ angular.module('idai.components')
 	}
 })
 
-.controller('PickerModalController', [ '$scope', '$http', '$q', '$parse', '$modalInstance',
+.controller('PickerModalController', [ '$scope', '$http', '$q', '$parse', '$uibModalInstance',
 	function($scope, $http, $q, $parse, $modalInstance) {
 		
 		var canceler;
@@ -253,7 +278,6 @@ angular.module('idai.components')
 
 		$scope.keydown = function($event) {
 			// arrow down preselects next item
-			console.log($event.keyCode);
 			if ($event.keyCode == 40 && $scope.preselect < $scope.result.length - 1) {
 				$scope.preselect++;
 			// arrow up select precious item
@@ -296,31 +320,6 @@ angular.module('idai.components')
 	}
 ]);
 
-'use strict';
-
-/* Services */
-angular.module('idai.components')
-
-/**
- * @author: Daniel M. de Oliveira
- */
-.filter('transl8', ['transl8',function(transl8){
-	
-	var filterFunction = function(key) {
-        if (typeof key == 'undefined') return undefined;
-        var trans;
-        try {
-            trans = transl8.getTranslation(key);
-        } catch (err) {
-            var msg = "TRL8 MISSING ('"+key+"')";
-            console.log(msg);
-            return msg;
-        }
-		return trans;
-	}
-	filterFunction.$stateful=true;
-	return filterFunction;
-}]);
 'use strict';
 
 angular.module('idai.components')
