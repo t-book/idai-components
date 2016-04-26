@@ -95,7 +95,6 @@ angular.module('idai.components')
 
 		$scope.keydown = function($event) {
 			// arrow down preselects next item
-			console.log($event.keyCode);
 			if ($event.keyCode == 40 && $scope.preselect < $scope.result.length - 1) {
 				$scope.preselect++;
 			// arrow up select precious item
