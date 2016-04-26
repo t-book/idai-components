@@ -5881,8 +5881,6 @@ button.close {
   .navbar-fixed-bottom .navbar-collapse, .navbar-fixed-top .navbar-collapse, .navbar-static-top .navbar-collapse {
     padding-left: 15px;
     padding-right: 15px; }
-  .navbar-collapse.collapse {
-    display: none !important; }
   .navbar-nav {
     float: none !important;
     margin: 0; }
