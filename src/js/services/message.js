@@ -46,7 +46,7 @@ angular.module('idai.components')
         this.text = $sce.trustAsHtml(this.text);
         this.level = 'warning';
         this.contactInfo = transl8.getTranslation('components.message.contact')
-            .replace('CONTACT', 'arachne@uni-koeln.org');
+            .replace('CONTACT', 'arachne@uni-koeln.de');
     }
 
     function isUnknown(level){

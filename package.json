@@ -1,7 +1,7 @@
 {
   "name": "idai-components",
   "devDependencies": {
-    "angular-mocks": "~1.4.5",
+    "angular-mocks": "~1.5.5",
     "browser-sync": "^2.9.10",
     "connect-modrewrite": "^0.8.5",
     "del": "^2.0.2",
