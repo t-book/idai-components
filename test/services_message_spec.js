@@ -122,7 +122,7 @@ describe('message', function () {
         myBeforeEach("translation");
         message.addMessageForCode("error_a");
         expect(message.getMessages()["error_a"].contactInfo)
-            .toBe('Please contact arachne@uni-koeln.org if the errors persist.');
+            .toBe('Please contact arachne@uni-koeln.de if the errors persist.');
     });
 
     it ('should hide contact info on demand', function() {

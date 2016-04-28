@@ -1,7 +1,7 @@
 {
   "name": "idai-components",
   "devDependencies": {
-    "angular-mocks": "~1.4.5",
+    "angular-mocks": "~1.5.5",
     "browser-sync": "^2.9.10",
     "connect-modrewrite": "^0.8.5",
     "del": "^2.0.2",
@@ -17,7 +17,7 @@
     "karma-jasmine": "~0.3.5",
     "karma-ng-html2js-preprocessor": "^0.1.2",
     "karma-phantomjs-launcher": "~0.2.0",
-    "phantomjs": "~1.9.17",
+    "phantomjs-prebuilt": "~2.1.7",
     "run-sequence": "^1.1.4"
   }
 }
