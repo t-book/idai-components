@@ -15,7 +15,7 @@ angular.module('idai.components')
 .directive('idaiFooter', function() {
 return {
 	restrict: 'E',
-	scope: { mailto: '@', institutions: '=' },
+	scope: { mailto: '@', institutions: '=', version: '@' },
 	templateUrl: 'partials/directives/idai-footer.html',
 	controller: [ '$scope', '$http', 'localizedContent', 
 		function($scope,$http, localizedContent) {
@@ -595,7 +595,7 @@ angular.module('idai.components')
         this.text = $sce.trustAsHtml(this.text);
         this.level = 'warning';
         this.contactInfo = transl8.getTranslation('components.message.contact')
-            .replace('CONTACT', 'arachne@uni-koeln.org');
+            .replace('CONTACT', 'arachne@uni-koeln.de');
     }
 
     function isUnknown(level){
@@ -764,7 +764,7 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('partials/directives/idai-footer.html',
-    '<div class=row><div class="col-md-12 text-center"><p><a ng-repeat="(key, uri) in institutions" ng-href={{uri}}><img class=logoImage ng-src=img/logo_{{key}}.png></a></p><p>{{\'footer_licensed_under\'|transl8}} <a rel=license href=info/order>Creative Commons</a> | <span ng-repeat="link in dynamicLinkList"><a href=info/{{link.id}}>{{link.title}}</a> |</span> {{\'footer_bugs_to\'|transl8}} <a href=mailto:{{mailto}}>{{mailto}}</a></p></div></div>');
+    '<div class=row><div class="col-md-12 text-center"><p><a ng-repeat="(key, uri) in institutions" ng-href={{uri}}><img class=logoImage ng-src=img/logo_{{key}}.png></a></p><p>{{\'footer_licensed_under\'|transl8}} <a rel=license href=info/order>Creative Commons</a> | <span ng-repeat="link in dynamicLinkList"><a href=info/{{link.id}}>{{link.title}}</a> |</span> {{\'footer_bugs_to\'|transl8}} <a href=mailto:{{mailto}}>{{mailto}}</a></p><p ng-show=version><small>{{version}}</small></p></div></div>');
 }]);
 })();
 
