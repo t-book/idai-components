@@ -723,18 +723,15 @@ angular.module('idai.components')
 	if (language.browserPrimaryLanguage()==GERMAN_LANG) translationLang=GERMAN_LANG;
 	var transl8Url = componentsSettings.transl8Uri.replace('{LANG}',translationLang);
 
-
-
-	$http.jsonp(transl8Url).
-		success(function(data) {
-			for(var i = 0; i < data.length; i++) {
-				translations[data[i].key] = data[i].value;
-			}
-			translationsLoaded=true;
-		}).
-		error(function() {
-			alert("ERROR: Could not get translations. Try to reload the page or send a mail to arachne@uni-koeln.de");
-		});
+	var promise = $http.jsonp(transl8Url).success(function(data) {
+		for(var i = 0; i < data.length; i++) {
+			translations[data[i].key] = data[i].value;
+		}
+		translationsLoaded=true;
+	}).
+	error(function() {
+		alert("ERROR: Could not get translations. Try to reload the page or send a mail to arachne@uni-koeln.de");
+	});
 
 	return {
 
@@ -753,6 +750,11 @@ angular.module('idai.components')
                 throw new Error("No translation found for key '" + key + "'");
             }
 			return translation;
+		},
+
+		onLoaded: function() {
+			return promise;
 		}
+
 	}
 }]);
