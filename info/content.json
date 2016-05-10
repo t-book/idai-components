@@ -27,6 +27,13 @@
           "de": "Forms",
           "en": "Forms"
         }
+      },
+      {
+        "id": "header",
+        "title": {
+          "de": "Header",
+          "en": "Header"
+        }
       }
     ]
   }, {
