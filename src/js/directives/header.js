@@ -8,10 +8,12 @@ angular.module('idai.components')
     .directive('idaiHeader', function () {
         return {
             restrict: 'E',
-            templateUrl: 'partials/directives/idai-header.html',
-            controller: ['$scope', 'header',
-                function ($scope, header) {
-
-                }]
+            //replace: 'true',
+            scope: {
+                image: '@',
+                description: '@',
+                link: '@'
+            },
+            templateUrl: 'partials/directives/idai-header.html'
         }
     });
