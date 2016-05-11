@@ -7,36 +7,52 @@
 
 #teaser {
   height: 50vh;
-  background-size: cover;
-  padding: 0;
-  margin: 0 -15px 0 -15px;
-
-  -webkit-transition: all 1s ease-in-out;
-  -moz-transition: all 1s ease-in-out;
-  -ms-transition: all 1s ease-in-out;
-  -o-transition: all 1s ease-in-out;
-  transition: all 1s ease-in-out;
-
+  margin: 0 -15px;
   overflow: hidden;
+  position: relative;
+  transition: transform 1s ease-in-out 0s;
 }
 
-#teaser:hover {
-  opacity: 0.9;
+#teaser img {
+  max-width: 100%;
+
+  -moz-transition: transform 0.8s;
+  -webkit-transition: transform 0.8s;
+  transition: transform 0.8s;
+}
+#teaser:hover img {
+  -moz-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 #teaser .description {
-  text-align: right;
-  padding: 10px 15px 0 0;
   color: #fff;
-
   opacity: 0.2;
-  -webkit-transition: opacity .5s ease-in-out;
-  -moz-transition: opacity .5s ease-in-out;
-  -ms-transition: opacity .5s ease-in-out;
-  -o-transition: opacity .5s ease-in-out;
-  transition: opacity .5s ease-in-out;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  transition: opacity 0.5s ease-in-out 0s;
 }
 
 #teaser:hover .description {
-  opacity: 1.0;
+  opacity: 1;
+}
+
+.page {
+  background-color: rgba(255, 255, 255, 0.7);
+  margin-top: -175px;
+  padding: 25px;
+  position: relative;
+}
+
+.page main {
+  background-color: #fff;
+  padding: 25px;
+}
+
+.page main h1 {
+  margin: 0;
+  padding: 10px 25px 25px;
+  text-align: center;
 }
