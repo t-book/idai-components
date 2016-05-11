@@ -9,17 +9,18 @@
   height: 50vh;
   margin: 0 -15px;
   overflow: hidden;
-  position: relative;
+  position: fixed;
+
   transition: transform 1s ease-in-out 0s;
 }
 
 #teaser img {
   max-width: 100%;
-
-  -moz-transition: transform 0.8s;
-  -webkit-transition: transform 0.8s;
-  transition: transform 0.8s;
+  -moz-transition: all 0.8s;
+  -webkit-transition: all 0.8s;
+  transition: all 0.8s;
 }
+
 #teaser:hover img {
   -moz-transform: scale(1.1);
   -webkit-transform: scale(1.1);
@@ -41,9 +42,14 @@
 
 .page {
   background-color: rgba(255, 255, 255, 0.7);
-  margin-top: -175px;
   padding: 25px;
   position: relative;
+  top: 25vh;
+}
+
+// Reduce size of footer to correctly display page contents
+idai-footer {
+  padding: 20px 30px 10px 30px;
 }
 
 .page main {
