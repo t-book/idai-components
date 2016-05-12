@@ -61,6 +61,25 @@ angular.module('idai.components')
 
 'use strict';
 
+angular.module('idai.components')
+
+    /**
+     * @author: Jan G. Wieners
+     */
+    .directive('idaiHeader', function () {
+        return {
+            restrict: 'E',
+            //replace: 'true',
+            scope: {
+                image: '@',
+                description: '@',
+                link: '@'
+            },
+            templateUrl: 'partials/directives/idai-header.html'
+        }
+    });
+'use strict';
+
 /* Directives */
 angular.module('idai.components')
 
@@ -320,6 +339,16 @@ angular.module('idai.components')
 	filterFunction.$stateful=true;
 	return filterFunction;
 }]);
+'use strict';
+
+angular.module('idai.components')
+
+    /**
+     * @author: Jan G. Wieners
+     */
+    .factory('header', function () {
+
+    });
 'use strict';
 
 angular.module('idai.components')
@@ -779,6 +808,18 @@ try {
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('partials/directives/idai-form.html',
     '<form name=form class=form-horizontal><ng-transclude></ng-transclude><div class=form-group><div class="col-sm-offset-3 col-sm-9"><button ng-click=submit() class="btn btn-primary" ng-class="{ disabled: form.$invalid }">{{ \'form_save\' | transl8 }}</button> <button ng-click=reset() class="btn btn-link">{{ \'form_reset\' | transl8 }}</button></div></div></form>');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('idai.templates');
+} catch (e) {
+  module = angular.module('idai.templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('partials/directives/idai-header.html',
+    '<a ng-href={{link}} id=headerlink><header id=teaser><div id=background style="background-image: url({{image}});"></div><div id=description>{{description}}</div></header></a>');
 }]);
 })();
 

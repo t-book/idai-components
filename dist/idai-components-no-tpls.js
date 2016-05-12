@@ -61,6 +61,25 @@ angular.module('idai.components')
 
 'use strict';
 
+angular.module('idai.components')
+
+    /**
+     * @author: Jan G. Wieners
+     */
+    .directive('idaiHeader', function () {
+        return {
+            restrict: 'E',
+            //replace: 'true',
+            scope: {
+                image: '@',
+                description: '@',
+                link: '@'
+            },
+            templateUrl: 'partials/directives/idai-header.html'
+        }
+    });
+'use strict';
+
 /* Directives */
 angular.module('idai.components')
 
@@ -320,6 +339,16 @@ angular.module('idai.components')
 	filterFunction.$stateful=true;
 	return filterFunction;
 }]);
+'use strict';
+
+angular.module('idai.components')
+
+    /**
+     * @author: Jan G. Wieners
+     */
+    .factory('header', function () {
+
+    });
 'use strict';
 
 angular.module('idai.components')

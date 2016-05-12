@@ -29,6 +29,18 @@ try {
   module = angular.module('idai.templates', []);
 }
 module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('partials/directives/idai-header.html',
+    '<a ng-href={{link}} id=headerlink><header id=teaser><div id=background style="background-image: url({{image}});"></div><div id=description>{{description}}</div></header></a>');
+}]);
+})();
+
+(function(module) {
+try {
+  module = angular.module('idai.templates');
+} catch (e) {
+  module = angular.module('idai.templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
   $templateCache.put('partials/directives/idai-message.html',
     '<div ng-repeat="(transl8Key,message) in messages" ng-class="\'alert-\' + message.level" class="col-md-10 col-md-offset-1 alert text-center"><div class=alert-message><button class=close ng-click=removeMessage(transl8Key) style=cursor:pointer;>&times;</button> <b ng-bind-html=message.text></b><br><span>{{message.contactInfo}}</span></div></div>');
 }]);
