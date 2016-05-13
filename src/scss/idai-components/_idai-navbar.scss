@@ -78,6 +78,10 @@
   white-space: nowrap !important;
 }
 
+.navbar-nav > li > a {
+  padding: 15px 11px 15px 11px;
+}
+
 // Define navigation bar for small and medium sized screen resolutions
 @media (max-width: $grid-float-breakpoint) {
 
@@ -95,14 +99,7 @@
   }
 
   .navbar-nav>li {
-
     float: none;
-  }
-
-  .navbar-nav > li > a {
-
-    padding-bottom: 15px;
-    padding-top: 15px;
   }
 
   .navbar-collapse {
@@ -128,6 +125,30 @@
     border-top-right-radius: 0;
     margin-top: 0;
   }
+
+  #navbar-search {
+    padding: 0 15px 0 5px;
+  }
+}
+
+// High screen resolutions
+@media (min-width: $grid-float-breakpoint) {
+
+  #navbar-search {
+    padding-right: 0;
+    padding-left: 3px;
+  }
+}
+
+// Hide search bar on very small screen resolutions
+@media (max-width: $screen-xs) {
+
+  #navbar-search {
+    display: none;
+    padding-right: 0;
+    padding-left: 3px;
+    background-color: #00b3ee;
+  }
 }
 
 // Medium screen resolutions: Spread form input item over whole width
@@ -145,7 +166,6 @@
   }
 
   .input-group .form-control {
-
     float: left;
     margin-bottom: 0;
     position: relative;
@@ -154,15 +174,18 @@
   }
 
   .navbar-left {
-
     float: none !important;
+  }
+
+  /* Stretch search bar over full width */
+  #navbar-search {
+    padding: 0 15px 0 5px;
   }
 }
 
 @media screen and (max-width: 372px) {
 
   #projectLogo {
-
     display: none;
   }
 }
