@@ -5953,7 +5953,8 @@ idai-footer {
   position: absolute;
   bottom: 0;
   width: 100%;
-  padding: 30px;
+  padding-top: 20px;
+  padding-bottom: 10px;
   background-color: #e2e2e2; }
 
 idai-footer .logoImage {
