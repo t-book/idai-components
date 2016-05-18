@@ -48,9 +48,13 @@
 
 .teaserpage {
   position: relative;
-  padding: 25px;
-  background-color: rgba(255, 255, 255, 0.7);
   margin-top: -150px;
+}
+
+.teaserbgr {
+  padding: 25px;
+
+  background-color: rgba(255, 255, 255, 0.7);
 }
 
 .teaserpage main {
