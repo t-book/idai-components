@@ -13,7 +13,9 @@
 	project-id="projectId"
 	login-function="loginFunction()"
 	logout-function="logoutFunction()"
-	user-object="user"&gt;
+	user-object="user"
+	hide-register-button="true"
+	hide-contact-button="true"&gt;
 &lt;/idai-navbar&gt;</pre>
 			</div>
 			<div class="col-md-6">
@@ -29,6 +31,10 @@
 				<p>
 					into <code>user-object</code>. When not empty, the sign in and sign up buttons get replaced
 					by a user dropdown menu which also contains the logout button.
+				</p>
+				<p>
+					The <code>hide-register-button</code> and <code>hide-contact-button</code> properties can be used to hide
+					the respective elements. If set to false or the properties are not set at all, the elements are shown.
 				</p>
 				<p>
 					The navbar requires the application to provide some html which will get rendered
