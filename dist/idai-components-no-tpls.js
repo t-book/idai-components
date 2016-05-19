@@ -127,7 +127,7 @@ angular.module('idai.components')
 
 
 /**
- * @author: Daniel M. de Oliveira
+ * @author: Daniel de Oliveira
  */
 
 	.directive('idaiNavbar', function() {
@@ -138,6 +138,8 @@ angular.module('idai.components')
 				loginFunction: '&',
 				logoutFunction: '&',
 				hideSearchForm: '=',
+				hideRegisterButton: '=', // set "true" to hide it
+				hideContactButton: '=', // set "true" to hide it
 				projectId: '@'
 			},
 			templateUrl: 'partials/directives/idai-navbar.html',

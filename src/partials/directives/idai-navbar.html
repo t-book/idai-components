@@ -87,20 +87,23 @@
                             &nbsp;{{'navbar_sign_in' | transl8}}
                         </b>
                     </a>
-                    <a ng-if="!userObject.username" class="btn btn-default navbar-btn" href="register">
+
+                    <a ng-if="!hideRegisterButton && !userObject.username" class="btn btn-default navbar-btn" href="register">
                         {{'navbar_sign_up' | transl8}}
                     </a>
                 </div>
 
             </li>
 
-            <li style="margin-right:30px; margin-left: 5px;">
+            <li ng-if="!hideContactButton" style="margin-left:5px">
                 <div>
                     <a type="button" href="contact" class="btn btn-sm btn-default navbar-btn">
                         <span class="glyphicon glyphicon-envelope"></span>
                     </a>
                 </div>
             </li>
+
+            <li style="margin-right:30px"></li>
 
         </ul>
     </div>
