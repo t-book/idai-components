@@ -1,5 +1,9 @@
 {
   "name": "idai-components",
+  "version": "1.4.6",
+  "repository" : { "type" : "git"
+  , "url" : "https://github.com/dainst/idai-components.git"
+  },
   "devDependencies": {
     "angular-mocks": "~1.5.5",
     "browser-sync": "^2.9.10",
