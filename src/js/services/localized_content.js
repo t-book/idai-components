@@ -23,7 +23,7 @@ angular.module('idai.components')
 		 * and adjusts the titles of nodes to only appear
 		 * in one language. 
 		 *
-		 * The choice is beeing made for each node independently 
+		 * The choice is being made for each node independently
 		 * of the other nodes via the language selection 
 		 * rule, taking into consideration the availability of the 
 		 * languages of the node.
@@ -47,12 +47,12 @@ angular.module('idai.components')
 			var adjustTitleForLang = function(lang,node) {
 				if (node.title)
 					node.title=node.title[lang];
-			}
+			};
 
 			var isTitleAvailableForLang = function (lang,node) {
 				if (!node.title) return false;
 				return node.title[lang];
-			}
+			};
 
 			var recurseProjectsToAdjustTitle = function(node){
 
@@ -62,7 +62,7 @@ angular.module('idai.components')
 				for (var i=0;i<node.children.length;i++) {
 					recurseProjectsToAdjustTitle(node.children[i]);
 				}
-			}
+			};
 
 			recurseProjectsToAdjustTitle(node);
 		},
@@ -107,14 +107,14 @@ angular.module('idai.components')
 						for (var i=0; i< node.children.length;i++)
 							if (recursive(node.children[i])) return true;
 					return false;
-				}
+				};
 				if (recursive(node)) return true;
 				return false;
-			}
+			};
 
 			var setLang = function(lang) {
 				ret_language = lang;
-			}
+			};
 
 			languageSelection.__ (isNodeAvailableForLang,setLang,node);
 			return ret_language;
@@ -141,7 +141,7 @@ angular.module('idai.components')
 				}
 				return foundNode;
 					
-			}
+			};
 			return recurse(node,id);
 		}
 	};
