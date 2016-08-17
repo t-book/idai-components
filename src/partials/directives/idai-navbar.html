@@ -81,7 +81,7 @@
                 <!-- login and register if not logged in -->
                 <div ng-if="!userObject.username" ng-cloak
                      class="btn-group btn-group-sm">
-                    <a type="button" class="btn btn-default navbar-btn" ng-click="loginFunction();">
+                    <a type="button" id="loginbutton" class="btn btn-default navbar-btn" ng-click="loginFunction();">
                         <b>
                             <span class="glyphicon glyphicon-log-in"></span>
                             &nbsp;{{'navbar_sign_in' | transl8}}
