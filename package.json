@@ -1,10 +1,17 @@
 {
   "name": "idai-components",
-  "version": "1.4.8",
+  "version": "2.0.0",
   "description": "reusable angular components for the applications of the iDAI.world",
   "repository": {
     "type": "git",
     "url": "https://github.com/dainst/idai-components.git"
+  },
+  "scripts": {
+    "test": "karma start test/karma.conf",
+    "e2e": "webdriver-manager update && protractor protractor.conf.js",
+    "build": "rimraf dist && gulp build",
+    "server": "gulp server",
+    "start": "npm run server"
   },
   "devDependencies": {
     "angular-mocks": "~1.5.8",
