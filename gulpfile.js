@@ -16,8 +16,8 @@ var pkg = require('./package.json');
 
 var paths = {
 	'build': 'dist/',
-	'lib': 'bower_components/',
-	'bootstrap': 'bower_components/bootstrap-sass/assets/'
+	'lib': 'node_modules/',
+	'bootstrap': 'node_modules/bootstrap-sass/assets/'
 };
 
 // compile sass and concatenate to single css file in build dir
@@ -49,7 +49,7 @@ gulp.task('concat-js', function() {
 gulp.task('concat-deps', function() {
 	return gulp.src([
 			paths.lib + 'angular/angular.min.js',
-			paths.lib + 'angular-bootstrap/ui-bootstrap-tpls.min.js',
+			paths.lib + 'angular-ui-bootstrap/dist/ui-bootstrap-tpls.js',
 			paths.lib + 'angular-route/angular-route.min.js',
 			paths.lib + 'angular-animate/angular-animate.min.js'
 		])
