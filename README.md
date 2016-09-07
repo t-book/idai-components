@@ -7,7 +7,8 @@ Components library for use in other angular based dai projects.
 A sample application can get started via
 
 ```bash
-npm run build && npm start
+npm run build
+npm start
 ```
 
 The demo app is then served on port 1235. 
