@@ -7,7 +7,7 @@ Components library for use in other angular based dai projects.
 A sample application can get started via
 
 ```bash
-gulp server
+npm run build && npm start
 ```
 
 The demo app is then served on port 1235. 
@@ -25,8 +25,6 @@ In order to make additions to the library, these preparative steps are necessary
 
 ```bash
 npm install
-npm install -g bower gulp
-bower install
 ```
 
 ### Building and testing
@@ -34,7 +32,8 @@ bower install
 If changes to the library code are beeing made, 
 
 ```bash
-gulp
+npm run test
+npm run build
 ```
 
 has to be called after changing the source code. This will run the tests
@@ -56,18 +55,9 @@ to be referenced by applications making use of idai-components.
 ### Deployment and versioning
 
 The resulting files under dist are to be pushed to GitHub, together with the changes to the source code.
-These are the resulting libraries which clients can get via bower, adding a dependency
-in their local bower.json:
+These are the resulting libraries which clients can get via bower oder Node.js.
 
-```bash
-bower install codarchlab/idai-components --save
-```
-
-Bower and GitHub play well together so that bower will know to fetch the library automatically from GitHub.
-
-When pushing the changes to GitHub, a new release has
-to be created in order to make the changes available to clients as a new library version.
+When pushing the changes to GitHub, a new release has to be created in order to make the changes available to clients as a new library version.
 
 The new tag should follow the guidelines for [semantic versioning](http://semver.org/), which means basically
 that for functional additions to the library the middle digit gets incremented and for API breaking changes the first digit gets incremented.
-
