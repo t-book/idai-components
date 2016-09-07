@@ -62,3 +62,4 @@ When pushing the changes to GitHub, a new release has to be created in order to 
 
 The new tag should follow the guidelines for [semantic versioning](http://semver.org/), which means basically
 that for functional additions to the library the middle digit gets incremented and for API breaking changes the first digit gets incremented.
+
