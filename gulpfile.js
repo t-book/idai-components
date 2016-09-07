@@ -84,13 +84,6 @@ gulp.task('copy-fonts', function() {
   	.pipe(gulp.dest(paths.build + '/fonts'));
 });
 
-gulp.task('test', function (done) {
-	new Server({
-		configFile: __dirname + '/test/karma.conf.js',
-		singleRun: true
-	}, done).start();
-});
-
 gulp.task('build', [
 	'sass',
 	'minify-css',
