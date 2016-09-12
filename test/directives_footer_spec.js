@@ -73,12 +73,11 @@ describe ('idaiFooter', function() {
 		
 	it ('show german menu item',function(){
 		myBeforeEach('de');
-		expect(element.find('p').eq(1).find('a').eq(1).text()).toBe("Impressum");
+		expect(element.find('div').eq(1).find('a').eq(1).text()).toBe("Impressum");
 	});
-	
-		
+
 	it ('show english menu item',function(){
 		myBeforeEach('en');
-		expect(element.find('p').eq(1).find('a').eq(1).text()).toBe("Imprint");
+		expect(element.find('div').eq(1).find('a').eq(1).text()).toBe("Imprint");
 	});
 });
