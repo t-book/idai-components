@@ -5,31 +5,6 @@ angular.module('idai.components',[]);
 
 'use strict';
 
-/* Services */
-angular.module('idai.components')
-
-/**
- * @author: Daniel M. de Oliveira
- */
-.filter('transl8', ['transl8',function(transl8){
-	
-	var filterFunction = function(key) {
-        if (typeof key == 'undefined') return undefined;
-        var trans;
-        try {
-            trans = transl8.getTranslation(key);
-        } catch (err) {
-            var msg = "TRL8 MISSING ('"+key+"')";
-            console.log(msg);
-            return msg;
-        }
-		return trans;
-	}
-	filterFunction.$stateful=true;
-	return filterFunction;
-}]);
-'use strict';
-
 angular.module('idai.components')
 
 
@@ -356,6 +331,31 @@ angular.module('idai.components')
 	}
 ]);
 
+'use strict';
+
+/* Services */
+angular.module('idai.components')
+
+/**
+ * @author: Daniel M. de Oliveira
+ */
+.filter('transl8', ['transl8',function(transl8){
+	
+	var filterFunction = function(key) {
+        if (typeof key == 'undefined') return undefined;
+        var trans;
+        try {
+            trans = transl8.getTranslation(key);
+        } catch (err) {
+            var msg = "TRL8 MISSING ('"+key+"')";
+            console.log(msg);
+            return msg;
+        }
+		return trans;
+	}
+	filterFunction.$stateful=true;
+	return filterFunction;
+}]);
 'use strict';
 
 angular.module('idai.components')
@@ -816,7 +816,7 @@ module.run(['$templateCache', function($templateCache) {
     '    #footer .row {\n' +
     '        padding-bottom: 10px;\n' +
     '    }\n' +
-    '</style><div class=row id=footer><div class="col-md-12 text-center"><div class=row><a ng-repeat="(key, uri) in institutions" ng-href={{uri}}><img class=logoImage ng-src=img/logo_{{key}}.png></a></div><div class=row ng-if=hasTranscludedContent ng-transclude></div><div class=row><div ng-if=!hasTranscludedContent style="display: inline-block;">{{\'footer_licensed_under\'|transl8}} <a rel=license href=info/order>Creative Commons</a> |&nbsp;</div><span ng-repeat="link in dynamicLinkList"><a href=info/{{link.id}}>{{link.title}}</a>&nbsp;|&nbsp;</span> {{\'footer_bugs_to\'|transl8}} <a href=mailto:{{mailto}}>{{mailto}}</a></div><div class=row ng-show=version><small>{{version}}</small></div></div></div>');
+    '</style><div class=row><div class="col-md-12 text-center"><div class=row><a ng-repeat="(key, uri) in institutions" ng-href={{uri}}><img class=logoImage ng-src=img/logo_{{key}}.png></a></div><div class=row ng-if=hasTranscludedContent ng-transclude></div><div class=row><div ng-if=!hasTranscludedContent style="display: inline-block;">{{\'footer_licensed_under\'|transl8}} <a rel=license href=info/order>Creative Commons</a> |&nbsp;</div><span ng-repeat="link in dynamicLinkList"><a href=info/{{link.id}} class=linkitem>{{link.title}}</a>&nbsp;|&nbsp;</span> {{\'footer_bugs_to\'|transl8}} <a href=mailto:{{mailto}}>{{mailto}}</a></div><div class=row ng-show=version><small>{{version}}</small></div></div></div>');
 }]);
 })();
 
