@@ -8,6 +8,22 @@ angular.module('idai.components',[]);
 angular.module('idai.components')
 
 
+.directive('idaiCountryPicker', function() {
+    return {
+        restrict: 'E',
+        templateUrl: 'partials/directives/idai-country-picker.html',
+        controller: [ '$scope', 'countries',
+            function($scope, countries) {
+                countries.getCountriesAsync().then(function (countries) {
+                	$scope.kountries = countries;
+                });
+            }]
+    }});
+'use strict';
+
+angular.module('idai.components')
+
+
 /**
  * @author: Daniel M. de Oliveira
  */
@@ -356,6 +372,45 @@ angular.module('idai.components')
 	filterFunction.$stateful=true;
 	return filterFunction;
 }]);
+'use strict';
+
+angular.module('idai.components')
+.factory('countries', ['$http', 'language', '$q', 'path', 
+		function($http, language, $q, path) {
+
+			var deferred = $q.defer();
+
+			var ENGLISH_LANG= 'en';
+			var GERMAN_LANG= 'de';
+
+			var translationLang=ENGLISH_LANG;
+			var countries = null;
+			if (language.browserPrimaryLanguage()==GERMAN_LANG) translationLang=GERMAN_LANG;
+			console.log(__dirname);
+	        $http.get('src/json/countries.json').then(function (response) {
+	            countries = [];
+	            response.data.forEach(function(ctry){
+	            	countries.push({
+		            	name: ctry['name_' + translationLang],
+		            	iso_2: ctry['iso_2']
+	            	});
+	            });
+	            deferred.resolve(countries);
+	        });
+		    
+		    var factory = {};
+
+		    factory.getCountriesAsync = function() {
+		        return deferred.promise;
+		    };
+
+		    factory.getCountries = function() {
+		        return countries;
+		    };
+
+		    return factory;
+		}
+	]);
 'use strict';
 
 angular.module('idai.components')
@@ -804,6 +859,18 @@ angular.module('idai.components')
 
 	}
 }]);
+(function(module) {
+try {
+  module = angular.module('idai.templates');
+} catch (e) {
+  module = angular.module('idai.templates', []);
+}
+module.run(['$templateCache', function($templateCache) {
+  $templateCache.put('partials/directives/idai-country-picker.html',
+    '<select class=form-control><option>- {{\'ui_please_select\'|transl8}} -</option><option ng-repeat="country in kountries" value={{country.iso_2}}>{{country.name}}</option></select>');
+}]);
+})();
+
 (function(module) {
 try {
   module = angular.module('idai.templates');

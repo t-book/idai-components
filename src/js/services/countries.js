@@ -12,8 +12,9 @@ angular.module('idai.components')
 			var translationLang=ENGLISH_LANG;
 			var countries = null;
 			if (language.browserPrimaryLanguage()==GERMAN_LANG) translationLang=GERMAN_LANG;
-
-	        $http.get('src/json/countries.json').then(function (response) {
+			
+			//TODO load countries.json from inside components-module
+	        $http.get('info/countries.json').then(function (response) {
 	            countries = [];
 	            response.data.forEach(function(ctry){
 	            	countries.push({
@@ -21,11 +22,9 @@ angular.module('idai.components')
 		            	iso_2: ctry['iso_2']
 	            	});
 	            });
-
 	            deferred.resolve(countries);
 	        });
 		    
-
 		    var factory = {};
 
 		    factory.getCountriesAsync = function() {
@@ -37,6 +36,5 @@ angular.module('idai.components')
 		    };
 
 		    return factory;
-
 		}
 	]);
