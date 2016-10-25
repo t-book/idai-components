@@ -5823,6 +5823,11 @@ button.close {
 .navbar {
   border: 0; }
 
+.navbar-form {
+  padding: 10px 15px;
+  margin: 8px 0 !important;
+  width: auto; }
+
 .navbar .nav > li > .dropdown-menu:before {
   content: '';
   display: inline-block;
@@ -5907,7 +5912,9 @@ button.close {
 @media (min-width: 992px) {
   #navbar-search {
     padding-right: 0;
-    padding-left: 3px; } }
+    padding-left: 3px; }
+  .navbar-form {
+    padding: 0; } }
 
 @media (max-width: 480px) {
   #navbar-search {
@@ -5917,9 +5924,6 @@ button.close {
     background-color: #00b3ee; } }
 
 @media (min-width: 768px) and (max-width: 992px) {
-  .navbar-form {
-    margin: 8px -15px;
-    padding: 10px 15px; }
   .input-group .form-control, .input-group-addon, .input-group-btn {
     display: table-cell; }
   .input-group .form-control {

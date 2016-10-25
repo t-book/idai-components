@@ -10,9 +10,14 @@
   border: 0;
 }
 
+.navbar-form {
+  padding: 10px 15px;
+  margin: 8px 0 !important;
+  width: auto;
+}
+
 // display arrow on top of dropdown menu for idai.world menu
 .navbar .nav > li > .dropdown-menu:before {
-
   content: '';
   display: inline-block;
   border-left: 7px solid transparent;
@@ -24,23 +29,19 @@
 }
 
 .navbar .form-control:focus {
-
   -webkit-box-shadow: none;
   box-shadow: none;
 }
 
 .navbar .form-control:focus ~ .input-group-btn .btn-default {
-
   border: 1px solid $input-border-focus;
 }
 
 .navbar-default .navbar-collapse, .navbar-default .navbar-form {
-
   border: none !important;
 }
 
 .navbar-form {
-
   box-shadow: none !important;
 }
 
@@ -50,7 +51,6 @@
 }
 
 .dropdown-menu {
-
   background-clip: padding-box !important;
   background-color: #fff !important;
   border: 1px solid rgba(0, 0, 0, 0.15) !important;
@@ -68,7 +68,6 @@
 }
 
 .dropdown-menu > li > a {
-
   clear: both !important;
   color: #333 !important;
   display: block !important;
@@ -86,29 +85,24 @@
 @media (max-width: $grid-float-breakpoint) {
 
   .navbar-fixed-bottom .navbar-collapse, .navbar-fixed-top .navbar-collapse, .navbar-static-top .navbar-collapse {
-
     padding-left: 15px;
     padding-right: 15px;
   }
 
-
   .navbar-nav {
-
     float: none !important;
     margin: 0;
   }
 
-  .navbar-nav>li {
+  .navbar-nav > li {
     float: none;
   }
 
   .navbar-collapse {
-
     box-shadow: none;
   }
 
   .navbar .nav > li > .dropdown-menu::before {
-
     border-bottom: 7px solid #fff;
     border-left: 7px solid transparent;
     border-right: 7px solid transparent;
@@ -120,7 +114,6 @@
   }
 
   .navbar-nav > li > .dropdown-menu {
-
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     margin-top: 0;
@@ -138,6 +131,10 @@
     padding-right: 0;
     padding-left: 3px;
   }
+
+  .navbar-form {
+    padding: 0;
+  }
 }
 
 // Hide search bar on very small screen resolutions
@@ -154,14 +151,7 @@
 // Medium screen resolutions: Spread form input item over whole width
 @media (min-width: $screen-sm) and (max-width: $grid-float-breakpoint) {
 
-  .navbar-form {
-
-    margin: 8px -15px;
-    padding: 10px 15px;
-  }
-
   .input-group .form-control, .input-group-addon, .input-group-btn {
-
     display: table-cell;
   }
 

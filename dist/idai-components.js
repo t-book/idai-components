@@ -375,8 +375,8 @@ angular.module('idai.components')
 'use strict';
 
 angular.module('idai.components')
-.factory('countries', ['$http', 'language', '$q', 'path', 
-		function($http, language, $q, path) {
+.factory('countries', ['$http', 'language', '$q', 
+		function($http, language, $q) {
 
 			var deferred = $q.defer();
 
@@ -386,8 +386,9 @@ angular.module('idai.components')
 			var translationLang=ENGLISH_LANG;
 			var countries = null;
 			if (language.browserPrimaryLanguage()==GERMAN_LANG) translationLang=GERMAN_LANG;
-			console.log(__dirname);
-	        $http.get('src/json/countries.json').then(function (response) {
+			
+			//TODO load countries.json from inside components-module
+	        $http.get('info/countries.json').then(function (response) {
 	            countries = [];
 	            response.data.forEach(function(ctry){
 	            	countries.push({
