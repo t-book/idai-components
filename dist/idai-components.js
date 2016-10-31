@@ -12,6 +12,9 @@ angular.module('idai.components')
     return {
         restrict: 'E',
         templateUrl: 'partials/directives/idai-country-picker.html',
+        scope: {
+            model: '='
+        },
         controller: [ '$scope', 'countries',
             function($scope, countries) {
                 countries.getCountriesAsync().then(function (countries) {
@@ -868,7 +871,7 @@ try {
 }
 module.run(['$templateCache', function($templateCache) {
   $templateCache.put('partials/directives/idai-country-picker.html',
-    '<select class=form-control><option>- {{\'ui_please_select\'|transl8}} -</option><option ng-repeat="country in kountries" value={{country.iso_2}}>{{country.name}}</option></select>');
+    '<select class=form-control ng-model=model><option>- {{\'ui_please_select\'|transl8}} -</option><option ng-repeat="country in kountries" value={{country.iso_2}}>{{country.name}}</option></select>');
 }]);
 })();
 
