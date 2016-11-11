@@ -147,7 +147,7 @@ angular.module('idai.components')
             function($scope,message) {
 
                 $scope.messages = message.getMessages();
-
+                
                 $scope.removeMessage = function(transl8Key){
                     message.removeMessage(transl8Key)
                 };
@@ -691,6 +691,14 @@ angular.module('idai.components')
 
     var clearOnLocationChange = true;
 
+    // In case transl8 loaded after(!) messages were already added
+    transl8.onLoaded().then(function(){
+        angular.forEach(messages, function(msg, key) {
+            msg.text = transl8.getTranslation(key);
+            msg.text = $sce.trustAsHtml(msg.text);
+        });
+    })
+
     /**
      * The message data structure.
      * @param transl8Key
@@ -701,6 +709,7 @@ angular.module('idai.components')
         this.level = 'warning';
         this.contactInfo = transl8.getTranslation('components.message.contact')
             .replace('CONTACT', 'arachne@uni-koeln.de');
+        
     }
 
     function isUnknown(level){
@@ -772,7 +781,6 @@ angular.module('idai.components')
         addMessageForCode: function(transl8Key, level, showContactInfo) {
 
             var message = _create(transl8Key);
-
             if (level) {
                 if (isUnknown(level))
                     throw new Error("If used, level must be set to an allowed value.");
@@ -817,8 +825,8 @@ angular.module('idai.components')
 .factory('transl8', ['$http', 'language', 'componentsSettings',
 		function($http, language, componentsSettings) {
 
-	var ENGLISH_LANG= 'en';
-	var GERMAN_LANG= 'de';
+	var ENGLISH_LANG = 'en';
+	var GERMAN_LANG = 'de';
 
 	var translationLang=ENGLISH_LANG;
 	var translationsLoaded = false;
@@ -832,7 +840,7 @@ angular.module('idai.components')
 		for(var i = 0; i < data.length; i++) {
 			translations[data[i].key] = data[i].value;
 		}
-		translationsLoaded=true;
+		translationsLoaded = true;
 	}).
 	error(function() {
 		alert("ERROR: Could not get translations. Try to reload the page or send a mail to arachne@uni-koeln.de");

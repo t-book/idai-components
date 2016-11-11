@@ -10,8 +10,8 @@ angular.module('idai.components')
 .factory('transl8', ['$http', 'language', 'componentsSettings',
 		function($http, language, componentsSettings) {
 
-	var ENGLISH_LANG= 'en';
-	var GERMAN_LANG= 'de';
+	var ENGLISH_LANG = 'en';
+	var GERMAN_LANG = 'de';
 
 	var translationLang=ENGLISH_LANG;
 	var translationsLoaded = false;
@@ -25,7 +25,7 @@ angular.module('idai.components')
 		for(var i = 0; i < data.length; i++) {
 			translations[data[i].key] = data[i].value;
 		}
-		translationsLoaded=true;
+		translationsLoaded = true;
 	}).
 	error(function() {
 		alert("ERROR: Could not get translations. Try to reload the page or send a mail to arachne@uni-koeln.de");

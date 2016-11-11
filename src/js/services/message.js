@@ -37,6 +37,14 @@ angular.module('idai.components')
 
     var clearOnLocationChange = true;
 
+    // In case transl8 loaded after(!) messages were already added
+    transl8.onLoaded().then(function(){
+        angular.forEach(messages, function(msg, key) {
+            msg.text = transl8.getTranslation(key);
+            msg.text = $sce.trustAsHtml(msg.text);
+        });
+    })
+
     /**
      * The message data structure.
      * @param transl8Key
@@ -47,6 +55,7 @@ angular.module('idai.components')
         this.level = 'warning';
         this.contactInfo = transl8.getTranslation('components.message.contact')
             .replace('CONTACT', 'arachne@uni-koeln.de');
+        
     }
 
     function isUnknown(level){
@@ -118,7 +127,6 @@ angular.module('idai.components')
         addMessageForCode: function(transl8Key, level, showContactInfo) {
 
             var message = _create(transl8Key);
-
             if (level) {
                 if (isUnknown(level))
                     throw new Error("If used, level must be set to an allowed value.");
