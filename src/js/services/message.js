@@ -37,13 +37,6 @@ angular.module('idai.components')
 
     var clearOnLocationChange = true;
 
-    // In case transl8 loaded after(!) messages were already added
-    transl8.onLoaded().then(function(){
-        angular.forEach(messages, function(msg, key) {
-            msg.text = transl8.getTranslation(key);
-            msg.text = $sce.trustAsHtml(msg.text);
-        });
-    })
 
     /**
      * The message data structure.
@@ -90,6 +83,14 @@ angular.module('idai.components')
     $rootScope.$on("$locationChangeSuccess", function() {
         if (clearOnLocationChange) _clear();
         clearOnLocationChange= true;
+    });
+
+    // In case transl8 loaded after(!) messages were already added
+    transl8.onLoaded().then(function(){
+        angular.forEach(messages, function(msg, key) {
+            msg.text = transl8.getTranslation(key);
+            msg.text = $sce.trustAsHtml(msg.text);
+        });
     });
 
     return {

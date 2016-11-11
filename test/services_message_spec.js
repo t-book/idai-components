@@ -19,6 +19,11 @@ describe('message', function () {
                             return 'Please contact CONTACT if the errors persist.';
                         if (translation=="throwError") throw new Error();
                         return translation;
+                    },
+                    onLoaded: function () {
+                        return {
+                            then: function(callback) { return callback(); }
+                        }
                     }
                 });
             }
