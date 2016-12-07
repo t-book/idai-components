@@ -4,7 +4,7 @@ angular.module('idai.components')
 
 
 /**
- * @author: Daniel M. de Oliveira
+ * @author: Daniel de Oliveira
  */
 
     .directive('idaiFooter', function () {
@@ -16,7 +16,7 @@ angular.module('idai.components')
                 version: '@'
             },
             transclude: true,
-            templateUrl: 'partials/directives/idai-footer.html',
+            templateUrl: 'partials/layout/idai-footer.html',
             controller: ['$scope', '$http', '$sce', 'localizedContent', '$transclude',
                 function ($scope, $http, $sce, localizedContent, $transclude) {
 

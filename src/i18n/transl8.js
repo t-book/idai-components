@@ -4,7 +4,7 @@
  * Provides translations for keys based on the primary browser language of the user.
  * Makes use of the CoDArchLab Transl8 tool.
  *
- * @author: Daniel M. de Oliveira
+ * @author: Daniel de Oliveira
  */
 angular.module('idai.components')
 .factory('transl8', ['$http', 'language', 'componentsSettings',

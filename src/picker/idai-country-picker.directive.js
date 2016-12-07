@@ -6,7 +6,7 @@ angular.module('idai.components')
 .directive('idaiCountryPicker', function() {
     return {
         restrict: 'E',
-        templateUrl: 'partials/directives/idai-country-picker.html',
+        templateUrl: 'partials/picker/idai-country-picker.html',
         scope: {
             model: '='
         },

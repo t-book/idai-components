@@ -4,13 +4,13 @@ angular.module('idai.components')
 
 
 /**
- * @author: Daniel M. de Oliveira
+ * @author: Daniel de Oliveira
  */
 
 .directive('idaiMessage', function() {
     return {
         restrict: 'E',
-        templateUrl: 'partials/directives/idai-message.html',
+        templateUrl: 'partials/messages/idai-message.html',
         controller: [ '$scope', 'message',
             function($scope,message) {
 

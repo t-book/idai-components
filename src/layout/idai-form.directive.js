@@ -13,7 +13,7 @@ angular.module('idai.components')
 		scope: {
 			submit: '&', doc: '='
 		},
-		templateUrl: 'partials/directives/idai-form.html',
+		templateUrl: 'partials/layout/idai-form.html',
 		link: function(scope, elem, attrs) {
 
 			scope.reset = function() {

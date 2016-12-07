@@ -14,6 +14,6 @@ angular.module('idai.components')
                 description: '@',
                 link: '@'
             },
-            templateUrl: 'partials/directives/idai-header.html'
+            templateUrl: 'partials/layout/idai-header.html'
         }
     });

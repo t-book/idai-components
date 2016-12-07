@@ -5,7 +5,7 @@ angular.module('idai.components')
 
 
 /**
- * @author: Daniel M. de Oliveira
+ * @author: Daniel de Oliveira
  */
 
 .directive('includeReplace', function () {

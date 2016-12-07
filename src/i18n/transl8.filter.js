@@ -4,7 +4,7 @@
 angular.module('idai.components')
 
 /**
- * @author: Daniel M. de Oliveira
+ * @author: Daniel de Oliveira
  */
 .filter('transl8', ['transl8',function(transl8){
 	

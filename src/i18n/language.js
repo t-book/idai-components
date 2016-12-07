@@ -7,7 +7,7 @@ angular.module('idai.components')
  * For german languages (de-*) it shortens the language code to "de".
  * For english languages (en-*) it returns the language code to "en".
  *
- * @author: Daniel M. de Oliveira
+ * @author: Daniel de Oliveira
  */
 .factory('language', function(){
 

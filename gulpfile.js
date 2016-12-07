@@ -39,7 +39,7 @@ gulp.task('minify-css', ['sass'], function() {
 
 // concatenates all js files in src into a single file in build dir
 gulp.task('concat-js', function() {
-	return gulp.src(['src/js/modules.js','src/js/**/*.js'])
+	return gulp.src(['src/_modules.js','src/**/*.js'])
 		.pipe(concat(pkg.name + '-no-tpls.js'))
 		.pipe(gulp.dest(paths.build))
     	.pipe(reload({ stream:true }));
@@ -72,7 +72,7 @@ gulp.task('minify-js', ['concat-js', 'html2js'], function() {
 // converts, minifies and concatenates html partials
 // in src to a single js file in build dir
 gulp.task('html2js', function() {
-	return gulp.src('src/partials/**/*.html')
+	return gulp.src('src/**/*.html')
 		.pipe(minifyHtml())
 		.pipe(ngHtml2Js({ moduleName: 'idai.templates', prefix: 'partials/' }))
 		.pipe(concat(pkg.name + '-tpls.js'))
@@ -113,13 +113,13 @@ gulp.task('server', ['sass', 'concat-js', 'html2js', 'copy-fonts'], function() {
 	});
 
 	gulp.watch('src/scss/**/*.scss', ['sass']);
-	gulp.watch('src/js/**/*.js', ['concat-js']);
-	gulp.watch('src/partials/**/*.html', ['html2js']);
+	gulp.watch('src/**/*.js', ['concat-js']);
+	gulp.watch('src/**/*.html', ['html2js']);
 
 	gulp.watch(['index.html',
 		'partials/**/*.html',
-		'src/partials/**/*.html',
-		'js/**/*.js'], reload);
+		'src/**/*.html',
+		'js/*.js'], reload);
 });
 
 gulp.task('default', function() {

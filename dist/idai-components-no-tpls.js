@@ -7,459 +7,6 @@ angular.module('idai.components',[]);
 
 angular.module('idai.components')
 
-
-.directive('idaiCountryPicker', function() {
-    return {
-        restrict: 'E',
-        templateUrl: 'partials/directives/idai-country-picker.html',
-        scope: {
-            model: '='
-        },
-        controller: [ '$scope', 'countries',
-            function($scope, countries) {
-                countries.getCountriesAsync().then(function (countries) {
-                	$scope.kountries = countries;
-                });
-            }]
-    }});
-'use strict';
-
-angular.module('idai.components')
-
-
-/**
- * @author: Daniel M. de Oliveira
- */
-
-    .directive('idaiFooter', function () {
-        return {
-            restrict: 'E',
-            scope: {
-                mailto: '@',
-                institutions: '=',
-                version: '@'
-            },
-            transclude: true,
-            templateUrl: 'partials/directives/idai-footer.html',
-            controller: ['$scope', '$http', '$sce', 'localizedContent', '$transclude',
-                function ($scope, $http, $sce, localizedContent, $transclude) {
-
-                    $transclude(function(clone){
-                        $scope.hasTranscludedContent = (clone.length > 0);
-                    });
-
-                    $scope.date = new Date();
-                    $scope.getFooterLinks = function (contentDir) {
-
-                        $http.get('info/content.json').success(function (data) {
-                            var footerLinks = localizedContent.getNodeById(data, 'footer');
-                            if (footerLinks == undefined) {
-                                console.log('error: no footerLinks found');
-                            }
-                            localizedContent.reduceTitles(footerLinks);
-                            $scope.dynamicLinkList = footerLinks.children;
-                        });
-                    }
-                }],
-            link: function (scope, element, attrs) {
-
-                scope.getFooterLinks(attrs.contentDir);
-            }
-        }
-    });
-'use strict';
-
-angular.module('idai.components')
-
-/** 
- * @author: Sebastian Cuy
- */
-
- .directive('idaiForm', function() {
-	return {
-		restrict: 'E',
-        transclude: true,
-		scope: {
-			submit: '&', doc: '='
-		},
-		templateUrl: 'partials/directives/idai-form.html',
-		link: function(scope, elem, attrs) {
-
-			scope.reset = function() {
-				scope.doc = {};
-			};
-
-		}
-	}
-});
-
-'use strict';
-
-angular.module('idai.components')
-
-    /**
-     * @author: Jan G. Wieners
-     */
-    .directive('idaiHeader', function () {
-        return {
-            restrict: 'E',
-            //replace: 'true',
-            scope: {
-                image: '@',
-                description: '@',
-                link: '@'
-            },
-            templateUrl: 'partials/directives/idai-header.html'
-        }
-    });
-'use strict';
-
-/* Directives */
-angular.module('idai.components')
-
-
-/**
- * @author: Daniel M. de Oliveira
- */
-
-.directive('includeReplace', function () {
-    return {
-       	require: 'ngInclude',
-       	restrict: 'A', /* optional */
-       	link: function (scope, el, attrs) {
-           	el.replaceWith(el.children());
-       	}  
-	}});
-'use strict';
-
-angular.module('idai.components')
-
-
-/**
- * @author: Daniel M. de Oliveira
- */
-
-.directive('idaiMessage', function() {
-    return {
-        restrict: 'E',
-        templateUrl: 'partials/directives/idai-message.html',
-        controller: [ '$scope', 'message',
-            function($scope,message) {
-
-                $scope.messages = message.getMessages();
-
-                $scope.removeMessage = function(transl8Key){
-                    message.removeMessage(transl8Key)
-                };
-
-            }]
-    }});
-'use strict';
-
-/* Directives */
-angular.module('idai.components')
-
-
-/**
- * @author: Daniel de Oliveira
- */
-
-	.directive('idaiNavbar', function() {
-		return {
-			restrict: 'E',
-			scope: {
-				userObject: '=',
-				loginFunction: '&',
-				logoutFunction: '&',
-				hideSearchForm: '=',
-				hideRegisterButton: '=', // set "true" to hide it
-				hideContactButton: '=', // set "true" to hide it
-				projectId: '@'
-			},
-			templateUrl: 'partials/directives/idai-navbar.html',
-			controller: [ '$scope', '$http', 'localizedContent', '$location',
-				function($scope, $http, localizedContent, $location) {
-
-					$scope.getNavbarLinks = function(contentDir){
-						$http.get('info/content.json').success(function(data){
-							var navbarLinks = localizedContent.getNodeById(data,'navbar');
-							if (navbarLinks==undefined) {console.log('error: no navbarLinks found');}
-							localizedContent.reduceTitles(navbarLinks)
-							$scope.dynamicLinkList=navbarLinks.children;
-						});
-					};
-
-					$scope.search = function(fq) {
-						if ($scope.q) {
-							var url = '/search?q=' + $scope.q;
-							if (fq) url += "&fq=" + fq;
-							$scope.q = null;
-							$location.url(url);
-						}
-					};
-
-					$scope.toggleNavbar = function() {
-
-							$scope.isCollapsed = true;
-							$scope.$on('$routeChangeSuccess', function () {
-								$scope.isCollapsed = true;
-							});
-					};
-					
-				}],
-			link: function(scope,element,attrs){
-				scope.getNavbarLinks(attrs.contentDir);
-			}
-		}});
-'use strict';
-
-angular.module('idai.components')
-
-/** 
- * @author: Sebastian Cuy
- */
-
- .directive('idaiPicker', function() {
-	return {
-		restrict: 'E',
-		scope: {
-			searchUri: '@',	resultField: '@', titleField: '@',
-			totalField: '@', queryParam: '@', limitParam: '@',
-			offsetParam: '@', addParams: '=', selectedItem: '='
-		},
-		templateUrl: 'partials/directives/idai-picker.html',
-		controller: [ '$scope', '$parse', '$uibModal',
-			function($scope, $parse, $modal) {
-
-				$scope.openModal = function() {
-					var modal = $modal.open({
-						templateUrl: "picker_modal.html",
-						controller: "PickerModalController",
-						bindToController: true,
-						size: 'lg',
-						scope: $scope
-					});
-					modal.result.then(function(item) {
-						$scope.selectedItem = item;
-					});
-				};
-
-				$scope.$watch("titleField", function(titleField) {
-					if (!titleField) titleField = "title";
-					$scope.getTitleField = $parse(titleField);
-				});
-
-			}
-		]
-	}
-})
-
-.controller('PickerModalController', [ '$scope', '$http', '$q', '$parse', '$uibModalInstance',
-	function($scope, $http, $q, $parse, $modalInstance) {
-		
-		var canceler;
-
-		$scope.result;
-		$scope.total = 0;
-		$scope.offset = 0;
-		$scope.limit = 10;
-		$scope.loading = false;
-		$scope.preselect = 0;
-
-		var search = function() {
-			if (canceler) canceler.resolve();
-			if ($scope.query) {
-				$scope.loading = true;
-				canceler = $q.defer();
-				if (!$scope.queryParam) $scope.queryParam = "q";
-				if (!$scope.limitParam) $scope.limitParam = "limit";
-				if (!$scope.offsetParam) $scope.offsetParam = "offset";
-				var requestUri = $scope.searchUri + "?" + $scope.queryParam + "=" + $scope.query;
-				requestUri += "&" + $scope.limitParam + "=" + $scope.limit;
-				requestUri += "&" + $scope.offsetParam + "=" + $scope.offset;
-				if ($scope.addParams) {
-					angular.forEach($scope.addParams, function(value, key) {
-						requestUri += "&" + key + "=" + value;
-					});
-				}
-				$http.get(requestUri, { timeout: canceler.promise }).then(function(response) {
-					if (!$scope.resultField) $scope.resultField = "result";
-					var getResultField = $parse($scope.resultField);
-					if ($scope.offset == 0) {
-						$scope.result = getResultField(response.data);
-					} else {
-						$scope.result = $scope.result.concat(getResultField(response.data));
-					}
-					if (!$scope.totalField) $scope.totalField = "total";
-					var getTotalField = $parse($scope.totalField);
-					$scope.total = getTotalField(response.data);
-					$scope.loading = false;
-				});
-			} else {
-				$scope.result = [];
-				$scope.total = 0;
-			}
-		};
-
-		$scope.more = function() {
-			$scope.offset += $scope.limit;
-			search();
-		};
-
-		$scope.keydown = function($event) {
-			// arrow down preselects next item
-			if ($event.keyCode == 40 && $scope.preselect < $scope.result.length - 1) {
-				$scope.preselect++;
-			// arrow up select precious item
-			} else if ($event.keyCode == 38 && $scope.preselect > 0) {
-				$scope.preselect--;
-			}
-		};
-
-		$scope.keypress = function($event) {
-			// enter selects preselected item (if query has not changed)
-			if ($event.keyCode == 13) {
-				if ($scope.total > 0 && $scope.query == $scope.lastQuery) {
-					$event.stopPropagation();
-					$scope.selectItem($scope.result[$scope.preselect]);
-				} else {
-					$scope.newQuery();
-				}
-			}
-		};
-
-		$scope.newQuery = function() {
-			$scope.lastQuery = $scope.query;
-			$scope.offset = 0;
-			search();
-		};
-
-		$scope.open = function(uri) {
-			window.open(uri, '_blank');
-		};
-
-		$scope.selectItem = function(item) {
-			$modalInstance.close(item);
-		};
-
-		$scope.$watch("titleField", function(titleField) {
-			if (!titleField) titleField = "title";
-			$scope.getTitleField = $parse(titleField);
-		});
-
-	}
-]);
-
-'use strict';
-
-/* Services */
-angular.module('idai.components')
-
-/**
- * @author: Daniel M. de Oliveira
- */
-.filter('transl8', ['transl8',function(transl8){
-	
-	var filterFunction = function(key) {
-        if (typeof key == 'undefined') return undefined;
-        var trans;
-        try {
-            trans = transl8.getTranslation(key);
-        } catch (err) {
-            var msg = "TRL8 MISSING ('"+key+"')";
-            console.log(msg);
-            return msg;
-        }
-		return trans;
-	}
-	filterFunction.$stateful=true;
-	return filterFunction;
-}]);
-'use strict';
-
-angular.module('idai.components')
-.factory('countries', ['$http', 'language', '$q', 
-		function($http, language, $q) {
-
-			var deferred = $q.defer();
-
-			var ENGLISH_LANG= 'en';
-			var GERMAN_LANG= 'de';
-
-			var translationLang=ENGLISH_LANG;
-			var countries = null;
-			if (language.browserPrimaryLanguage()==GERMAN_LANG) translationLang=GERMAN_LANG;
-			
-			//TODO load countries.json from inside components-module
-	        $http.get('info/countries.json').then(function (response) {
-	            countries = [];
-	            response.data.forEach(function(ctry){
-	            	countries.push({
-		            	name: ctry['name_' + translationLang],
-		            	iso_2: ctry['iso_2']
-	            	});
-	            });
-	            deferred.resolve(countries);
-	        });
-		    
-		    var factory = {};
-
-		    factory.getCountriesAsync = function() {
-		        return deferred.promise;
-		    };
-
-		    factory.getCountries = function() {
-		        return countries;
-		    };
-
-		    return factory;
-		}
-	]);
-'use strict';
-
-angular.module('idai.components')
-
-    /**
-     * @author: Jan G. Wieners
-     */
-    .factory('header', function () {
-
-    });
-'use strict';
-
-angular.module('idai.components')
-
-/**
- * @return: the users primary browser language.
- * For german languages (de-*) it shortens the language code to "de".
- * For english languages (en-*) it returns the language code to "en".
- *
- * @author: Daniel M. de Oliveira
- */
-.factory('language', function(){
-
-	var lang=navigator.languages ?
-		navigator.languages[0] :
-		(navigator.language || navigator.userLanguage);
-
-	if (typeof lang === 'undefined') {
-		lang = 'de';
-	} else {
-
-		if (lang.substring(0,2)=='de') lang='de';
-		if (lang.substring(0,2)=='en') lang='en';
-	}
-
-	return {
-		browserPrimaryLanguage : function(){
-			return lang;
-		}
-	}
-});
-'use strict';
-
-angular.module('idai.components')
-
 /**
  * Given a language, determines by a
  * rule if this language is applicable or if not which
@@ -503,6 +50,37 @@ angular.module('idai.components')
 		}
 	}
 }]);
+'use strict';
+
+angular.module('idai.components')
+
+/**
+ * @return: the users primary browser language.
+ * For german languages (de-*) it shortens the language code to "de".
+ * For english languages (en-*) it returns the language code to "en".
+ *
+ * @author: Daniel de Oliveira
+ */
+.factory('language', function(){
+
+	var lang=navigator.languages ?
+		navigator.languages[0] :
+		(navigator.language || navigator.userLanguage);
+
+	if (typeof lang === 'undefined') {
+		lang = 'de';
+	} else {
+
+		if (lang.substring(0,2)=='de') lang='de';
+		if (lang.substring(0,2)=='en') lang='en';
+	}
+
+	return {
+		browserPrimaryLanguage : function(){
+			return lang;
+		}
+	}
+});
 'use strict';
 
 /**
@@ -654,6 +232,270 @@ angular.module('idai.components')
 
 'use strict';
 
+/* Services */
+angular.module('idai.components')
+
+/**
+ * @author: Daniel de Oliveira
+ */
+.filter('transl8', ['transl8',function(transl8){
+	
+	var filterFunction = function(key) {
+        if (typeof key == 'undefined') return undefined;
+        var trans;
+        try {
+            trans = transl8.getTranslation(key);
+        } catch (err) {
+            var msg = "TRL8 MISSING ('"+key+"')";
+            console.log(msg);
+            return msg;
+        }
+		return trans;
+	}
+	filterFunction.$stateful=true;
+	return filterFunction;
+}]);
+'use strict';
+
+/**
+ * Provides translations for keys based on the primary browser language of the user.
+ * Makes use of the CoDArchLab Transl8 tool.
+ *
+ * @author: Daniel de Oliveira
+ */
+angular.module('idai.components')
+.factory('transl8', ['$http', 'language', 'componentsSettings',
+		function($http, language, componentsSettings) {
+			var ENGLISH_LANG = 'en';
+			var GERMAN_LANG = 'de';
+
+			var translationLang=ENGLISH_LANG;
+			var translationsLoaded = false;
+			var translations = {}; // Map: [transl8_key,translation].
+
+
+			if (language.browserPrimaryLanguage()==GERMAN_LANG) translationLang=GERMAN_LANG;
+			var transl8Url = componentsSettings.transl8Uri.replace('{LANG}',translationLang);
+
+			var promise = $http.jsonp(transl8Url).success(function(data) {
+				for(var i = 0; i < data.length; i++) {
+					translations[data[i].key] = data[i].value;
+				}
+				translationsLoaded = true;
+			}).
+			error(function() {
+				alert("ERROR: Could not get translations. Try to reload the page or send a mail to arachne@uni-koeln.de");
+			});
+
+			return {
+
+		        /**
+		         * @param key an existing key in transl8 with
+		         *   translations for all existing language sets.
+		         * @returns translation text
+		         * @throws Error if the key does not exist in transl8 or
+		         *   there is no translation for the given key.
+		         */
+				getTranslation: function(key) {
+					if (!translationsLoaded) return '';
+
+					var translation = translations[key];
+					if (!translation || 0 === translation.length) {
+		                throw new Error("No translation found for key '" + key + "'");
+		            }
+					return translation;
+				},
+
+				onLoaded: function() {
+					return promise;
+				}
+
+			}
+		}
+]);
+'use strict';
+
+angular.module('idai.components')
+
+    /**
+     * @author: Jan G. Wieners
+     */
+    .factory('header', function () {
+
+    });
+'use strict';
+
+angular.module('idai.components')
+
+
+/**
+ * @author: Daniel de Oliveira
+ */
+
+    .directive('idaiFooter', function () {
+        return {
+            restrict: 'E',
+            scope: {
+                mailto: '@',
+                institutions: '=',
+                version: '@'
+            },
+            transclude: true,
+            templateUrl: 'partials/layout/idai-footer.html',
+            controller: ['$scope', '$http', '$sce', 'localizedContent', '$transclude',
+                function ($scope, $http, $sce, localizedContent, $transclude) {
+
+                    $transclude(function(clone){
+                        $scope.hasTranscludedContent = (clone.length > 0);
+                    });
+
+                    $scope.date = new Date();
+                    $scope.getFooterLinks = function (contentDir) {
+
+                        $http.get('info/content.json').success(function (data) {
+                            var footerLinks = localizedContent.getNodeById(data, 'footer');
+                            if (footerLinks == undefined) {
+                                console.log('error: no footerLinks found');
+                            }
+                            localizedContent.reduceTitles(footerLinks);
+                            $scope.dynamicLinkList = footerLinks.children;
+                        });
+                    }
+                }],
+            link: function (scope, element, attrs) {
+
+                scope.getFooterLinks(attrs.contentDir);
+            }
+        }
+    });
+'use strict';
+
+angular.module('idai.components')
+
+/** 
+ * @author: Sebastian Cuy
+ */
+
+ .directive('idaiForm', function() {
+	return {
+		restrict: 'E',
+        transclude: true,
+		scope: {
+			submit: '&', doc: '='
+		},
+		templateUrl: 'partials/layout/idai-form.html',
+		link: function(scope, elem, attrs) {
+
+			scope.reset = function() {
+				scope.doc = {};
+			};
+
+		}
+	}
+});
+
+'use strict';
+
+angular.module('idai.components')
+
+    /**
+     * @author: Jan G. Wieners
+     */
+    .directive('idaiHeader', function () {
+        return {
+            restrict: 'E',
+            //replace: 'true',
+            scope: {
+                image: '@',
+                description: '@',
+                link: '@'
+            },
+            templateUrl: 'partials/layout/idai-header.html'
+        }
+    });
+'use strict';
+
+/* Directives */
+angular.module('idai.components')
+
+
+/**
+ * @author: Daniel de Oliveira
+ */
+
+	.directive('idaiNavbar', function() {
+		return {
+			restrict: 'E',
+			scope: {
+				userObject: '=',
+				loginFunction: '&',
+				logoutFunction: '&',
+				hideSearchForm: '=',
+				hideRegisterButton: '=', // set "true" to hide it
+				hideContactButton: '=', // set "true" to hide it
+				projectId: '@'
+			},
+			templateUrl: 'partials/layout/idai-navbar.html',
+			controller: [ '$scope', '$http', 'localizedContent', '$location',
+				function($scope, $http, localizedContent, $location) {
+
+					$scope.getNavbarLinks = function(contentDir){
+						$http.get('info/content.json').success(function(data){
+							var navbarLinks = localizedContent.getNodeById(data,'navbar');
+							if (navbarLinks==undefined) {console.log('error: no navbarLinks found');}
+							localizedContent.reduceTitles(navbarLinks)
+							$scope.dynamicLinkList=navbarLinks.children;
+						});
+					};
+
+					$scope.search = function(fq) {
+						if ($scope.q) {
+							var url = '/search?q=' + $scope.q;
+							if (fq) url += "&fq=" + fq;
+							$scope.q = null;
+							$location.url(url);
+						}
+					};
+
+					$scope.toggleNavbar = function() {
+
+							$scope.isCollapsed = true;
+							$scope.$on('$routeChangeSuccess', function () {
+								$scope.isCollapsed = true;
+							});
+					};
+					
+				}],
+			link: function(scope,element,attrs){
+				scope.getNavbarLinks(attrs.contentDir);
+			}
+		}});
+'use strict';
+
+angular.module('idai.components')
+
+
+/**
+ * @author: Daniel de Oliveira
+ */
+
+.directive('idaiMessage', function() {
+    return {
+        restrict: 'E',
+        templateUrl: 'partials/messages/idai-message.html',
+        controller: [ '$scope', 'message',
+            function($scope,message) {
+
+                $scope.messages = message.getMessages();
+
+                $scope.removeMessage = function(transl8Key){
+                    message.removeMessage(transl8Key)
+                };
+
+            }]
+    }});
+'use strict';
+
 /**
  * Message store which holds one or more messages for a
  * for the purpose of being displayed to the user.
@@ -678,7 +520,7 @@ angular.module('idai.components')
  * reason exceptions get thrown if unknown transl8Keys are used.
  *
  * @author Sebastian Cuy
- * @author Daniel M. de Oliveira
+ * @author Daniel de Oliveira
  */
 angular.module('idai.components')
 
@@ -816,59 +658,224 @@ angular.module('idai.components')
 }]);
 'use strict';
 
-/**
- * Provides translations for keys based on the primary browser language of the user.
- * Makes use of the CoDArchLab Transl8 tool.
- *
- * @author: Daniel M. de Oliveira
- */
 angular.module('idai.components')
-.factory('transl8', ['$http', 'language', 'componentsSettings',
-		function($http, language, componentsSettings) {
-			var ENGLISH_LANG = 'en';
-			var GERMAN_LANG = 'de';
+.factory('countries', ['$http', 'language', '$q', 
+		function($http, language, $q) {
+
+			var deferred = $q.defer();
+
+			var ENGLISH_LANG= 'en';
+			var GERMAN_LANG= 'de';
 
 			var translationLang=ENGLISH_LANG;
-			var translationsLoaded = false;
-			var translations = {}; // Map: [transl8_key,translation].
-
-
+			var countries = null;
 			if (language.browserPrimaryLanguage()==GERMAN_LANG) translationLang=GERMAN_LANG;
-			var transl8Url = componentsSettings.transl8Uri.replace('{LANG}',translationLang);
+			
+			//TODO load countries.json from inside components-module
+	        $http.get('info/countries.json').then(function (response) {
+	            countries = [];
+	            response.data.forEach(function(ctry){
+	            	countries.push({
+		            	name: ctry['name_' + translationLang],
+		            	iso_2: ctry['iso_2']
+	            	});
+	            });
+	            deferred.resolve(countries);
+	        });
+		    
+		    var factory = {};
 
-			var promise = $http.jsonp(transl8Url).success(function(data) {
-				for(var i = 0; i < data.length; i++) {
-					translations[data[i].key] = data[i].value;
-				}
-				translationsLoaded = true;
-			}).
-			error(function() {
-				alert("ERROR: Could not get translations. Try to reload the page or send a mail to arachne@uni-koeln.de");
-			});
+		    factory.getCountriesAsync = function() {
+		        return deferred.promise;
+		    };
 
-			return {
+		    factory.getCountries = function() {
+		        return countries;
+		    };
 
-		        /**
-		         * @param key an existing key in transl8 with
-		         *   translations for all existing language sets.
-		         * @returns translation text
-		         * @throws Error if the key does not exist in transl8 or
-		         *   there is no translation for the given key.
-		         */
-				getTranslation: function(key) {
-					if (!translationsLoaded) return '';
+		    return factory;
+		}
+	]);
+'use strict';
 
-					var translation = translations[key];
-					if (!translation || 0 === translation.length) {
-		                throw new Error("No translation found for key '" + key + "'");
-		            }
-					return translation;
-				},
+angular.module('idai.components')
 
-				onLoaded: function() {
-					return promise;
-				}
+
+.directive('idaiCountryPicker', function() {
+    return {
+        restrict: 'E',
+        templateUrl: 'partials/picker/idai-country-picker.html',
+        scope: {
+            model: '='
+        },
+        controller: [ '$scope', 'countries',
+            function($scope, countries) {
+                countries.getCountriesAsync().then(function (countries) {
+                	$scope.kountries = countries;
+                });
+            }]
+    }});
+'use strict';
+
+angular.module('idai.components')
+
+/** 
+ * @author: Sebastian Cuy
+ */
+
+ .directive('idaiPicker', function() {
+	return {
+		restrict: 'E',
+		scope: {
+			searchUri: '@',	resultField: '@', titleField: '@',
+			totalField: '@', queryParam: '@', limitParam: '@',
+			offsetParam: '@', addParams: '=', selectedItem: '='
+		},
+		templateUrl: 'partials/picker/idai-picker.html',
+		controller: [ '$scope', '$parse', '$uibModal',
+			function($scope, $parse, $modal) {
+
+				$scope.openModal = function() {
+					var modal = $modal.open({
+						templateUrl: "picker_modal.html",
+						controller: "PickerModalController",
+						bindToController: true,
+						size: 'lg',
+						scope: $scope
+					});
+					modal.result.then(function(item) {
+						$scope.selectedItem = item;
+					});
+				};
+
+				$scope.$watch("titleField", function(titleField) {
+					if (!titleField) titleField = "title";
+					$scope.getTitleField = $parse(titleField);
+				});
 
 			}
-		}
+		]
+	}
+});
+
+'use strict';
+
+angular.module('idai.components')
+    
+/**
+ * @author: Sebastian Cuy
+ */
+.controller('PickerModalController', [ '$scope', '$http', '$q', '$parse', '$uibModalInstance',
+    function($scope, $http, $q, $parse, $modalInstance) {
+
+        var canceler;
+
+        $scope.result;
+        $scope.total = 0;
+        $scope.offset = 0;
+        $scope.limit = 10;
+        $scope.loading = false;
+        $scope.preselect = 0;
+
+        var search = function() {
+            if (canceler) canceler.resolve();
+            if ($scope.query) {
+                $scope.loading = true;
+                canceler = $q.defer();
+                if (!$scope.queryParam) $scope.queryParam = "q";
+                if (!$scope.limitParam) $scope.limitParam = "limit";
+                if (!$scope.offsetParam) $scope.offsetParam = "offset";
+                var requestUri = $scope.searchUri + "?" + $scope.queryParam + "=" + $scope.query;
+                requestUri += "&" + $scope.limitParam + "=" + $scope.limit;
+                requestUri += "&" + $scope.offsetParam + "=" + $scope.offset;
+                if ($scope.addParams) {
+                    angular.forEach($scope.addParams, function(value, key) {
+                        requestUri += "&" + key + "=" + value;
+                    });
+                }
+                $http.get(requestUri, { timeout: canceler.promise }).then(function(response) {
+                    if (!$scope.resultField) $scope.resultField = "result";
+                    var getResultField = $parse($scope.resultField);
+                    if ($scope.offset == 0) {
+                        $scope.result = getResultField(response.data);
+                    } else {
+                        $scope.result = $scope.result.concat(getResultField(response.data));
+                    }
+                    if (!$scope.totalField) $scope.totalField = "total";
+                    var getTotalField = $parse($scope.totalField);
+                    $scope.total = getTotalField(response.data);
+                    $scope.loading = false;
+                });
+            } else {
+                $scope.result = [];
+                $scope.total = 0;
+            }
+        };
+
+        $scope.more = function() {
+            $scope.offset += $scope.limit;
+            search();
+        };
+
+        $scope.keydown = function($event) {
+            // arrow down preselects next item
+            if ($event.keyCode == 40 && $scope.preselect < $scope.result.length - 1) {
+                $scope.preselect++;
+                // arrow up select precious item
+            } else if ($event.keyCode == 38 && $scope.preselect > 0) {
+                $scope.preselect--;
+            }
+        };
+
+        $scope.keypress = function($event) {
+            // enter selects preselected item (if query has not changed)
+            if ($event.keyCode == 13) {
+                if ($scope.total > 0 && $scope.query == $scope.lastQuery) {
+                    $event.stopPropagation();
+                    $scope.selectItem($scope.result[$scope.preselect]);
+                } else {
+                    $scope.newQuery();
+                }
+            }
+        };
+
+        $scope.newQuery = function() {
+            $scope.lastQuery = $scope.query;
+            $scope.offset = 0;
+            search();
+        };
+
+        $scope.open = function(uri) {
+            window.open(uri, '_blank');
+        };
+
+        $scope.selectItem = function(item) {
+            $modalInstance.close(item);
+        };
+
+        $scope.$watch("titleField", function(titleField) {
+            if (!titleField) titleField = "title";
+            $scope.getTitleField = $parse(titleField);
+        });
+
+    }
 ]);
+
+'use strict';
+
+/* Directives */
+angular.module('idai.components')
+
+
+/**
+ * @author: Daniel de Oliveira
+ */
+
+.directive('includeReplace', function () {
+    return {
+       	require: 'ngInclude',
+       	restrict: 'A', /* optional */
+       	link: function (scope, el, attrs) {
+           	el.replaceWith(el.children());
+       	}  
+	}});

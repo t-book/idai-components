@@ -24,7 +24,7 @@
  * reason exceptions get thrown if unknown transl8Keys are used.
  *
  * @author Sebastian Cuy
- * @author Daniel M. de Oliveira
+ * @author Daniel de Oliveira
  */
 angular.module('idai.components')
 
