@@ -74,7 +74,7 @@ gulp.task('minify-js', ['concat-js', 'html2js'], function() {
 gulp.task('html2js', function() {
 	return gulp.src('src/**/*.html')
 		.pipe(minifyHtml())
-		.pipe(ngHtml2Js({ moduleName: 'idai.templates', prefix: 'partials/' }))
+		.pipe(ngHtml2Js({ moduleName: 'idai.templates', stripPrefix: 'src/' }))
 		.pipe(concat(pkg.name + '-tpls.js'))
 		.pipe(gulp.dest(paths.build));
 });

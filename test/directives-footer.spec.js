@@ -41,9 +41,11 @@ describe ('idaiFooter', function() {
 		
 		inject(function($rootScope, $compile, $templateCache,$httpBackend) {
 			
-			template = $templateCache.get('partials/directives/idai-footer.html');
-			$templateCache.put('app/partials/directives/idai-footer.html',template);
-			
+			template = $templateCache.get('partials/layout/idai-footer.html');
+			$templateCache.put('app/partials/layout/idai-footer.html',template);
+
+
+
 			$httpBackend.expectGET('info/content.json').respond(200,'{\
 				"id": "",\
 				"children": [\

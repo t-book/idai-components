@@ -46,8 +46,8 @@ describe ('idaiNavbar', function() {
 		
 		inject(function($rootScope, $compile, $templateCache,$httpBackend) {
 			
-			template = $templateCache.get('partials/directives/idai-navbar.html');
-			$templateCache.put('app/partials/directives/idai-navbar.html',template);
+			template = $templateCache.get('partials/layout/idai-navbar.html');
+			$templateCache.put('app/partials/layout/idai-navbar.html',template);
 
 			$httpBackend.expectGET('info/content.json').respond(200,'{\
 				"id": "",\

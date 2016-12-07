@@ -16,7 +16,7 @@ angular.module('idai.components')
                 version: '@'
             },
             transclude: true,
-            templateUrl: 'partials/layout/idai-footer.html',
+            templateUrl: 'layout/idai-footer.html',
             controller: ['$scope', '$http', '$sce', 'localizedContent', '$transclude',
                 function ($scope, $http, $sce, localizedContent, $transclude) {
 

@@ -20,7 +20,7 @@ angular.module('idai.components')
 				hideContactButton: '=', // set "true" to hide it
 				projectId: '@'
 			},
-			templateUrl: 'partials/layout/idai-navbar.html',
+			templateUrl: 'layout/idai-navbar.html',
 			controller: [ '$scope', '$http', 'localizedContent', '$location',
 				function($scope, $http, localizedContent, $location) {
 

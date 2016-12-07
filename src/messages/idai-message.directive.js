@@ -10,7 +10,7 @@ angular.module('idai.components')
 .directive('idaiMessage', function() {
     return {
         restrict: 'E',
-        templateUrl: 'partials/messages/idai-message.html',
+        templateUrl: 'messages/idai-message.html',
         controller: [ '$scope', 'message',
             function($scope,message) {
 

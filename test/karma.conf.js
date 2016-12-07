@@ -24,12 +24,9 @@ module.exports = function(config) {
 
       'node_modules/angular/angular.js',
       'node_modules/angular-mocks/angular-mocks.js',
-	  'src/js/modules.js',
-	  'src/js/services/*.js',
-	  'src/js/filters/*.js',
-	  'src/js/directives/*.js',
-      'test/*_spec.js',
-	  'src/partials/directives/*.html'
+	  'src/**/*.js',
+      'test/*.spec.js',
+	  'src/**/*.html'
     ],
 
 
@@ -75,7 +72,7 @@ module.exports = function(config) {
 		moduleName: 'templates'
 	},
 	preprocessors: {
-	    "src/partials/directives/*.html": "ng-html2js"
+	    "src/**/*.html": "ng-html2js"
 	}
   });
 };

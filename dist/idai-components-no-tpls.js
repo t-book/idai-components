@@ -341,7 +341,7 @@ angular.module('idai.components')
                 version: '@'
             },
             transclude: true,
-            templateUrl: 'partials/layout/idai-footer.html',
+            templateUrl: 'layout/idai-footer.html',
             controller: ['$scope', '$http', '$sce', 'localizedContent', '$transclude',
                 function ($scope, $http, $sce, localizedContent, $transclude) {
 
@@ -383,7 +383,7 @@ angular.module('idai.components')
 		scope: {
 			submit: '&', doc: '='
 		},
-		templateUrl: 'partials/layout/idai-form.html',
+		templateUrl: 'layout/idai-form.html',
 		link: function(scope, elem, attrs) {
 
 			scope.reset = function() {
@@ -410,7 +410,7 @@ angular.module('idai.components')
                 description: '@',
                 link: '@'
             },
-            templateUrl: 'partials/layout/idai-header.html'
+            templateUrl: 'layout/idai-header.html'
         }
     });
 'use strict';
@@ -435,7 +435,7 @@ angular.module('idai.components')
 				hideContactButton: '=', // set "true" to hide it
 				projectId: '@'
 			},
-			templateUrl: 'partials/layout/idai-navbar.html',
+			templateUrl: 'layout/idai-navbar.html',
 			controller: [ '$scope', '$http', 'localizedContent', '$location',
 				function($scope, $http, localizedContent, $location) {
 
@@ -482,7 +482,7 @@ angular.module('idai.components')
 .directive('idaiMessage', function() {
     return {
         restrict: 'E',
-        templateUrl: 'partials/messages/idai-message.html',
+        templateUrl: 'messages/idai-message.html',
         controller: [ '$scope', 'message',
             function($scope,message) {
 
@@ -704,7 +704,7 @@ angular.module('idai.components')
 .directive('idaiCountryPicker', function() {
     return {
         restrict: 'E',
-        templateUrl: 'partials/picker/idai-country-picker.html',
+        templateUrl: 'picker/idai-country-picker.html',
         scope: {
             model: '='
         },
@@ -731,7 +731,7 @@ angular.module('idai.components')
 			totalField: '@', queryParam: '@', limitParam: '@',
 			offsetParam: '@', addParams: '=', selectedItem: '='
 		},
-		templateUrl: 'partials/picker/idai-picker.html',
+		templateUrl: 'picker/idai-picker.html',
 		controller: [ '$scope', '$parse', '$uibModal',
 			function($scope, $parse, $modal) {
 
