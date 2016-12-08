@@ -39,7 +39,7 @@ gulp.task('minify-css', ['sass'], function() {
 
 // concatenates all js files in src into a single file in build dir
 gulp.task('concat-js', function() {
-	return gulp.src(['src/_modules.js','src/**/*.js'])
+	return gulp.src(['src/_modules-and-constants.js','src/**/*.js'])
 		.pipe(concat(pkg.name + '-no-tpls.js'))
 		.pipe(gulp.dest(paths.build))
     	.pipe(reload({ stream:true }));
@@ -117,6 +117,7 @@ gulp.task('server', ['sass', 'concat-js', 'html2js', 'copy-fonts'], function() {
 	gulp.watch('src/**/*.html', ['html2js']);
 
 	gulp.watch(['index.html',
+		'demo/**/*.html',
 		'partials/**/*.html',
 		'src/**/*.html',
 		'js/*.js'], reload);
