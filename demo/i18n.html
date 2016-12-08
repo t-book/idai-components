@@ -19,68 +19,6 @@
 
         TODO describe transl8 external service, service, filter, language selction rule
 
-        <h3>Error messages</h3>
-
-        <p>
-            Users of iDAI.components can localize messages through transl8. By injecting
-            <code>message</code> to one of your controllers, and calling
-            <code>message.addMessageForCode(transl8_key, level, showContactInfo)</code>
-            from within it a localized message
-            (for language selection rules see paragraph above) gets added to
-            the messages array of the root scope. These messages can be shown in your application
-            by using the <code>&lt;idai-message&gt;&lt;/idai-message&gt;</code> directive from your html.
-        </p>
-
-        <p>
-            <strong>Notice</strong>: Use of HTML tags is allowed in error messages.
-        </p>
-
-        <p>
-            In case there is no translation for a given key, a standard error message is shown.
-        </p>
-
-        <p>
-            The parameter <code>level</code> is optional and will influence the css class of the alert box.
-            Possible values are <code>success</code>, <code>info</code>, <code>warning</code> and <code>danger</code>.
-            The default value is <code>warning</code>.
-        </p>
-
-        <p>
-            The parameter <code>showContactInfo</code> is optional and will influence if there is an extra line
-            containing some standard contact info text below the error message. By default the text will be
-            existent. It is suppressed by setting the param value to false or when the message level is success.
-        </p>
-
-        <h4>Examples</h4>
-        <p>
-            <button class="btn btn-default" ng-click="addMsg('default');">Show localized error message for transl8 key
-                "default" on default level 'warning'
-            </button>
-        </p>
-        <p>
-            <button class="btn btn-default" ng-click="addMsg('default','warning',false);">Show localized error message
-                for transl8 key "default" on default level 'warning' without contact info
-            </button>
-        </p>
-        <p>
-            <button class="btn btn-default" ng-click="addMsg('backend_missing','danger');">Show localized error message
-                for transl8 key "backend_missing" on level 'danger'
-            </button>
-        </p>
-        <p>
-            <button class="btn btn-default" ng-click="addMsg('everything_fine','success');">Show localized message for
-                transl8 key "everything_fine" on level 'success'
-            </button>
-        </p>
-        <p>
-            <button class="btn btn-default" ng-click="addMsg('search_400','warning');">Show localized message for
-                transl8 key "search_400" (contains HTML) on level 'warning'
-            </button>
-        </p>
-        <p>
-            <idai-message></idai-message>
-        </p>
-
         <h3>Artifacts</h3>
         <ul>
             <li>The language selection rule for transl8 items: docs/feature_menu_item_localization.md</li>
