@@ -8,13 +8,6 @@
     "id": "navbar",
     "children": [
       {
-        "id": "layout",
-        "title": {
-          "de": "Layout",
-          "en": "Layout"
-        }
-      },
-      {
         "id": "i18n",
         "title": {
           "de": "i18n",
@@ -22,10 +15,10 @@
         }
       },
       {
-        "id": "forms",
+        "id": "layout",
         "title": {
-          "de": "Forms",
-          "en": "Forms"
+          "de": "Layout",
+          "en": "Layout"
         }
       },
       {
@@ -33,6 +26,13 @@
         "title": {
           "de": "Header",
           "en": "Header"
+        }
+      },
+      {
+        "id": "forms",
+        "title": {
+          "de": "Forms",
+          "en": "Forms"
         }
       },
       {
