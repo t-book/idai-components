@@ -9,12 +9,9 @@ angular.module('idai.components')
  * Once found a suitable language, an operation to
  * apply that language in the clients context gets performed.
  *
- * @author: Daniel M. de Oliveira
+ * @author: Daniel de Oliveira
  */
 .factory('languageSelection', ['language', function(language) {
-
-	var GERMAN_LANG = 'de';
-	var ENGLISH_LANG = 'en';
 
 	return {
 
@@ -29,19 +26,19 @@ angular.module('idai.components')
 		 */
 		__ : function(isLangApplicable,applyLang,param){
 
-			if (language.browserPrimaryLanguage()==GERMAN_LANG){
-				applyLang(GERMAN_LANG,param);
+			if (language.browserPrimaryLanguage()==COMPONENTS_GERMAN_LANG){
+				applyLang(COMPONENTS_GERMAN_LANG,param);
 				return;
 			}
 
 			if (isLangApplicable(language.browserPrimaryLanguage(),param)){
 				applyLang(language.browserPrimaryLanguage(),param);
-			} else if (language.browserPrimaryLanguage()==ENGLISH_LANG){
-				applyLang(GERMAN_LANG,param);
-			} else if (isLangApplicable(ENGLISH_LANG,param))
-				applyLang(ENGLISH_LANG,param);
+			} else if (language.browserPrimaryLanguage()==COMPONENTS_ENGLISH_LANG){
+				applyLang(COMPONENTS_GERMAN_LANG,param);
+			} else if (isLangApplicable(COMPONENTS_ENGLISH_LANG,param))
+				applyLang(COMPONENTS_ENGLISH_LANG,param);
 			else
-				applyLang(GERMAN_LANG,param);
+				applyLang(COMPONENTS_GERMAN_LANG,param);
 		}
 	}
 }]);

@@ -9,7 +9,7 @@
  *   title: ( lang_a : title_lang_a, lang_b : title_lang_b ),
  *   children: [ node, node, node ]
  * 
- * @author: Daniel M. de Oliveira
+ * @author: Daniel de Oliveira
  */
 angular.module('idai.components')
 

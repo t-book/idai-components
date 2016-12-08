@@ -9,15 +9,13 @@
 angular.module('idai.components')
 .factory('transl8', ['$http', 'language', 'componentsSettings',
 		function($http, language, componentsSettings) {
-			var ENGLISH_LANG = 'en';
-			var GERMAN_LANG = 'de';
 
-			var translationLang=ENGLISH_LANG;
+			var translationLang=COMPONENTS_ENGLISH_LANG;
 			var translationsLoaded = false;
 			var translations = {}; // Map: [transl8_key,translation].
 
 
-			if (language.browserPrimaryLanguage()==GERMAN_LANG) translationLang=GERMAN_LANG;
+			if (language.browserPrimaryLanguage()==COMPONENTS_GERMAN_LANG) translationLang=COMPONENTS_GERMAN_LANG;
 			var transl8Url = componentsSettings.transl8Uri.replace('{LANG}',translationLang);
 
 			var promise = $http.jsonp(transl8Url).success(function(data) {

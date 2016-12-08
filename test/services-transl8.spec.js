@@ -14,8 +14,8 @@ describe('transl8', function (){
 
 	var mockDataEn = [ {key: KEY, value: TRANSLATION_EN} ];
 	var mockDataDe = [ {key: KEY, value: TRANSLATION_DE} ];
-	var transl8UrlEn = TRANSL8_JSONP_URL.replace('{LANG}','en');
-	var transl8UrlDe = TRANSL8_JSONP_URL.replace('{LANG}','de');
+	var transl8UrlEn = TRANSL8_JSONP_URL.replace('{LANG}',COMPONENTS_ENGLISH_LANG);
+	var transl8UrlDe = TRANSL8_JSONP_URL.replace('{LANG}',COMPONENTS_GERMAN_LANG);
 
 
 	var transl8,$httpBackend;
@@ -50,7 +50,7 @@ describe('transl8', function (){
 
 	it('should provide german menu items for german users', function () {
 
-		myBeforeEach('de');
+		myBeforeEach(COMPONENTS_GERMAN_LANG);
 
 		$httpBackend.flush();
 		expect(transl8.getTranslation(KEY)).toBe(TRANSLATION_DE);
@@ -77,7 +77,7 @@ describe('transl8', function (){
 
 	it('lacks a german translation (german user)', function () {
 
-		myBeforeEach('de');
+		myBeforeEach(COMPONENTS_GERMAN_LANG);
 
 		$httpBackend.flush();
 		expect(function(){transl8.getTranslation(KEY_INVALID)}).toThrow();
@@ -85,7 +85,7 @@ describe('transl8', function (){
 
 	it('lacks an english translation (english user)', function () {
 
-		myBeforeEach('en');
+		myBeforeEach(COMPONENTS_ENGLISH_LANG);
 
 		$httpBackend.flush();
 		expect(function(){transl8.getTranslation(KEY_INVALID)}).toThrow();

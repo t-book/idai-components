@@ -6,12 +6,9 @@ angular.module('idai.components')
 
 			var deferred = $q.defer();
 
-			var ENGLISH_LANG= 'en';
-			var GERMAN_LANG= 'de';
-
-			var translationLang=ENGLISH_LANG;
+			var translationLang=COMPONENTS_ENGLISH_LANG;
 			var countries = null;
-			if (language.browserPrimaryLanguage()==GERMAN_LANG) translationLang=GERMAN_LANG;
+			if (language.browserPrimaryLanguage()==COMPONENTS_GERMAN_LANG) translationLang=COMPONENTS_GERMAN_LANG;
 			
 			//TODO load countries.json from inside components-module
 	        $http.get('info/countries.json').then(function (response) {

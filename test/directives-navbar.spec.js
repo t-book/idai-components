@@ -76,13 +76,13 @@ describe ('idaiNavbar', function() {
 	};
 	
 	it ('show german menu item',function(){
-		myBeforeEach('de');
+		myBeforeEach(COMPONENTS_GERMAN_LANG);
 		expect(element.find('ul').eq(2).find('li').find('a').eq(0).text()).toBe("Über Arachne");
 	});
 	
 		
 	it ('show english menu item',function(){
-		myBeforeEach('en');
+		myBeforeEach(COMPONENTS_ENGLISH_LANG);
 		expect(element.find('ul').eq(2).find('li').find('a').eq(0).text()).toBe("About Arachne");
 	});
 });

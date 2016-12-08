@@ -16,11 +16,11 @@ angular.module('idai.components')
 		(navigator.language || navigator.userLanguage);
 
 	if (typeof lang === 'undefined') {
-		lang = 'de';
+		lang = COMPONENTS_GERMAN_LANG;
 	} else {
 
-		if (lang.substring(0,2)=='de') lang='de';
-		if (lang.substring(0,2)=='en') lang='en';
+		if (lang.substring(0,2)==COMPONENTS_GERMAN_LANG) lang=COMPONENTS_GERMAN_LANG;
+		if (lang.substring(0,2)==COMPONENTS_ENGLISH_LANG) lang=COMPONENTS_ENGLISH_LANG;
 	}
 
 	return {
