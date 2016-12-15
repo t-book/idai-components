@@ -19,7 +19,7 @@ angular.module('idai.components')
             return msg;
         }
 		return trans;
-	}
+	};
 	filterFunction.$stateful=true;
 	return filterFunction;
 }]);
