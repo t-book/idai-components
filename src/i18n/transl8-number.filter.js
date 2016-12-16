@@ -10,13 +10,13 @@ angular.module('idai.components')
 
         var filterFunction = function(nu) {
 
+            if (typeof nu == 'undefined') return undefined;
+
             if (language.browserPrimaryLanguage()==COMPONENTS_GERMAN_LANG) {
                 return nu.toLocaleString(COMPONENTS_GERMAN_LANG+"-DE");
             } else {
                 return nu.toLocaleString(COMPONENTS_ENGLISH_LANG+"-US");
             }
-
-
         };
         filterFunction.$stateful=true;
         return filterFunction;
