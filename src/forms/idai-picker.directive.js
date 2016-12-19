@@ -14,7 +14,7 @@ angular.module('idai.components')
 			totalField: '@', queryParam: '@', limitParam: '@',
 			offsetParam: '@', addParams: '=', selectedItem: '='
 		},
-		templateUrl: 'picker/idai-picker.html',
+		templateUrl: 'forms/idai-picker.html',
 		controller: [ '$scope', '$parse', '$uibModal',
 			function($scope, $parse, $modal) {
 

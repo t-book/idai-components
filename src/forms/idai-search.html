@@ -1,0 +1,23 @@
+<form id="navbar-search" ng-submit="search()" class="input-group form-inline"
+      role="search" method="GET" autocomplete="off">
+    <input type="text" ng-model="q" name="q"
+           uib-typeahead="suggestion for suggestion in getSuggestions($viewValue)"
+           class="form-control" autofocus placeholder="{{'navbar_placeholder_search'|transl8}}"/>
+    <span class="input-group-btn">
+        <button type="submit" class="btn {{buttonClass}}">
+            &nbsp;<span class="glyphicon glyphicon-search"></span>&nbsp;
+        </button>
+    </span>
+</form>
+
+<!--<form id="navbar-search"-->
+<!--ng-submit="search()"-->
+<!--ng-hide="hideSearchForm"-->
+<!--class="navbar-left navbar-form input-group form-inline"-->
+<!--role="search">-->
+<!--<input autofocus type="text" class="form-control" placeholder="{{'navbar_placeholder_search'|transl8}}" ng-model="q" name="q">-->
+<!--<span class="navbar-left input-group-btn">-->
+<!--<button type="submit" class="btn btn-default"><span-->
+<!--class="glyphicon glyphicon-search"></span></button>-->
+<!--</span>-->
+<!--</form>-->

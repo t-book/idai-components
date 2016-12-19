@@ -35,17 +35,11 @@
             <span class="icon-bar"></span>
         </button>
 
-        <form id="navbar-search"
-              ng-submit="search()"
-              ng-hide="hideSearchForm"
-              class="navbar-left navbar-form input-group form-inline"
-              role="search">
-            <input autofocus type="text" class="form-control" placeholder="{{'navbar_placeholder_search'|transl8}}" ng-model="q" name="q">
-		        <span class="navbar-left input-group-btn">
-		        	<button type="submit" class="btn btn-default"><span
-                            class="glyphicon glyphicon-search"></span></button>
-		        </span>
-        </form>
+        <idai-search
+                class="navbar-left navbar-form input-group form-inline"
+                ng-hide="hideSearchForm"
+                button-class="btn-default">
+        </idai-search>
     </div>
     <div ng-class="isCollapsed ? 'collapse' : 'in'"
          class="collapse navbar-collapse"
