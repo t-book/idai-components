@@ -16,6 +16,27 @@
 			<code>&lt;idai-form&gt;</code> provides a convenience wrapper for the basis html <code>&lt;form&gt;</code> element. It automatically provides buttons for saving and resetting the form and handles basic form validation.
 		</p>
 
+		<h3>Example</h3>
+		<div class="row">
+			<div class="col-md-6">
+				<div class="well">
+					<alert ng-show="formSaved" close="formSaved = false">Form saved with title: {{formDoc.title}}!</alert>
+					<idai-form doc="formDoc" submit="formSaved = true" ng-init="formDoc = {}">
+						<div class="form-group">
+							<label for="exampleInputTitle" class="col-sm-3 control-label">Title</label>
+							<div class="col-sm-9">
+								<input type="text" required class="form-control" id="exampleInputTitle" placeholder="Title" ng-model="formDoc.title">
+							</div>
+						</div>
+					</idai-form>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<h4>Current form document:</h4>
+				<pre>{{ formDoc | json }}</pre>
+			</div>
+		</div>
+
 		<h3>Usage</h3>
 
 		<div class="row">
@@ -37,46 +58,27 @@
 				</ul>
 			</div>
 		</div>
-		<h3>Example</h3>
-		<div class="row">
-			<div class="col-md-6">
-				<div class="well">
-					<alert ng-show="formSaved" close="formSaved = false">Form saved with title: {{formDoc.title}}!</alert>
-					<idai-form doc="formDoc" submit="formSaved = true" ng-init="formDoc = {}">
-						<div class="form-group">
-						    <label for="exampleInputTitle" class="col-sm-3 control-label">Title</label>
-						    <div class="col-sm-9">
-						    	<input type="text" required class="form-control" id="exampleInputTitle" placeholder="Title" ng-model="formDoc.title">
-						    </div>
-						</div>
-					</idai-form>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<h4>Current form document:</h4>
-				<pre>{{ formDoc | json }}</pre>
-			</div>
-		</div>
 
-		<h3>Form group</h3>
+
+		<h4>Form group</h4>
 
 		<p>
 			The form group directive simplifies form layout by providing a convenient method for wrapping form elements inside a labelled group. Form elements can be the simple html form controls (e.g. <code>&lt;input&gt;</code>, <code>&lt;textarea&gt;</code> etc.) or the directives offered by this library.
 		</p>
 
-		<h3>Multi group</h3>
+		<h4>Multi group</h4>
 
 		<p>
 			A special form group that provides a way to add multiple values of the same type.
 		</p>
 
-		<h3>Tag selector</h3>
+		<h4>Tag selector</h4>
 
 		<p>
 			A text input that allows free text input of multiple comma separated values and offers auto-completion based on value lists.
 		</p>
 
-		<h3>Value lists</h3>
+		<h4>Value lists</h4>
 
 		<p>
 			There are several directives that simplify the use of value lists in the iDAI.world applications. They differ in the way they obtain the possible list of values and in
@@ -90,9 +92,36 @@
 		</p>
 
 		<h2>Search field with autosuggest</h2>
-		<p>
+
+		A search field, as used in <code>idai-navbar</code>.
+
+		<h3>Example</h3>
 			<idai-search></idai-search>
-		</p>
+		<h3>Usage</h3>
+		<div class="row">
+			<div class="col-md-6">
+				<pre>
+&lt;idai-picker
+	button-type="btn-default"
+&lt;/idai-picker&gt;</pre>
+				</pre>
+			</div>
+			<div class="col-md-6">
+				<p>
+					It can be configured with the following attributes:
+				</p>
+				<ul>
+					<li>
+						<code>button-type</code>: class applied to the button, 'btn-primary' by default.
+					</li>
+					<li>
+						<code>componentsSettings.searchUri</code>: If set, uses this url to get autosuggestions. Note that
+						it is necessary to provide the constant <code>componentsSettings</code>, even if <code>searchUri</code>
+						is not set.
+					</li>
+				</ul>
+			</div>
+		</div>
 
 		<h2>Picker</h2>
 		<p>
@@ -100,6 +129,17 @@
 			and provides an interface for selecting one of the result items for use
 			in the current application.
 		</p>
+		<h3>Example</h3>
+		<div class="row">
+			<div class="col-md-4">
+				<h4>Search for a place in the iDAI.gazetteer:</h4>
+				<idai-picker search-uri="http://gazetteer.dainst.org/search" title-field="prefName.title" selected-item="selectedItem"></idai-picker>
+			</div>
+			<div class="col-md-8">
+				<h4>Selected Item:</h4>
+				<pre>{{ selectedItem | json }}</pre>
+			</div>
+		</div>
 		<h3>Usage</h3>
 		<div class="row">
 			<div class="col-md-6">
@@ -160,17 +200,6 @@
 					<b>Note:</b> If the returned items include the attribute <code>@id</code> the URIs
 					given as values will be used to generate links to the original datasets.
 				</p>
-			</div>
-		</div>
-		<h3>Example</h3>
-		<div class="row">
-			<div class="col-md-4">
-				<h4>Search for a place in the iDAI.gazetteer:</h4>
-				<idai-picker search-uri="http://gazetteer.dainst.org/search" title-field="prefName.title" selected-item="selectedItem"></idai-picker>
-			</div>
-			<div class="col-md-8">
-				<h4>Selected Item:</h4>
-				<pre>{{ selectedItem | json }}</pre>
 			</div>
 		</div>
 
