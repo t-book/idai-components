@@ -22,13 +22,6 @@
         }
       },
       {
-        "id": "header",
-        "title": {
-          "de": "Header",
-          "en": "Header"
-        }
-      },
-      {
         "id": "forms",
         "title": {
           "de": "Forms",

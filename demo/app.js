@@ -16,7 +16,6 @@ angular.module('sampleApp',[
 			.when('/info/layout', {templateUrl: 'demo/layout.html'})
 			.when('/info/i18n', {templateUrl: 'demo/i18n.html'})
 			.when('/info/forms', {templateUrl: 'demo/forms.html'})
-			.when('/info/header', {templateUrl: 'demo/header.html'})
 			.when('/info/msgs', {templateUrl: 'demo/messages.html'});
 	}
 ]).constant('componentsSettings', {

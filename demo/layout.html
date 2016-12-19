@@ -1,115 +1,223 @@
-<div class="row">
-
-	<div class="col-md-12">
-
-		<h1>The navbar and footer directives</h1>
-
-		<h2>Navbar</h2>
-
-		<div class="row">
-			<div class="col-md-6">
-				<pre>
-&lt;idai-navbar 
-	project-id="projectId"
-	login-function="loginFunction()"
-	logout-function="logoutFunction()"
-	user-object="user"
-	hide-register-button="true"
-	hide-contact-button="true"&gt;
-&lt;/idai-navbar&gt;</pre>
-			</div>
-			<div class="col-md-6">
-				<p>
-					Pass a unique project identifier in <code>project-id</code>. This identifier is
-					used to construct the filename of a project logo in the <code>img</code> directory. The pattern is <em>logo_<code>project-id</code>.png</em>.
-				</p>
-				<p>
-					Via <code>login-function</code> and <code>logout-function</code> it is possible to
-					bind functions from the surrounding scope to the sign in and logout (hidden in dropdown) 
-					buttons buttons. Pass the user object from the surrounding context 
-				</p>
-				<p>
-					into <code>user-object</code>. When not empty, the sign in and sign up buttons get replaced
-					by a user dropdown menu which also contains the logout button.
-				</p>
-				<p>
-					The <code>hide-register-button</code> and <code>hide-contact-button</code> properties can be used to hide
-					the respective elements. If set to false or the properties are not set at all, the elements are shown.
-				</p>
-				<p>
-					The navbar requires the application to provide some html which will get rendered
-					seamlessly into the directive's html:
-				</p>
-				<ul>
-					<li><code>partials/navbar-menu.html</code> - will be inserted as html into the dropdown menu</li>
-					<li><code>partials/navbar-project.html</code> - will be inserted as brand text next to your projects logo.</li>
-				</ul>
-				<p>
-					The navbar auto-generates its link titles with help of the content localization system described
-					<a href="info/i18n">here</a>. The configuration of the shown links is required to be found
-					at
-					<code>info/content.json</code>. The localization system will
-					search for a subtree with the id "navbar".
-				</p>
-			</div>
-		</div>
-
-		<h2>Footer</h2>
-
-		<div class="row">
-			<div class="col-md-6">
-				<pre>&lt;idai-footer mailto="emailAdress"&gt;&lt;/idai-footer&gt;</pre>
-			</div>
-			<div class="col-md-6">
-				<p>
-					Use <code>mailto</code> to pass an eMail address that should appear as
-					a contact for bugreports in the footer.
-				</p>
-				<p>
-					The footer auto-generates its link titles with help of the content localization system described
-					<a href="/info/i18n">here</a>. The configuration of the shown links is required to be found
-					at
-					<code>info/content.json</code>. The localization system will
-					search for a subtree with the id "footer".
-				</p>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-12">
-				Content you fill in between the opening and the ending <cod>idai-footer</cod> tag is going to be displayed in the third row of the footer.
-				<br>
-				Let the tag content free to have the standard-license information "Licensed under Creative Commons" displayed in the footer.
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-md-12">
-				The footer you can see below is generated from the following markup:
-				<pre>
-&lt;idai-footer
-	institutions="{'dai': 'http://www.dainst.de/',
-		'unikoeln': 'http://archaeologie.uni-koeln.de',
-		'codarchlab': 'http://archaeologie.uni-koeln.de/node/23'}"
- 	mailto="idai.objects@dainst.org"&gt;
-		GitHub-Repository: <a href="https://github.com/dainst/idai-components">https://github.com/dainst/idai-components</a>
-&lt;/idai-footer&gt;
-				</pre>
-			</div>
-		</div>
-
-		<h2>Images</h2>
+<idai-header
+		image="/img/exampleteaser.jpg"
+		description="Palmyra, Baal-Heiligtum, Bankettsaal"
+		link="http://arachne.dainst.org">
 
 
-		<p>
-			Further required artifacts (which can be found in the local img folder of this repo):
-		</p>
-		<ul>
-			<li><code>img/kleinergreif.png</code> - will appear in the navbar.</li>
-			<li><code>img/logo_unikoeln.png</code> - will appear in the footer</li>
-			<li><code>img/logo_codarchlab.png</code> - will appear in the footer</li>
-			<li><code>img/logo_dai.png</code> - will appear in the footer</li>
-		</ul>
+</idai-header>
 
-	</div>
+<div class="teaserpage teaserbgr container">
+    <main>
+        <div class="row">
 
+
+            <div class="col-md-12">
+
+                <h1>Major layout elements</h1>
+
+                <h2>Navbar</h2>
+
+                <h3>Example</h3>
+
+                See top of the page.
+
+                <h3>Usage</h3>
+                <div class="row">
+                    <div class="col-md-6">
+                        <pre>
+        &lt;idai-navbar
+            project-id="projectId"
+            login-function="loginFunction()"
+            logout-function="logoutFunction()"
+            user-object="user"
+            hide-register-button="true"
+            hide-contact-button="true"&gt;
+        &lt;/idai-navbar&gt;</pre>
+                    </div>
+                    <div class="col-md-6">
+                        <p>
+                            Pass a unique project identifier in <code>project-id</code>. This identifier is
+                            used to construct the filename of a project logo in the <code>img</code> directory. The pattern is <em>logo_<code>project-id</code>.png</em>.
+                        </p>
+                        <p>
+                            Via <code>login-function</code> and <code>logout-function</code> it is possible to
+                            bind functions from the surrounding scope to the sign in and logout (hidden in dropdown)
+                            buttons buttons. Pass the user object from the surrounding context
+                        </p>
+                        <p>
+                            into <code>user-object</code>. When not empty, the sign in and sign up buttons get replaced
+                            by a user dropdown menu which also contains the logout button.
+                        </p>
+                        <p>
+                            The <code>hide-register-button</code> and <code>hide-contact-button</code> properties can be used to hide
+                            the respective elements. If set to false or the properties are not set at all, the elements are shown.
+                        </p>
+                        <p>
+                            The navbar requires the application to provide some html which will get rendered
+                            seamlessly into the directive's html:
+                        </p>
+                        <ul>
+                            <li><code>partials/navbar-menu.html</code> - will be inserted as html into the dropdown menu</li>
+                            <li><code>partials/navbar-project.html</code> - will be inserted as brand text next to your projects logo.</li>
+                        </ul>
+                        <p>
+                            The navbar auto-generates its link titles with help of the content localization system described
+                            <a href="info/i18n">here</a>. The configuration of the shown links is required to be found
+                            at
+                            <code>info/content.json</code>. The localization system will
+                            search for a subtree with the id "navbar".
+                        </p>
+                    </div>
+                </div>
+
+                <h2>Footer</h2>
+
+                <h3>Example</h3>
+
+                See bottom of the page.
+
+                <h3>Usage</h3>
+                <div class="row">
+                    <div class="col-md-6">
+                        <pre>&lt;idai-footer mailto="emailAdress"&gt;&lt;/idai-footer&gt;</pre>
+                    </div>
+                    <div class="col-md-6">
+                        <p>
+                            Use <code>mailto</code> to pass an eMail address that should appear as
+                            a contact for bugreports in the footer.
+                        </p>
+                        <p>
+                            The footer auto-generates its link titles with help of the content localization system described
+                            <a href="/info/i18n">here</a>. The configuration of the shown links is required to be found
+                            at
+                            <code>info/content.json</code>. The localization system will
+                            search for a subtree with the id "footer".
+                        </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        Content you fill in between the opening and the ending <cod>idai-footer</cod> tag is going to be displayed in the third row of the footer.
+                        <br>
+                        Let the tag content free to have the standard-license information "Licensed under Creative Commons" displayed in the footer.
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12">
+                        The footer you can see below is generated from the following markup:
+                        <pre>
+        &lt;idai-footer
+            institutions="{'dai': 'http://www.dainst.de/',
+                'unikoeln': 'http://archaeologie.uni-koeln.de',
+                'codarchlab': 'http://archaeologie.uni-koeln.de/node/23'}"
+            mailto="idai.objects@dainst.org"&gt;
+                GitHub-Repository: <a href="https://github.com/dainst/idai-components">https://github.com/dainst/idai-components</a>
+        &lt;/idai-footer&gt;
+                        </pre>
+                    </div>
+                </div>
+
+                <h4>Images</h4>
+
+
+                <p>
+                    Required artifacts (which can be found in the local img folder of this repo):
+                </p>
+                <ul>
+                    <li><code>img/kleinergreif.png</code> - will appear in the navbar.</li>
+                    <li><code>img/logo_unikoeln.png</code> - will appear in the footer</li>
+                    <li><code>img/logo_codarchlab.png</code> - will appear in the footer</li>
+                    <li><code>img/logo_dai.png</code> - will appear in the footer</li>
+                </ul>
+
+
+
+
+                <h2>Header</h2>
+
+                <strong>idai-components</strong> provides the directive <code>&lt;idai-header&gt;</code> to extend your project
+                pages with a responsive and interactive header background.
+
+
+                <h3>Example</h3>
+
+                See top of the page, right beneath the navbar.
+
+                <h3>Usage</h3>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <pre>
+&lt;idai-header
+    image="/img/exampleteaser.jpg"
+    description="Palmyra, Baal-Heiligtum, Bankettsaal"
+    link="http://arachne.dainst.org"&gt;
+&lt;/idai-header&gt;
+
+&lt;div class="teaserpage teaserbgr container"&gt;
+    &ltmain&gt;
+        &lth1>Project Title&lt;/h1&gt;
+        Page content. Here, div-container with bootstrap's classes can be used to structure your content.
+    &lt/main&gt;
+&lt/div&gt;
+                        </pre>
+                    </div>
+                    <div class="col-sm-6">
+                        The <code>&lt;idai-header&gt;</code> takes three arguments:
+                        <ul>
+                            <li>
+                                <code>image</code> - image to be shown as header background. The header image you can see on this page
+                                has a dimension of 1680 x 676 pixel and a file size of 120 KB.
+                            </li>
+                            <li>
+                                <code>description</code> (optional) - a short description of the image.
+                            </li>
+                            <li>
+                                <code>link</code> (optional) - you can provide a url to connect the header with a web ressource.
+                            </li>
+                        </ul>
+                        Wrap your page content in a div-Container with the classes <code>teaserpage</code> and <code>container</code> or use
+                        the predefined class <code>con10t-page</code> to have your page rendered correctly.
+
+                    </div>
+                </div>
+
+
+
+
+
+
+                <h3>Extended example</h3>
+
+
+
+
+
+
+                            The following example page uses <code>con10t</code> classes. Be sure to add the class <code>teaserpage</code> to your con10t-page:
+                <pre>
+&lt;idai-header
+    image="/img/exampleteaser.jpg"
+    description="Palmyra, Baal-Heiligtum, Bankettsaal"
+    link="http://arachne.dainst.org"&gt;
+&lt;/idai-header&gt;
+
+&lt;div class="con10t-page teaserpage container"&gt;
+    &lt;div class="con10t-row"&gt;
+        &lt;div class="con10t-title"&gt;
+            &lt;img src="path/to/your/project-logo" class="img-responsive"&gt;
+        &lt;/div&gt;
+        &lt;div class="con10t-sidebar"&gt;
+            Sidebar content
+        &lt;/div&gt;
+        &lt;div class="con10t-content"&gt;
+            Main content
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+                </pre>
+
+            </div>
+        </div>
+    </main>
 </div>
