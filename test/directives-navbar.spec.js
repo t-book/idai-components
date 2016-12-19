@@ -40,6 +40,8 @@ describe ('idaiNavbar', function() {
 			$provide.constant('arachneSettings', {
 				dataserviceUri: '/data'
 			});
+			$provide.constant('componentsSettings', {
+			});
 		});
 		module('templates');
 
