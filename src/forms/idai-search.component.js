@@ -27,11 +27,12 @@ angular.module('idai.components')
 
             $scope.buttonClass = 'btn-primary';
             if (this.buttonClass) {
-                console.log("hier")
                 $scope.buttonClass = this.buttonClass;
             }
 
             $scope.getSuggestions = function (value) {
+                if (!componentsSettings.searchUri) return;
+
                 var promise = $http.get(componentsSettings.searchUri + '/suggest?q=' + value)
                     .then(function (response) {
                         return response.data.suggestions;
