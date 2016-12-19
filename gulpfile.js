@@ -22,7 +22,7 @@ var paths = {
 
 // compile sass and concatenate to single css file in build dir
 gulp.task('sass', function() {
-	return gulp.src('src/scss/idai-components.scss')
+	return gulp.src('src/idai-components.scss')
 	  	.pipe(sass({includePaths: [paths.bootstrap + 'stylesheets/'], precision: 8}))
 	  	.pipe(concat(pkg.name + '.css'))
 	    .pipe(gulp.dest(paths.build + '/css'))
