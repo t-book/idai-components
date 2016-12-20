@@ -6,9 +6,7 @@ angular.module('idai.components')
 /**
  * @author: Daniel de Oliveira
  */
-
-.directive('idaiMessages', function() {
-    return {
+.component('idaiMessages', {
         restrict: 'E',
         templateUrl: 'messages/idai-message.html',
         controller: [ '$scope', 'messageService',
@@ -21,4 +19,5 @@ angular.module('idai.components')
                 };
 
             }]
-    }});
+    }
+);
