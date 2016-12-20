@@ -7,59 +7,32 @@ Components library for use in other angular based dai projects.
 A sample application can get started via
 
 ```bash
-npm run build
-npm start
+npm install && npm npm run build && npm start
 ```
 
-The demo app is then served on port 1235. 
+The demo app is then served on port `1235`. 
 It documents and shows the libraries facilities in action.
 
-Changes to partials and js of the library (src/**) as well as of the
-demo application files will automatically trigger a
+Changes to partials and js files of the library under `src` as well as of the
+demo application files under `demo` will automatically trigger a
 rebuild and also a reload in active browser windows.
 
-## Development and deployment
+## Building the library
 
-### Preparative steps
-
-In order to make additions to the library, these preparative steps are necessary:
-
-```bash
-npm install
-```
-
-### Building and testing
-
-If changes to the library code are beeing made, 
+Running `npm test && npm run build` will perform all the 
+necessary build steps which creates the following files:
 
 ```bash
-npm run test
-npm run build
-```
-
-has to be called after changing the source code. This will run the tests
-and all necessary build steps which results in the follwing files:
-
-```bash
-dist/idai-components.js # full js library without depencies
-dist/idai-components.min.js # minified full js library without dependencies
-dist/idai-components-deps.js # concatenated and minified dependencies
-dist/idai-components-no-tpls.js # js library without the templates
-dist/idai-components-tpls.js # angular templates
-dist/css/idai-components.css # full css including bootstrap
+dist/idai-components.js          # full js library without depencies
+dist/idai-components.min.js     # minified full js library without dependencies
+dist/idai-components-deps.js      # concatenated and minified dependencies
+dist/idai-components-no-tpls.js  # js library without the templates
+dist/idai-components-tpls.js     # angular templates
+dist/css/idai-components.css     # full css including bootstrap
 dist/css/idai-components.min.css # minified full css including bootstrap
 ```
 
 In most cases only `idai-components.min.js` and `idai-components.min.css` need
 to be referenced by applications making use of idai-components.
 
-### Deployment and versioning
-
-The resulting files under dist are to be pushed to GitHub, together with the changes to the source code.
-These are the resulting libraries which clients can get via bower oder Node.js.
-
-When pushing the changes to GitHub, a new release has to be created in order to make the changes available to clients as a new library version.
-
-The new tag should follow the guidelines for [semantic versioning](http://semver.org/), which means basically
-that for functional additions to the library the middle digit gets incremented and for API breaking changes the first digit gets incremented.
 
