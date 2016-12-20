@@ -2,7 +2,7 @@
         ng-class="'alert-' + message.level"
         class="col-md-10 col-md-offset-1 alert text-center">
     <div class="alert-message">
-	    <button class="close" ng-click="removeMessage(transl8Key)" class="pull-right" style="cursor:pointer;">&times;</button>
+	    <button class="close" ng-click="remove(transl8Key)" class="pull-right" style="cursor:pointer;">&times;</button>
 	    <b ng-bind-html="message.text"></b><br>
 	    <span>{{message.contactInfo}}</span>
 	</div>
