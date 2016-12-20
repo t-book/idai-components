@@ -109,7 +109,7 @@ gulp.task('server', ['sass', 'concat-js', 'html2js', 'copy-fonts'], function() {
 				modRewrite(['!\\.html|\\.js|\\.svg|\\.css|\\.png|\\.jpg|\\.gif|\\.json|\\.woff2|\\.woff|\\.ttf$ /index.html [L]']),
         	]
 		},
-		port: 1235
+		port: 8084
 	});
 
 	gulp.watch('src/scss/**/*.scss', ['sass']);

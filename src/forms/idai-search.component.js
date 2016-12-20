@@ -16,19 +16,18 @@ angular.module('idai.components')
     controller: [ '$scope', '$location', 'componentsSettings', '$http',
         function($scope,$location,componentsSettings,$http) {
 
-            $scope.search = function (fq) {
-                if ($scope.q) {
-                    var url = '/search?q=' + $scope.q;
-                    if (fq) url += "&fq=" + fq;
-                    $scope.q = null;
-                    $location.url(url);
-                }
-            };
-
             $scope.buttonClass = 'btn-primary';
             if (this.buttonClass) {
                 $scope.buttonClass = this.buttonClass;
             }
+
+            $scope.search = function ($item, $model, $label, $event) {
+                if ($scope.q) {
+                    var url = '/search?q=' + $scope.q;
+                    $scope.q = null;
+                    $location.url(url);
+                }
+            };
 
             $scope.getSuggestions = function (value) {
                 if (!componentsSettings.searchUri) return;

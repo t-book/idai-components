@@ -10,7 +10,7 @@ A sample application can get started via
 npm install && npm npm run build && npm start
 ```
 
-The demo app is then served on port `1235`. 
+The demo app is then served on port `8084`. 
 It documents and shows the libraries facilities in action.
 
 Changes to partials and js files of the library under `src` as well as of the
