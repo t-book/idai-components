@@ -11,15 +11,16 @@ angular.module('idai.components')
         return {
             restrict: 'E',
             scope: {
-                mailto: '@',
                 institutions: '=',
                 version: '@'
             },
             transclude: true,
             templateUrl: 'layout/idai-footer.html',
-            controller: ['$scope', '$http', '$sce', 'localizedContent', '$transclude',
-                function ($scope, $http, $sce, localizedContent, $transclude) {
+            controller: ['$scope', '$http', '$sce', 'localizedContent', '$transclude', 'componentsSettings',
+                function ($scope, $http, $sce, localizedContent, $transclude,componentsSettings) {
 
+                    $scope.mailto = componentsSettings.mailTo;
+                    
                     $transclude(function(clone){
                         $scope.hasTranscludedContent = (clone.length > 0);
                     });

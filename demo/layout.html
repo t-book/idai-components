@@ -79,7 +79,7 @@
                 <h3>Usage</h3>
                 <div class="row">
                     <div class="col-md-6">
-                        <pre>&lt;idai-footer mailto="emailAdress"&gt;&lt;/idai-footer&gt;</pre>
+                        <pre>&lt;idai-footer&gt;&lt;/idai-footer&gt;</pre>
                     </div>
                     <div class="col-md-6">
                         <p>
@@ -92,6 +92,9 @@
                             at
                             <code>info/content.json</code>. The localization system will
                             search for a subtree with the id "footer".
+                        </p>
+                        <p>
+                            The email address for bug reports can be configured via <code>componentsSettings.mailTo</code>.
                         </p>
                     </div>
                 </div>
@@ -110,8 +113,7 @@
         &lt;idai-footer
             institutions="{'dai': 'http://www.dainst.de/',
                 'unikoeln': 'http://archaeologie.uni-koeln.de',
-                'codarchlab': 'http://archaeologie.uni-koeln.de/node/23'}"
-            mailto="idai.objects@dainst.org"&gt;
+                'codarchlab': 'http://archaeologie.uni-koeln.de/node/23'}"&gt;
                 GitHub-Repository: <a href="https://github.com/dainst/idai-components">https://github.com/dainst/idai-components</a>
         &lt;/idai-footer&gt;
                         </pre>

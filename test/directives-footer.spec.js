@@ -32,8 +32,8 @@ describe ('idaiFooter', function() {
 					return 'translation';
 				}
 			});
-			$provide.constant('arachneSettings', {
-				dataserviceUri: '/data'
+			$provide.constant('componentsSettings', {
+				mailTo: 'mail@to.com'
 			});
 		});
 		module('templates');
