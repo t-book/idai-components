@@ -33,7 +33,7 @@ angular.module('idai.components')
             $scope.getSuggestions = function (value) {
                 if (!componentsSettings.searchUri) return;
 
-                var promise = $http.get(componentsSettings.searchUri + '/suggest?q=' + value)
+                var promise = $http.get(componentsSettings.searchUri + value)
                     .then(function (response) {
                         return response.data.suggestions;
                     });
