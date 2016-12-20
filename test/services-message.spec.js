@@ -1,5 +1,5 @@
 /**
- * @author: Daniel M. de Oliveira
+ * @author: Daniel de Oliveira
  */
 describe('message', function () {
 
@@ -38,75 +38,75 @@ describe('message', function () {
     it('should store and recall messages', function () {
 
         myBeforeEach("translation");
-        messages.addMessageForCode("error_a");
-        messages.addMessageForCode("error_b");
-        messages.addMessageForCode("error_c");
-        expect(messages.getMessages()["error_a"].text.toString()).toBe("translation");
-        expect(messages.getMessages()["error_b"].text.toString()).toBe("translation");
-        expect(messages.getMessages()["error_c"].text.toString()).toBe("translation");
-        expect(messages.getMessages()["error_d"]).toBe(undefined);
+        messages.add("error_a");
+        messages.add("error_b");
+        messages.add("error_c");
+        expect(messages.all()["error_a"].text.toString()).toBe("translation");
+        expect(messages.all()["error_b"].text.toString()).toBe("translation");
+        expect(messages.all()["error_c"].text.toString()).toBe("translation");
+        expect(messages.all()["error_d"]).toBe(undefined);
     });
 
     it('should translate messages', function () {
 
         myBeforeEach("translation");
-        messages.addMessageForCode("error_a");
-        expect(messages.getMessages()["error_a"].text.toString()).toBe("translation");
+        messages.add("error_a");
+        expect(messages.all()["error_a"].text.toString()).toBe("translation");
     });
 
     it('should throw an error if translation key invalid', function () {
         myBeforeEach("throwError");
-        expect(function(){messages.addMessageForCode("error_a")})
+        expect(function(){messages.add("error_a")})
             .toThrow();
     });
 
 
     it ('should store the message level', function() {
         myBeforeEach("translation");
-        messages.addMessageForCode("error_a",'danger');
-        expect(messages.getMessages()["error_a"].level).toBe('danger');
+        messages.add("error_a",'danger');
+        expect(messages.all()["error_a"].level).toBe('danger');
     });
 
     it ('should default to the message level warning ', function() {
         myBeforeEach("translation");
-        messages.addMessageForCode("error_a");
-        expect(messages.getMessages()["error_a"].level).toBe('warning');
+        messages.add("error_a");
+        expect(messages.all()["error_a"].level).toBe('warning');
     });
 
     it('should generate a message with an empty body if translations not yet loaded', function () {
 
         myBeforeEach("");
-        messages.addMessageForCode("error_a");
-        expect(messages.getMessages()["error_a"].text.toString()).toBe("");
+        messages.add("error_a");
+        expect(messages.all()["error_a"].text.toString()).toBe("");
     });
 
     it('should throw an error if level param is set to non allowed value', function () {
         myBeforeEach("");
-        expect(function(){messages.addMessageForCode("error_a","successs")})
+        expect(function(){messages.add("error_a","successs")})
             .toThrow();
     });
 
     it('should clear all the messages', function() {
         myBeforeEach("translation");
-        messages.addMessageForCode("error_a");
-        messages.addMessageForCode("error_b");
-        expect(messages.getMessages()["error_a"].text.toString()).toBe("translation");
-        expect(messages.getMessages()["error_b"].text.toString()).toBe("translation");
+        messages.add("error_a");
+        messages.add("error_b");
+        expect(messages.all()["error_a"].text.toString()).toBe("translation");
+        expect(messages.all()["error_b"].text.toString()).toBe("translation");
         messages.clear();
-        expect(messages.getMessages()["error_a"]).toBe(undefined);
-        expect(messages.getMessages()["error_b"]).toBe(undefined);
+        expect(messages.all()["error_a"]).toBe(undefined);
+        expect(messages.all()["error_b"]).toBe(undefined);
     });
 
     it ('should clear messages when location changes', function() {
 
         myBeforeEach("translation");
-        messages.addMessageForCode("error_a");
-        messages.addMessageForCode("error_b");
-        expect(messages.getMessages()["error_a"].text.toString()).toBe("translation");
-        expect(messages.getMessages()["error_b"].text.toString()).toBe("translation");
+        messages.add("error_a");
+        messages.add("error_b");
+        expect(messages.all()["error_a"].text.toString()).toBe("translation");
+        expect(messages.all()["error_b"].text.toString()).toBe("translation");
         $rootScope.$broadcast('$locationChangeSuccess');
-        expect(messages.getMessages()["error_a"]).toBe(undefined);
-        expect(messages.getMessages()["error_b"]).toBe(undefined);
+        expect(messages.all()["error_a"]).toBe(undefined);
+        expect(messages.all()["error_b"]).toBe(undefined);
     });
 
 
@@ -114,33 +114,33 @@ describe('message', function () {
 
         myBeforeEach("translation");
 
-        messages.addMessageForCode("error_a");
-        expect(messages.getMessages()["error_a"].text.toString()).toBe("translation");
+        messages.add("error_a");
+        expect(messages.all()["error_a"].text.toString()).toBe("translation");
 
         messages.dontClearOnNextLocationChange();
 
         $rootScope.$broadcast('$locationChangeSuccess');
-        expect(messages.getMessages()["error_a"].text.toString()).toBe("translation");
+        expect(messages.all()["error_a"].text.toString()).toBe("translation");
     });
 
     it ('should show contact info by default', function() {
         myBeforeEach("translation");
-        messages.addMessageForCode("error_a");
-        expect(messages.getMessages()["error_a"].contactInfo)
+        messages.add("error_a");
+        expect(messages.all()["error_a"].contactInfo)
             .toBe('Please contact arachne@uni-koeln.de if the errors persist.');
     });
 
     it ('should hide contact info on demand', function() {
         myBeforeEach("translation");
-        messages.addMessageForCode("error_a",'warning',false);
-        expect(messages.getMessages()["error_a"].contactInfo)
+        messages.add("error_a",'warning',false);
+        expect(messages.all()["error_a"].contactInfo)
             .toBe(undefined);
     });
 
     it ('should hide contact info on success', function() {
         myBeforeEach("translation");
-        messages.addMessageForCode("error_a",'success');
-        expect(messages.getMessages()["error_a"].contactInfo)
+        messages.add("error_a",'success');
+        expect(messages.all()["error_a"].contactInfo)
             .toBe(undefined);
     });
 });

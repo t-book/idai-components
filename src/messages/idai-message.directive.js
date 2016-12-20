@@ -14,10 +14,10 @@ angular.module('idai.components')
         controller: [ '$scope', 'messageService',
             function($scope,messages) {
 
-                $scope.messages = messages.getMessages();
+                $scope.messages = messages.all();
 
-                $scope.removeMessage = function(transl8Key){
-                    messages.removeMessage(transl8Key)
+                $scope.remove = function(transl8Key){
+                    messages.remove(transl8Key)
                 };
 
             }]

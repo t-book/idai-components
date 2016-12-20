@@ -125,7 +125,7 @@ angular.module('idai.components')
          * @throws Error if level if set but does not match one of the allowed values.
          * @throws Error if there exists no translation for transl8Key.
          */
-        addMessageForCode: function(transl8Key, level, showContactInfo) {
+        add: function(transl8Key, level, showContactInfo) {
 
             var message = _create(transl8Key);
             if (level) {
@@ -143,7 +143,7 @@ angular.module('idai.components')
          *
          * @param transl8Key the identifier of the message to be removed.
          */
-        removeMessage: function(transl8Key) {
+        remove: function(transl8Key) {
             delete messages[transl8Key];
         },
 
@@ -155,7 +155,7 @@ angular.module('idai.components')
             _clear();
         },
 
-        getMessages: function() {
+        all: function() {
             return messages;
         }
     }
