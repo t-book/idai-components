@@ -28,7 +28,9 @@
  */
 angular.module('idai.components')
 
-.factory('messageService', [ '$rootScope', 'transl8', '$sce', function( $rootScope, transl8, $sce ) {
+.factory('messageService',
+    [ '$rootScope', 'transl8', '$sce', 'componentsSettings',
+        function( $rootScope, transl8, $sce, componentsSettings ) {
 
     /**
      * A Map [transl8Key,message].
@@ -47,7 +49,7 @@ angular.module('idai.components')
         this.text = $sce.trustAsHtml(this.text);
         this.level = 'warning';
         this.contactInfo = transl8.getTranslation('components.message.contact')
-            .replace('CONTACT', 'arachne@uni-koeln.de');
+            .replace('CONTACT', componentsSettings.mailTo);
         
     }
 

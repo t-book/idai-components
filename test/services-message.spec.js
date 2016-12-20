@@ -26,6 +26,9 @@ describe('message', function () {
                         }
                     }
                 });
+                $provide.constant('componentsSettings', {
+                    mailTo: 'mail@to.com'
+                });
             }
         );
 
@@ -127,7 +130,7 @@ describe('message', function () {
         myBeforeEach("translation");
         messages.add("error_a");
         expect(messages.all()["error_a"].contactInfo)
-            .toBe('Please contact arachne@uni-koeln.de if the errors persist.');
+            .toBe('Please contact mail@to.com if the errors persist.');
     });
 
     it ('should hide contact info on demand', function() {

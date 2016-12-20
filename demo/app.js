@@ -19,7 +19,8 @@ angular.module('sampleApp',[
 			.when('/info/msgs', {templateUrl: 'demo/messages.html'});
 	}
 ]).constant('componentsSettings', {
-		transl8Uri: "https://arachne.dainst.org/transl8/translation/jsonp?application=shared&lang={LANG}&callback=JSON_CALLBACK",
-		searchUri: "http://bogusman02.dai-cloud.uni-koeln.de/data"
+		transl8Uri: 'https://arachne.dainst.org/transl8/translation/jsonp?application=shared&lang={LANG}&callback=JSON_CALLBACK',
+		searchUri: 'http://bogusman02.dai-cloud.uni-koeln.de/data',
+		mailTo: 'idai.objects@dainst.org'
 	}
 );
