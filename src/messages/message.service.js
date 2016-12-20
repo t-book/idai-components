@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Message store which holds one or more messages for a
+ * Message store which holds one or more messages
  * for the purpose of being displayed to the user.
  *
  * Messages are automatically removed on location changes,
@@ -28,7 +28,7 @@
  */
 angular.module('idai.components')
 
-.factory('message', [ '$rootScope', 'transl8', '$sce', function( $rootScope, transl8, $sce ) {
+.factory('messageService', [ '$rootScope', 'transl8', '$sce', function( $rootScope, transl8, $sce ) {
 
     /**
      * A Map [transl8Key,message].
