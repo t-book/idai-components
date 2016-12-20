@@ -8,7 +8,7 @@ angular.module('idai.components')
  */
 .component('idaiMessages', {
         restrict: 'E',
-        templateUrl: 'messages/idai-message.html',
+        templateUrl: 'messages/idai-messages.html',
         controller: [ '$scope', 'messageService',
             function($scope,messages) {
 
