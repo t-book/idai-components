@@ -13,7 +13,7 @@ angular.module('idai.components')
         controller: [ '$scope', 'countries',
             function($scope, countries) {
                 countries.getCountriesAsync().then(function (countries) {
-                	$scope.kountries = countries;
+                	$scope.countries = countries;
                 });
             }]
     }});
