@@ -18,6 +18,9 @@ angular.module('idai.components')
         function($scope,$location,componentsSettings,$http) {
 
             var localStorageKey='previousSearchQueries';
+            var originalPlaceholder = undefined;
+            var locChangeTriggeredBySearch = false;
+            $scope.placeholder = originalPlaceholder;
 
             $scope.buttonClass = 'btn-primary';
             if (this.buttonClass) {
@@ -33,18 +36,34 @@ angular.module('idai.components')
                     searchTerm = $scope.q;
                 }
                 memorizeSearch(searchTerm,3);
+                $scope.placeholder = searchTerm;
+                locChangeTriggeredBySearch = true;
 
                 var url = '/search?q=' + searchTerm;
                 $scope.q = null;
                 $location.url(url);
 
             };
+            
+            $scope.leave = function() {
+                if (!locChangeTriggeredBySearch) {
+                    $scope.placeholder = undefined;
+                } else {
+                    locChangeTriggeredBySearch = false;
+                }
+            };
+
+            $scope.$on('$locationChangeStart', function () {
+                $scope.leave();
+            });
 
             $scope.getSuggestions = function (value) {
                 if (!componentsSettings.searchUri) return;
 
                 return $http.get(componentsSettings.searchUri + value)
                     .then(function (response) {
+
+                        if (!response.data.suggestions) return [];
 
                         var suggestions=
                             response.data.suggestions.map(function(e){return {model:e}});

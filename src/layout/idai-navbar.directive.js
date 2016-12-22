@@ -33,15 +33,6 @@ angular.module('idai.components')
 						});
 					};
 
-					$scope.search = function(fq) {
-						if ($scope.q) {
-							var url = '/search?q=' + $scope.q;
-							if (fq) url += "&fq=" + fq;
-							$scope.q = null;
-							$location.url(url);
-						}
-					};
-
 					$scope.toggleNavbar = function() {
 
 							$scope.isCollapsed = true;

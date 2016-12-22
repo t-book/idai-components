@@ -11,7 +11,7 @@
            class="form-control"
            autofocus
            typeahead-popup-template-url="customPopupTemplate.html"
-           placeholder="{{'navbar_placeholder_search'|transl8}}"/>
+           placeholder="{{(placeholder||('navbar_placeholder_search'|transl8))}}"/>
 
     <span class="input-group-btn">
         <button type="submit" class="btn {{buttonClass}}">
@@ -48,7 +48,7 @@
 
             <hr>
 
-            <p>Ältere Suchen</p>
+            <p>{{'navbar_old_searches'|transl8}}</p>
 
             <li class="uib-typeahead-match"
                 ng-repeat="match in matches track by $index"
