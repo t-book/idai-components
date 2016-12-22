@@ -14,12 +14,16 @@ angular.module('idai.components')
     bindings: {
         buttonClass: '@'
     },
-    controller: [ '$scope', '$location', 'componentsSettings', '$http',
-        function($scope,$location,componentsSettings,$http) {
+    controller: [ '$scope', '$location', 'componentsSettings', '$http','idaiSearchService',
+        function($scope,$location,componentsSettings,$http,idaiSearchService) {
+
+            idaiSearchService.register(function(term) {
+                $scope.placeholder = term;
+            }.bind(this));
+
 
             var localStorageKey='previousSearchQueries';
             var originalPlaceholder = undefined;
-            var locChangeTriggeredBySearch = false;
             $scope.placeholder = originalPlaceholder;
 
             $scope.buttonClass = 'btn-primary';
@@ -37,24 +41,17 @@ angular.module('idai.components')
                 }
                 memorizeSearch(searchTerm,3);
                 $scope.placeholder = searchTerm;
-                locChangeTriggeredBySearch = true;
 
                 var url = '/search?q=' + searchTerm;
                 $scope.q = null;
                 $location.url(url);
 
+                idaiSearchService.notify(searchTerm);
+
             };
             
-            $scope.leave = function() {
-                if (!locChangeTriggeredBySearch) {
-                    $scope.placeholder = undefined;
-                } else {
-                    locChangeTriggeredBySearch = false;
-                }
-            };
-
-            $scope.$on('$locationChangeStart', function () {
-                $scope.leave();
+            $scope.$on('$locationChangeStart', function (event,next) {
+                if (next.indexOf('search')==-1) idaiSearchService.notify(undefined)
             });
 
             $scope.getSuggestions = function (value) {
