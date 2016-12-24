@@ -17,19 +17,22 @@ angular.module('idai.components')
     controller: [ '$scope', '$location', 'componentsSettings', '$http','idaiSearchService',
         function($scope,$location,componentsSettings,$http,idaiSearchService) {
 
-            idaiSearchService.register(function(term) {
-                $scope.placeholder = term;
-            }.bind(this));
-
-
+            var NUM_SEARCHES_TO_KEEP = 3;
             var localStorageKey='previousSearchQueries';
-            var originalPlaceholder = undefined;
-            $scope.placeholder = originalPlaceholder;
+            $scope.placeholder = undefined;
 
             $scope.buttonClass = 'btn-primary';
             if (this.buttonClass) {
                 $scope.buttonClass = this.buttonClass;
             }
+
+            idaiSearchService.register(function(term) {
+                $scope.placeholder = term;
+            }.bind(this));
+
+            $scope.$on('$locationChangeStart', function (event,next) {
+                if (next.indexOf('search')==-1) idaiSearchService.notify(undefined)
+            });
 
             $scope.search = function ($item) {
 
@@ -39,41 +42,39 @@ angular.module('idai.components')
                 } else {
                     searchTerm = $scope.q;
                 }
-                memorizeSearch(searchTerm,3);
-                $scope.placeholder = searchTerm;
+                memorizeSearch(searchTerm,NUM_SEARCHES_TO_KEEP);
 
-                var url = '/search?q=' + searchTerm;
                 $scope.q = null;
-                $location.url(url);
+                $location.url('/search?q=' + searchTerm);
 
                 idaiSearchService.notify(searchTerm);
-
             };
-            
-            $scope.$on('$locationChangeStart', function (event,next) {
-                if (next.indexOf('search')==-1) idaiSearchService.notify(undefined)
-            });
+
 
             $scope.getSuggestions = function (value) {
                 if (!componentsSettings.searchUri) return;
 
                 return $http.get(componentsSettings.searchUri + value)
                     .then(function (response) {
-
                         if (!response.data.suggestions) return [];
 
                         var suggestions=
                             response.data.suggestions.map(function(e){return {model:e}});
-
-                        var queries = JSON.parse(localStorage.getItem(localStorageKey));
-                        queries.reverse();
-                        queries.forEach(function(term){
-                          suggestions.push({model:term,extra:true})
-                        });
-
+                        if (!suggestions) return [];
+                        enrichWithOldQueries(suggestions);
                         return suggestions;
                     });
             };
+
+            function enrichWithOldQueries(suggestions) {
+                var queries = JSON.parse(localStorage.getItem(localStorageKey));
+                if (queries) {
+                    queries.reverse();
+                    queries.forEach(function(term){
+                        suggestions.push({model:term,extra:true})
+                    });
+                }
+            }
 
             function memorizeSearch(searchTerm,searchesToKeep) {
 
