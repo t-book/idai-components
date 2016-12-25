@@ -19,7 +19,7 @@ rebuild and also a reload in active browser windows.
 
 ## Building the library
 
-Running `npm test && npm run build` will perform all the 
+Running `npm run build` will perform all the 
 necessary build steps which creates the following files:
 
 ```bash
@@ -35,4 +35,9 @@ dist/css/idai-components.min.css # minified full css including bootstrap
 In most cases only `idai-components.min.js` and `idai-components.min.css` need
 to be referenced by applications making use of idai-components.
 
+## Testing
 
+Unit tests are simply run by `npm test`. E2E tests are run by 
+`export LC_NUMERIC="en_US.UTF-8" && npm run e2e`. Note the app must be served on
+`8084` as a precondition for the latter. You can do it by running `npm start` on 
+another console.
