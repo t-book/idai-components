@@ -2,6 +2,14 @@
 
   border: 0;
 
+  .idai-navbar-search {
+
+    .input-group {
+      float: left;
+      width: calc(100% - 370px);
+    }
+  }
+
   #brand-img {
 
     height: 38px;
@@ -73,25 +81,6 @@
 
   // Small and medium sized screen resolutions
   @media (max-width: $grid-float-breakpoint) {
-
-    .idai-navbar-search {
-
-      .input-group {
-        float: left;
-        width: calc(100% - 370px);
-      }
-
-      .custom-popup-wrapper, .dropdown-menu {
-        width: 100%;
-      }
-
-      .custom-popup-wrapper li a {
-        max-width: 100%;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-    }
 
     .navbar-left {
       float: none !important;
