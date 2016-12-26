@@ -112,7 +112,7 @@ gulp.task('server', ['sass', 'concat-js', 'html2js', 'copy-fonts'], function() {
 		port: 8084
 	});
 
-	gulp.watch('src/scss/**/*.scss', ['sass']);
+	gulp.watch('src/**/*.scss', ['sass']);
 	gulp.watch('src/**/*.js', ['concat-js']);
 	gulp.watch('src/**/*.html', ['html2js']);
 
