@@ -6,7 +6,7 @@
 
     .input-group {
       float: left;
-      width: calc(100% - 370px);
+      width: calc(100% - #{$idai-navbar-search-width-diff});
     }
   }
 
@@ -54,7 +54,7 @@
 
     .idai-navbar-search {
 
-      width: calc(100% - 800px);
+      width: calc(100% - #{$idai-navbar-search-width-diff-on-highres});
       float: left;
       display: inline;
 
