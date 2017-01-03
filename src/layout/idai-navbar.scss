@@ -49,12 +49,13 @@
 
   ///////////// Size dependent //////////////////
 
+
   // High screen resolutions
-  @media (min-width: $grid-float-breakpoint) {
+  @media (min-width: $screen-lg) {
 
     .idai-navbar-search {
 
-      width: calc(100% - #{$idai-navbar-search-width-diff-on-highres});
+      width: calc(100% - #{$screen-lg-navbar-search-width-diff});
       float: left;
       display: inline;
 
@@ -79,8 +80,17 @@
     }
   }
 
+  @media (min-width: $idai-screen-xl) {
+    .idai-navbar-search {
+
+      width: $idai-screen-xl-navbar-search-width;
+      float: left;
+      display: inline;
+    }
+  }
+
   // Small and medium sized screen resolutions
-  @media (max-width: $grid-float-breakpoint) {
+  @media (max-width: $screen-lg) {
 
     .navbar-left {
       float: none !important;
