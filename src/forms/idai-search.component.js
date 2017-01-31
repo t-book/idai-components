@@ -35,17 +35,16 @@ angular.module('idai.components')
             });
 
             $scope.search = function ($item) {
-
                 var searchTerm;
                 if ($item) {
-                    searchTerm = $item.model;
+                    searchTerm = '"' + $item.model + '"';
                 } else {
                     searchTerm = $scope.q;
                 }
                 memorizeSearch(searchTerm,NUM_SEARCHES_TO_KEEP);
 
                 $scope.q = null;
-                $location.url('/search?q="' + searchTerm + '"');
+                $location.url('/search?q=' + searchTerm);
 
                 idaiSearchService.notify(searchTerm);
             };
