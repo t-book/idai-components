@@ -45,7 +45,7 @@ angular.module('idai.components')
                 memorizeSearch(searchTerm,NUM_SEARCHES_TO_KEEP);
 
                 $scope.q = null;
-                $location.url('/search?q=' + searchTerm);
+                $location.url('/search?q="' + searchTerm + '"');
 
                 idaiSearchService.notify(searchTerm);
             };
