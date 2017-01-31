@@ -5,7 +5,7 @@
            ng-model="q"
            name="q"
            uib-typeahead="suggestion for suggestion in getSuggestions($viewValue)"
-           typeahead-on-select="searchSuggested($item)"
+           typeahead-on-select="search($item)"
            typeahead-focus-first="false"
            typeahead-select-on-exact="true"
            class="form-control"
