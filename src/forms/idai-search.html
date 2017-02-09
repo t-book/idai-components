@@ -5,13 +5,14 @@
            ng-model="q"
            name="q"
            uib-typeahead="suggestion for suggestion in getSuggestions($viewValue)"
+           ng-focus="selectQueryString($event)" 
            typeahead-on-select="search($item)"
            typeahead-focus-first="false"
            typeahead-select-on-exact="true"
            class="form-control"
            autofocus
            typeahead-popup-template-url="customPopupTemplate.html"
-           placeholder="{{(placeholder||('navbar_placeholder_search'|transl8))}}"/>
+           placeholder="{{('navbar_placeholder_search'|transl8)}}"/>
 
     <span class="input-group-btn">
         <button type="submit" class="btn {{buttonClass}}">

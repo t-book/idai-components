@@ -34,6 +34,8 @@ angular.module('idai.components')
                 if (next.indexOf('search')==-1) idaiSearchService.notify(undefined)
             });
 
+            $scope.q = $location.search().q
+
             $scope.search = function ($item) {
                 var searchTerm;
                 if ($item) {
@@ -43,13 +45,17 @@ angular.module('idai.components')
                 }
                 memorizeSearch(searchTerm,NUM_SEARCHES_TO_KEEP);
 
-                $scope.q = null;
+                $scope.q = searchTerm;
 
                 if (!searchTerm) searchTerm = "";
                 $location.url('/search?q=' + searchTerm);
 
                 idaiSearchService.notify(searchTerm);
             };
+
+            $scope.selectQueryString = function (event) {
+                event.target.select();
+            }
 
 
             $scope.getSuggestions = function (value) {
