@@ -32,9 +32,10 @@ angular.module('idai.components')
 
             $scope.$on('$locationChangeStart', function (event,next) {
                 if (next.indexOf('search')==-1) idaiSearchService.notify(undefined)
+                $scope.q = $location.search().q
             });
 
-            $scope.q = $location.search().q
+            
 
             $scope.search = function ($item) {
                 var searchTerm;
