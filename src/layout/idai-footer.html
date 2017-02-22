@@ -5,12 +5,6 @@
 </style>
 <div class="row">
     <div class="col-md-12 text-center">
-        <div class="row">
-            <a ng-repeat="(key, uri) in institutions" ng-href="{{uri}}">
-                <img class="logoImage" ng-src="img/logo_{{key}}.png">
-            </a>
-        </div>
-
         <div class="row" ng-if="hasTranscludedContent" ng-transclude></div>
 
         <div class="row">
@@ -28,6 +22,11 @@
         </div>
         <div class="row" ng-show="version">
             <small>{{version}}</small>
+        </div>
+        <div class="row">
+            <a ng-repeat="(key, uri) in institutions" ng-href="{{uri}}">
+                <img class="logoImage" ng-src="img/logo_{{key}}.png">
+            </a>
         </div>
     </div>
 </div>
