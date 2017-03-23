@@ -21,7 +21,6 @@ angular.module('idai.components')
             if (lang) {
 
                 if (lang === 'de' || lang === 'en') {
-                    console.log('using language provided by url parameter', lang)
                     translationLang = lang;
                 } else {
                     if (language.browserPrimaryLanguage() == COMPONENTS_GERMAN_LANG) translationLang = COMPONENTS_GERMAN_LANG;
