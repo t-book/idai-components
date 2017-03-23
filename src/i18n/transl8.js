@@ -16,7 +16,10 @@ angular.module('idai.components')
                 translations = {}; // Map: [transl8_key,translation].
 
             // Use language provided by url parameter if possible
-            var lang = $location.search().lang;
+            // var lang = $location.search().lang;
+
+            // Use user-chosen language settings by using idai-components language-switcher
+            var lang = localStorage.getItem('lang');
 
             if (lang) {
 

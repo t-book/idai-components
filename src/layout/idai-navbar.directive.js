@@ -21,8 +21,8 @@ angular.module('idai.components')
 				projectId: '@'
 			},
 			templateUrl: 'layout/idai-navbar.html',
-			controller: [ '$scope', '$http', 'localizedContent', '$location',
-				function($scope, $http, localizedContent, $location) {
+			controller: [ '$scope', '$http', 'localizedContent', '$location', '$window',
+				function($scope, $http, localizedContent, $location, $window) {
 
 					$scope.getNavbarLinks = function(contentDir){
 						$http.get('info/content.json').success(function(data){
@@ -39,6 +39,16 @@ angular.module('idai.components')
 							$scope.$on('$routeChangeSuccess', function () {
 								$scope.isCollapsed = true;
 							});
+					};
+
+					$scope.switchToGermanLanguage = function() {
+						localStorage.setItem('lang', 'de');
+                        $window.location.reload();
+					};
+
+					$scope.switchToEnglishLanguage = function() {
+                        localStorage.setItem('lang', 'en');
+                        $window.location.reload();
 					};
 					
 				}],

@@ -12,13 +12,17 @@
                             <b class="caret"></b>
                         </a>
                         <ul uib-dropdown-menu>
-                            <li><a href="http://www.dainst.org/de/forschung/forschung-digital/idai.welt" target="_blank">iDAI.welt</a></li>
+                            <li><a href="http://www.dainst.org/de/forschung/forschung-digital/idai.welt"
+                                   target="_blank">iDAI.welt</a></li>
                             <li class="divider"></li>
                             <li><a href="https://gazetteer.dainst.org/" target="_blank">iDAI.gazetteer</a></li>
                             <li><a href="http://geoserver.dainst.org/" target="_blank">iDAI.geoserver</a></li>
-                            <li><a href="http://arachne.uni-koeln.de/" target="_blank">iDAI.objects&nbsp;/&nbsp;Arachne</a></li>
-                            <li><a href="http://zenon.dainst.org" target="_blank">iDAI.bibliography&nbsp;/&nbsp;Zenon</a></li>
-                            <li><a href="http://archwort.dainst.org/thesaurus/de/vocab" target="_blank">iDAI.vocab</a></li>
+                            <li><a href="http://arachne.uni-koeln.de/"
+                                   target="_blank">iDAI.objects&nbsp;/&nbsp;Arachne</a></li>
+                            <li><a href="http://zenon.dainst.org"
+                                   target="_blank">iDAI.bibliography&nbsp;/&nbsp;Zenon</a></li>
+                            <li><a href="http://archwort.dainst.org/thesaurus/de/vocab" target="_blank">iDAI.vocab</a>
+                            </li>
                             <li><a href="http://hellespont.dainst.org" target="_blank">Hellespont</a></li>
                         </ul>
                     </li>
@@ -30,11 +34,11 @@
         </div>
 
         <idai-search class="navbar-left idai-navbar-search"
-                ng-hide="hideSearchForm"
-                button-class="btn-default">
+                     ng-hide="hideSearchForm"
+                     button-class="btn-default">
         </idai-search>
 
-        <div class="navbar-right" style="display:inline" >
+        <div class="navbar-right" style="display:inline">
             <button class="navbar-toggle" ng-click="isCollapsed = !isCollapsed" type="button">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
@@ -42,8 +46,6 @@
                 <span class="icon-bar"></span>
             </button>
         </div>
-
-
 
 
         <div style="display:inline" class="navbar-right">
@@ -56,6 +58,21 @@
 
                     <li ng-repeat="link in dynamicLinkList">
                         <a ng-click="toggleNavbar()" ng-href="info/{{link.id}}">{{link.title}}</a>
+                    </li>
+
+                    <li>
+                        <ul class="nav navbar-nav">
+                            <li id="language-switcher"
+                                uib-dropdown>
+                                <a href="#" uib-dropdown-toggle>
+                                    <img src="img/language-icon.png">
+                                </a>
+                                <ul uib-dropdown-menu>
+                                    <li><a ng-click="switchToGermanLanguage()">Deutsch</a></li>
+                                    <li><a ng-click="switchToEnglishLanguage()">English</a></li>
+                                </ul>
+                            </li>
+                        </ul>
                     </li>
 
                     <li>
@@ -73,7 +90,8 @@
                                 <li class="divider"></li>
                                 <li>
                                     <a ng-click="logoutFunction();">
-                                        <span class="glyphicon glyphicon-log-out"></span> &nbsp;{{'navbar_sign_out' | transl8}}
+                                        <span class="glyphicon glyphicon-log-out"></span> &nbsp;{{'navbar_sign_out' |
+                                        transl8}}
                                     </a>
                                 </li>
                             </ul>
@@ -82,14 +100,16 @@
                         <!-- login and register if not logged in -->
                         <div ng-if="!userObject.username" ng-cloak
                              class="btn-group btn-group-sm">
-                            <a type="button" id="loginbutton" class="btn btn-default navbar-btn" ng-click="loginFunction();">
+                            <a type="button" id="loginbutton" class="btn btn-default navbar-btn"
+                               ng-click="loginFunction();">
                                 <b>
                                     <span class="glyphicon glyphicon-log-in"></span>
                                     &nbsp;{{'navbar_sign_in' | transl8}}
                                 </b>
                             </a>
 
-                            <a ng-if="!hideRegisterButton && !userObject.username" class="btn btn-default navbar-btn" href="register">
+                            <a ng-if="!hideRegisterButton && !userObject.username" class="btn btn-default navbar-btn"
+                               href="register">
                                 {{'navbar_sign_up' | transl8}}
                             </a>
                         </div>
