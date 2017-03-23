@@ -11,34 +11,44 @@ angular.module('idai.components')
  *
  * @author: Daniel de Oliveira
  */
-.factory('languageSelection', ['language', function(language) {
+    .factory('languageSelection', ['language', function (language) {
 
-	return {
+        return {
 
-		/**
-		 * The language selection rule.
-		 *
-		 * @param isLangApplicable - callback function(lang,param) for testing
-		 *   if lang is applicable in the clients context
-		 * @param applyLang - callback function(lang_,param) for applying
-		 *   lang in the clients context
-		 * @param param - used as second param for the callbacks
-		 */
-		__ : function(isLangApplicable,applyLang,param){
+            /**
+             * The language selection rule.
+             *
+             * @param isLangApplicable - callback function(lang,param) for testing
+             *   if lang is applicable in the clients context
+             * @param applyLang - callback function(lang_,param) for applying
+             *   lang in the clients context
+             * @param param - used as second param for the callbacks
+             */
+            __: function (isLangApplicable, applyLang, param) {
 
-			if (language.browserPrimaryLanguage()==COMPONENTS_GERMAN_LANG){
-				applyLang(COMPONENTS_GERMAN_LANG,param);
-				return;
-			}
+                var lang = localStorage.getItem('lang');
 
-			if (isLangApplicable(language.browserPrimaryLanguage(),param)){
-				applyLang(language.browserPrimaryLanguage(),param);
-			} else if (language.browserPrimaryLanguage()==COMPONENTS_ENGLISH_LANG){
-				applyLang(COMPONENTS_GERMAN_LANG,param);
-			} else if (isLangApplicable(COMPONENTS_ENGLISH_LANG,param))
-				applyLang(COMPONENTS_ENGLISH_LANG,param);
-			else
-				applyLang(COMPONENTS_GERMAN_LANG,param);
-		}
-	}
-}]);
+                if (lang) {
+
+                    if (lang === COMPONENTS_GERMAN_LANG || lang === COMPONENTS_ENGLISH_LANG) {
+                        applyLang(lang, param);
+                        return;
+                    }
+                }
+
+                if (language.browserPrimaryLanguage() == COMPONENTS_GERMAN_LANG) {
+                    applyLang(COMPONENTS_GERMAN_LANG, param);
+                    return;
+                }
+
+                if (isLangApplicable(language.browserPrimaryLanguage(), param)) {
+                    applyLang(language.browserPrimaryLanguage(), param);
+                } else if (language.browserPrimaryLanguage() == COMPONENTS_ENGLISH_LANG) {
+                    applyLang(COMPONENTS_GERMAN_LANG, param);
+                } else if (isLangApplicable(COMPONENTS_ENGLISH_LANG, param))
+                    applyLang(COMPONENTS_ENGLISH_LANG, param);
+                else
+                    applyLang(COMPONENTS_GERMAN_LANG, param);
+            }
+        }
+    }]);
