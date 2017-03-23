@@ -5,52 +5,66 @@
  * Makes use of the CoDArchLab Transl8 tool.
  *
  * @author: Daniel de Oliveira
+ * @author: Jan G. Wieners
  */
 angular.module('idai.components')
-.factory('transl8', ['$http', 'language', 'componentsSettings',
-		function($http, language, componentsSettings) {
+    .factory('transl8', ['$http', '$location', 'language', 'componentsSettings',
+        function ($http, $location, language, componentsSettings) {
 
-			var translationLang=COMPONENTS_ENGLISH_LANG;
-			var translationsLoaded = false;
-			var translations = {}; // Map: [transl8_key,translation].
+            var translationLang = COMPONENTS_ENGLISH_LANG,
+                translationsLoaded = false,
+                translations = {}; // Map: [transl8_key,translation].
 
+            // Use language provided by url parameter if possible
+            var lang = $location.search().lang;
 
-			if (language.browserPrimaryLanguage()==COMPONENTS_GERMAN_LANG) translationLang=COMPONENTS_GERMAN_LANG;
-			var transl8Url = componentsSettings.transl8Uri.replace('{LANG}',translationLang);
+            if (lang) {
 
-			var promise = $http.jsonp(transl8Url).success(function(data) {
-				for(var i = 0; i < data.length; i++) {
-					translations[data[i].key] = data[i].value;
-				}
-				translationsLoaded = true;
-			}).
-			error(function() {
-				alert("ERROR: Could not get translations. Try to reload the page or send a mail to arachne@uni-koeln.de");
-			});
+                if (lang === 'de' || lang === 'en') {
+                    console.log('using language provided by url parameter', lang)
+                    translationLang = lang;
+                } else {
+                    if (language.browserPrimaryLanguage() == COMPONENTS_GERMAN_LANG) translationLang = COMPONENTS_GERMAN_LANG;
+                }
+            } else {
+                // Use the browser's primary language
+                if (language.browserPrimaryLanguage() == COMPONENTS_GERMAN_LANG) translationLang = COMPONENTS_GERMAN_LANG;
+            }
 
-			return {
+            var transl8Url = componentsSettings.transl8Uri.replace('{LANG}', translationLang);
 
-		        /**
-		         * @param key an existing key in transl8 with
-		         *   translations for all existing language sets.
-		         * @returns translation text
-		         * @throws Error if the key does not exist in transl8 or
-		         *   there is no translation for the given key.
-		         */
-				getTranslation: function(key) {
-					if (!translationsLoaded) return '';
+            var promise = $http.jsonp(transl8Url).success(function (data) {
+                for (var i = 0; i < data.length; i++) {
+                    translations[data[i].key] = data[i].value;
+                }
+                translationsLoaded = true;
+            }).error(function () {
+                alert("ERROR: Could not get translations. Try to reload the page or send a mail to arachne@uni-koeln.de");
+            });
 
-					var translation = translations[key];
-					if (!translation || 0 === translation.length) {
-		                throw new Error("No translation found for key '" + key + "'");
-		            }
-					return translation;
-				},
+            return {
 
-				onLoaded: function() {
-					return promise;
-				}
+                /**
+                 * @param key an existing key in transl8 with
+                 *   translations for all existing language sets.
+                 * @returns translation text
+                 * @throws Error if the key does not exist in transl8 or
+                 *   there is no translation for the given key.
+                 */
+                getTranslation: function (key) {
+                    if (!translationsLoaded) return '';
 
-			}
-		}
-]);
+                    var translation = translations[key];
+                    if (!translation || 0 === translation.length) {
+                        throw new Error("No translation found for key '" + key + "'");
+                    }
+                    return translation;
+                },
+
+                onLoaded: function () {
+                    return promise;
+                }
+
+            }
+        }
+    ]);
