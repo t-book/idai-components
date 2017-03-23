@@ -24,6 +24,8 @@ angular.module('idai.components')
 			controller: [ '$scope', '$http', 'localizedContent', '$location', '$window',
 				function($scope, $http, localizedContent, $location, $window) {
 
+					$scope.langCode = localStorage.getItem('lang');
+
 					$scope.getNavbarLinks = function(contentDir){
 						$http.get('info/content.json').success(function(data){
 							var navbarLinks = localizedContent.getNodeById(data,'navbar');
@@ -41,16 +43,11 @@ angular.module('idai.components')
 							});
 					};
 
-					$scope.switchToGermanLanguage = function() {
-						localStorage.setItem('lang', 'de');
+					$scope.switchLanguage = function(lang) {
+						localStorage.setItem('lang', lang);
                         $window.location.reload();
 					};
 
-					$scope.switchToEnglishLanguage = function() {
-                        localStorage.setItem('lang', 'en');
-                        $window.location.reload();
-					};
-					
 				}],
 			link: function(scope,element,attrs){
 				scope.getNavbarLinks(attrs.contentDir);

@@ -68,8 +68,11 @@
                                     <img src="img/language-icon.png">
                                 </a>
                                 <ul uib-dropdown-menu>
-                                    <li><a ng-click="switchToGermanLanguage()">Deutsch</a></li>
-                                    <li><a ng-click="switchToEnglishLanguage()">English</a></li>
+                                    <li ng-class="{'selected-language': langCode == 'de'}">
+                                        <a ng-click="switchLanguage('de')">Deutsch</a>
+                                    </li>
+                                    <li ng-class="{'selected-language': langCode == 'en'}">
+                                        <a ng-click="switchLanguage('en')">English</a></li>
                                 </ul>
                             </li>
                         </ul>
