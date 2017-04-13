@@ -29,7 +29,7 @@ describe('transl8', function (){
 
 		module('idai.components',function($provide) {
 				$provide.value('language', {
-					browserPrimaryLanguage: function () {
+					currentLanguage: function () {
 						return primaryLang;
 					}
 				});
@@ -50,7 +50,7 @@ describe('transl8', function (){
 
 	it('should provide german menu items for german users', function () {
 
-		myBeforeEach(COMPONENTS_GERMAN_LANG);
+		myBeforeEach('de');
 
 		$httpBackend.flush();
 		expect(transl8.getTranslation(KEY)).toBe(TRANSLATION_DE);
@@ -58,7 +58,7 @@ describe('transl8', function (){
 
 	it('should provide english menu items for english users', function () {
 
-		myBeforeEach('en-US');
+		myBeforeEach('en');
 
 		$httpBackend.flush();
 		expect(transl8.getTranslation(KEY)).toBe(TRANSLATION_EN);
@@ -77,7 +77,7 @@ describe('transl8', function (){
 
 	it('lacks a german translation (german user)', function () {
 
-		myBeforeEach(COMPONENTS_GERMAN_LANG);
+		myBeforeEach('de');
 
 		$httpBackend.flush();
 		expect(function(){transl8.getTranslation(KEY_INVALID)}).toThrow();
@@ -85,7 +85,7 @@ describe('transl8', function (){
 
 	it('lacks an english translation (english user)', function () {
 
-		myBeforeEach(COMPONENTS_ENGLISH_LANG);
+		myBeforeEach('en');
 
 		$httpBackend.flush();
 		expect(function(){transl8.getTranslation(KEY_INVALID)}).toThrow();

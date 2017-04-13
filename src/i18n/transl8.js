@@ -11,29 +11,13 @@ angular.module('idai.components')
     .factory('transl8', ['$http', '$location', 'language', 'componentsSettings',
         function ($http, $location, language, componentsSettings) {
 
-            var translationLang = COMPONENTS_ENGLISH_LANG,
+            var lang = language.currentLanguage(),
                 translationsLoaded = false,
                 translations = {}; // Map: [transl8_key,translation].
+                
+            if (['de', 'en'].indexOf(lang) === -1) lang = 'en';
 
-            // Use language provided by url parameter if possible
-            // var lang = $location.search().lang;
-
-            // Use user-chosen language settings by using idai-components language-switcher
-            var lang = localStorage.getItem('lang');
-
-            if (lang) {
-
-                if (lang === 'de' || lang === 'en') {
-                    translationLang = lang;
-                } else {
-                    if (language.browserPrimaryLanguage() == COMPONENTS_GERMAN_LANG) translationLang = COMPONENTS_GERMAN_LANG;
-                }
-            } else {
-                // Use the browser's primary language
-                if (language.browserPrimaryLanguage() == COMPONENTS_GERMAN_LANG) translationLang = COMPONENTS_GERMAN_LANG;
-            }
-
-            var transl8Url = componentsSettings.transl8Uri.replace('{LANG}', translationLang);
+            var transl8Url = componentsSettings.transl8Uri.replace('{LANG}', lang);
 
             var promise = $http.jsonp(transl8Url).success(function (data) {
                 for (var i = 0; i < data.length; i++) {

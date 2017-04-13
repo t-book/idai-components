@@ -15,17 +15,25 @@ angular.module('idai.components')
 		navigator.languages[0] :
 		(navigator.language || navigator.userLanguage);
 
-	if (typeof lang === 'undefined') {
-		lang = COMPONENTS_GERMAN_LANG;
-	} else {
-
-		if (lang.substring(0,2)==COMPONENTS_GERMAN_LANG) lang=COMPONENTS_GERMAN_LANG;
-		if (lang.substring(0,2)==COMPONENTS_ENGLISH_LANG) lang=COMPONENTS_ENGLISH_LANG;
-	}
-
 	return {
-		browserPrimaryLanguage : function(){
+		originalBrowserLanguage : function(){
 			return lang;
+		},
+		browserLanguage : function() {
+			return this.originalBrowserLanguage().substring(0,2);
+		},
+		currentLanguage : function(){
+
+            var currentLang = this.browserLanguage();
+
+            // Use user-chosen language settings by using idai-components language-switcher
+            var lang = localStorage.getItem('lang');
+            if (lang) currentLang = lang;
+
+			return currentLang;
 		}
 	}
 });
+
+
+
