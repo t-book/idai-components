@@ -4,9 +4,10 @@
 
 angular.module('sampleApp.controllers')
 
-.controller('MainController',	[ '$scope', 'messageService',
-	function ($scope, messages) {
+.controller('MainController',	[ '$scope', 'messageService', 'language',
+	function ($scope, messages, language) {
 
+		$scope.language = language;
 		$scope.user = {username:"daniel"};
 
         $scope.addMsg = function(transl8Key, level, showContactInfo) {

@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row" ng-controller="MainController">
 
     <div class="col-md-12">
 
@@ -21,7 +21,7 @@
             is german and like <i>1,000,000,000</i> for all other languages.
         </p>
 
-        Here are some examples in action:
+        Here are some examples in action (your current language is "{{language.currentLanguage()}}"):
 
         <br>
         {{10000|transl8Number}}<br>
