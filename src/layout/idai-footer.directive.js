@@ -5,6 +5,7 @@ angular.module('idai.components')
 
 /**
  * @author: Daniel de Oliveira
+ * @author: Jan G. Wieners
  */
 
     .directive('idaiFooter', function () {
@@ -28,13 +29,20 @@ angular.module('idai.components')
                     $scope.date = new Date();
                     $scope.getFooterLinks = function (contentDir) {
 
-                        $http.get('info/content.json').success(function (data) {
-                            var footerLinks = localizedContent.getNodeById(data, 'footer');
-                            if (footerLinks == undefined) {
-                                console.log('error: no footerLinks found');
+                        var contentInfo = 'info/content.json';
+
+                        $http.get(contentInfo).then(function (success) {
+
+                            var footerLinks = localizedContent.getNodeById(success.data, 'footer');
+
+                            if (!footerLinks) {
+                                console.error('error: no footer links found in file ' + contentInfo);
+                            } else {
+                                localizedContent.reduceTitles(footerLinks);
+                                $scope.dynamicLinkList = footerLinks.children;
                             }
-                            localizedContent.reduceTitles(footerLinks);
-                            $scope.dynamicLinkList = footerLinks.children;
+                        }, function(error) {
+                            console.error(error.data);
                         });
                     }
                 }],
