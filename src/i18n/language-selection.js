@@ -36,14 +36,14 @@ angular.module('idai.components')
                     }
                 }
 
-                if (language.browserPrimaryLanguage() == COMPONENTS_GERMAN_LANG) {
+                if (language.currentLanguage() == COMPONENTS_GERMAN_LANG) {
                     applyLang(COMPONENTS_GERMAN_LANG, param);
                     return;
                 }
 
-                if (isLangApplicable(language.browserPrimaryLanguage(), param)) {
-                    applyLang(language.browserPrimaryLanguage(), param);
-                } else if (language.browserPrimaryLanguage() == COMPONENTS_ENGLISH_LANG) {
+                if (isLangApplicable(language.currentLanguage(), param)) {
+                    applyLang(language.currentLanguage(), param);
+                } else if (language.currentLanguage() == COMPONENTS_ENGLISH_LANG) {
                     applyLang(COMPONENTS_GERMAN_LANG, param);
                 } else if (isLangApplicable(COMPONENTS_ENGLISH_LANG, param))
                     applyLang(COMPONENTS_ENGLISH_LANG, param);

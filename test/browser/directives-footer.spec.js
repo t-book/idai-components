@@ -1,15 +1,15 @@
-/** 
+/**
  * The main focus of this test is to prove that an item from
  * the static/content.json "footer" node leads to the dynamic
  * creation of a menu item in the footer.
- * 
- * The language selection mechanism if following the rules 
+ *
+ * The language selection mechanism if following the rules
  * described in ../docs/feature_localization_con10t.md and is implemented
  * on top of the same mechanisms which are already tested in
- * ../test/controllers_projects_spec.js. 
+ * ../test/controllers_projects_spec.js.
  * So these rules won't be tested here again.
- * 
- * 
+ *
+ *
  * Author: Daniel M. de Oliveira
  */
 describe ('idaiFooter', function() {
@@ -23,7 +23,7 @@ describe ('idaiFooter', function() {
 	function myBeforeEach (primaryLanguage) {
 		module('idai.components', function($provide) {
 			$provide.value('language', {
-				browserPrimaryLanguage: function () {
+				currentLanguage: function () {
 					return primaryLanguage;
 				}
 			});
@@ -38,9 +38,9 @@ describe ('idaiFooter', function() {
 		});
 		module('templates');
 
-		
+
 		inject(function($rootScope, $compile, $templateCache,$httpBackend) {
-			
+
 			template = $templateCache.get('partials/layout/idai-footer.html');
 			$templateCache.put('app/partials/layout/idai-footer.html',template);
 
@@ -59,8 +59,8 @@ describe ('idaiFooter', function() {
 								"de": "Impressum",\
 								"en": "Imprint"\
 							}}]}]}');
-			
-			
+
+
 		    scope = $rootScope.$new();
 			$templateCache.put();
 		    element =
@@ -72,7 +72,7 @@ describe ('idaiFooter', function() {
 			$httpBackend.flush();
 		});
 	};
-		
+
 	it ('show german menu item',function(){
 		myBeforeEach('de');
 		expect(element.find('div').eq(1).find('a').eq(1).text()).toBe("Impressum");

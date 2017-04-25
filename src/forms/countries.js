@@ -1,15 +1,15 @@
 'use strict';
 
 angular.module('idai.components')
-.factory('countries', ['$http', 'language', '$q', 
+.factory('countries', ['$http', 'language', '$q',
 		function($http, language, $q) {
 
 			var deferred = $q.defer();
 
 			var translationLang=COMPONENTS_ENGLISH_LANG;
 			var countries = null;
-			if (language.browserPrimaryLanguage()==COMPONENTS_GERMAN_LANG) translationLang=COMPONENTS_GERMAN_LANG;
-			
+			if (language.currentLanguage()==COMPONENTS_GERMAN_LANG) translationLang=COMPONENTS_GERMAN_LANG;
+
 			//TODO load countries.json from inside components-module
 	        $http.get('info/countries.json').then(function (response) {
 	            countries = [];
@@ -21,7 +21,7 @@ angular.module('idai.components')
 	            });
 	            deferred.resolve(countries);
 	        });
-		    
+
 		    var factory = {};
 
 		    factory.getCountriesAsync = function() {

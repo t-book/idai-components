@@ -2,13 +2,13 @@
  * The main focus of this test is to prove that an item from
  * the static/content.json "navbar" node leads to the dynamic
  * creation of a menu item in the navigation bar.
- * 
- * The language selection mechanism if following the rules 
+ *
+ * The language selection mechanism if following the rules
  * described in codarchlab/arachnefrontend/docs/feature_localization_con10t.md and is implemented
  * on top of the same mechanisms which are already tested in
  * codarchlab/arachnefrontend/test/controllers_projects_spec.js.
  * So these rules won't be tested here again.
- * 
+ *
  * Author: Daniel M. de Oliveira
  */
 describe ('idaiNavbar', function() {
@@ -23,7 +23,7 @@ describe ('idaiNavbar', function() {
 
 		module('idai.components', function($provide) {
 			$provide.value('language', {
-				browserPrimaryLanguage: function () {
+				currentLanguage: function () {
 					return primaryLanguage;
 				}
 			});
@@ -45,9 +45,9 @@ describe ('idaiNavbar', function() {
 		});
 		module('templates');
 
-		
+
 		inject(function($rootScope, $compile, $templateCache,$httpBackend) {
-			
+
 			template = $templateCache.get('partials/layout/idai-navbar.html');
 			$templateCache.put('app/partials/layout/idai-navbar.html',template);
 
@@ -64,7 +64,7 @@ describe ('idaiNavbar', function() {
 								"en": "About Arachne"\
 							}}]}]}');
 
-			
+
 		    scope = $rootScope.$new();
 			$templateCache.put();
 		    element =
@@ -76,13 +76,13 @@ describe ('idaiNavbar', function() {
 			$httpBackend.flush();
 		});
 	};
-	
+
 	it ('show german menu item',function(){
 		myBeforeEach(COMPONENTS_GERMAN_LANG);
 		expect(element.find('ul').eq(2).find('li').find('a').eq(0).text()).toBe("Über Arachne");
 	});
-	
-		
+
+
 	it ('show english menu item',function(){
 		myBeforeEach(COMPONENTS_ENGLISH_LANG);
 		expect(element.find('ul').eq(2).find('li').find('a').eq(0).text()).toBe("About Arachne");
