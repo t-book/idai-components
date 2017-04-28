@@ -22,6 +22,7 @@ angular.module('idai.components')
 				projectId: '@'
 			},
 			templateUrl: 'layout/idai-navbar.html',
+			transclude: true,
 			controller: [ '$scope', '$http', 'localizedContent', '$location', '$window',
 				function($scope, $http, localizedContent, $location, $window) {
 
