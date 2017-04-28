@@ -19,6 +19,7 @@ angular.module('idai.components')
 				hideSearchForm: '=',
 				hideRegisterButton: '=', // set "true" to hide it
 				hideContactButton: '=', // set "true" to hide it
+				hideLanguageSwitcher: '=', // set "true" to hide it
 				projectId: '@'
 			},
 			templateUrl: 'layout/idai-navbar.html',
