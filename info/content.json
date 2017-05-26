@@ -9,6 +9,7 @@
     "children": [
       {
         "id": "i18n",
+        "path": "info/",
         "title": {
           "de": "i18n",
           "en": "i18n"
@@ -16,6 +17,7 @@
       },
       {
         "id": "layout",
+        "path": "info/",
         "title": {
           "de": "Layout",
           "en": "Layout"
@@ -23,6 +25,7 @@
       },
       {
         "id": "forms",
+        "path": "info/",
         "title": {
           "de": "Forms",
           "en": "Forms"
@@ -30,6 +33,7 @@
       },
       {
         "id": "msgs",
+        "path": "info/",
         "title": {
           "de": "Nachrichten",
           "en": "Messages"
