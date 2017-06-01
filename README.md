@@ -7,7 +7,7 @@ Components library for use in other angular based dai projects.
 A sample application can get started via
 
 ```bash
-npm install && npm run build && npm start
+npm install && npm run bower install && npm run build && npm start
 ```
 
 The demo app is then served on port `8084`. 
@@ -30,6 +30,9 @@ dist/idai-components-no-tpls.js  # js library without the templates
 dist/idai-components-tpls.js     # angular templates
 dist/css/idai-components.css     # full css including bootstrap
 dist/css/idai-components.min.css # minified full css including bootstrap
+dist/css/idai-leaflet.min.css  # minified full css for geonode leaflet preview map
+dist/idai-leaflet-components.min.js  # uglified geonode leaflet and components
+dist/images # images for geonode leaflet layer preview map
 ```
 
 In most cases only `idai-components.min.js` and `idai-components.min.css` need

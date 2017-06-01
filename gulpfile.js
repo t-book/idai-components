@@ -47,7 +47,8 @@ gulp.task('minify-leaflet-css', function() {
             paths.bower + 'Leaflet.ZoomBox/L.Control.ZoomBox.css',
             paths.bower + 'leaflet-measure/dist/leaflet-measure.css',
             paths.bower + 'Leaflet.NavBar/src/Leaflet.NavBar.css',
-            paths.bower + 'Leaflet.Coordinates/src/Control.Coordinates.css'
+            paths.bower + 'Leaflet.Coordinates/src/Control.Coordinates.css',
+            './src/css/dai-leafletstyles.css'
 		])
 		.pipe(replace('fullscreen.png', '../images/fullscreen.png'))
 		.pipe(replace('img/', '../images/'))
@@ -93,6 +94,7 @@ gulp.task('concat-leaflet', function(){
                 paths.bower + 'Leaflet.Coordinates/src/Control.Coordinates.js',
                 paths.bower + 'jquery/dist/jquery.js',
                 paths.bower + 'col-resizable/colResizable-1.6.js',
+                './src/js/removeEmptyCells.js',
 	     ])
         .pipe(concat('idai-leaflet-components.min.js'))
         .pipe(uglify())
