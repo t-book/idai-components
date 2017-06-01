@@ -1,0 +1,42 @@
+{
+  "name": "dai-leaflet",
+  "authors": [
+    "Toni Schönbuchner <toni.schoenbuchner@csgis.de>"
+  ],
+  "description": "Dai components for Leaflet map",
+  "main": [
+    "index.html",
+    "main.js"
+  ],
+  "moduleType": [
+    "amd",
+    "es6",
+    "globals",
+    "node",
+    "yui"
+  ],
+  "keywords": [
+    "none"
+  ],
+  "license": "MIT",
+  "homepage": "https://google.com",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/foo/bar.git"
+  },
+  "private": true,
+  "dependencies": {
+    "leaflet": "^1.0.3",
+    "leaflet-fullscreen": "^1.0.2",
+    "Leaflet.ZoomBox": "^0.3.4",
+    "leaflet-measure": "^2.1.7",
+    "Leaflet.NavBar": "leaflet-navbar#^1.0.1",
+    "Leaflet.Coordinates": "^0.1.5",
+    "leaflet.wms": "^0.2.0",
+    "col-resizable": "1.6.0",
+    "jquery": "^3.2.1"
+  },
+  "resolutions": { 
+    "jquery": "3.2.1" 
+} 
+}

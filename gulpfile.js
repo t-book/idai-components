@@ -11,13 +11,15 @@ var uglify = require('gulp-uglify');
 var ngHtml2Js = require("gulp-ng-html2js");
 var minifyHtml = require("gulp-minify-html");
 var Server = require('karma').Server;
+var replace = require('gulp-replace');
 
 var pkg = require('./package.json');
 
 var paths = {
 	'build': 'dist/',
 	'lib': 'node_modules/',
-	'bootstrap': 'node_modules/bootstrap-sass/assets/'
+	'bootstrap': 'node_modules/bootstrap-sass/assets/',
+	'bower': 'bower_components/'
 };
 
 // compile sass and concatenate to single css file in build dir
@@ -36,6 +38,26 @@ gulp.task('minify-css', ['sass'], function() {
   		.pipe(concat(pkg.name + '.min.css'))
 		.pipe(gulp.dest(paths.build + '/css'));
 });
+
+// minify leaflet css files in bower dir
+gulp.task('minify-leaflet-css', function() {
+	return gulp.src([
+            paths.bower + 'leaflet/dist/leaflet.css', 
+            paths.bower + 'leaflet-fullscreen/dist/leaflet.fullscreen.css',
+            paths.bower + 'Leaflet.ZoomBox/L.Control.ZoomBox.css',
+            paths.bower + 'leaflet-measure/dist/leaflet-measure.css',
+            paths.bower + 'Leaflet.NavBar/src/Leaflet.NavBar.css',
+            paths.bower + 'Leaflet.Coordinates/src/Control.Coordinates.css'
+		])
+		.pipe(replace('fullscreen.png', '../images/fullscreen.png'))
+		.pipe(replace('img/', '../images/'))
+		.pipe(replace('images/', '../images/'))
+		.pipe(replace('../../images/', '../images/'))
+		.pipe(minifyCss())
+  		.pipe(concat('idai-leaflet.min.css'))
+		.pipe(gulp.dest(paths.build + '/css'));
+});
+
 
 // concatenates all js files in src into a single file in build dir
 gulp.task('concat-js', function() {
@@ -56,6 +78,25 @@ gulp.task('concat-deps', function() {
 		.pipe(concat(pkg.name + '-deps.js'))
     	.pipe(uglify())
 		.pipe(gulp.dest(paths.build));
+});
+
+// concatenates and minifies all leaflet dependecies into a single file 
+gulp.task('concat-leaflet', function(){
+    return gulp.src([
+                paths.bower + 'leaflet/dist/leaflet-src.js', 
+                paths.bower + 'leaflet-fullscreen/dist/leaflet.fullscreen.js',
+                paths.bower + 'Leaflet.ZoomBox/L.Control.ZoomBox.js',
+                paths.bower + 'leaflet-measure/dist/leaflet-measure.js',
+                paths.bower + 'leaflet.wms/src/leaflet.wms.js',
+                paths.bower + 'Leaflet.NavBar/src/Leaflet.NavBar.js',
+                paths.bower + 'Leaflet.Coordinates/src/util/NumberFormatter.js',
+                paths.bower + 'Leaflet.Coordinates/src/Control.Coordinates.js',
+                paths.bower + 'jquery/dist/jquery.js',
+                paths.bower + 'col-resizable/colResizable-1.6.js',
+	     ])
+        .pipe(concat('idai-leaflet-components.min.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest(paths.build));
 });
 
 // minifies and concatenates js files in build dir
@@ -84,6 +125,19 @@ gulp.task('copy-fonts', function() {
   	.pipe(gulp.dest(paths.build + '/fonts'));
 });
 
+
+// Copy Leaflet Images
+gulp.task('copy-leaflet-images',['minify-leaflet-css'],function() {
+    gulp.src([
+    	paths.bower + '/leaflet/dist/images/**',
+    	paths.bower + '/leaflet-fullscreen/dist/**',
+    	paths.bower + '/leaflet-measure/dist/images/**',
+    	paths.bower + '/Leaflet.NavBar/src/img/**'
+    	])
+        .pipe(gulp.dest(paths.build+'/images'));
+    });
+
+
 gulp.task('build', [
 	'sass',
 	'minify-css',
@@ -91,7 +145,10 @@ gulp.task('build', [
 	'concat-deps',
 	'html2js',
 	'minify-js',
-	'copy-fonts'
+	'copy-fonts',
+	'concat-leaflet',
+	'minify-leaflet-css',
+	'copy-leaflet-images'
 ]);
 
 // clean

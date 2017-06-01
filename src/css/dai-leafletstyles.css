@@ -1,0 +1,148 @@
+      .leaflet-container {  /* all maps */
+        height: 600px;
+      }
+
+     .leaflet-zoom-box-control.active a{
+        background-image:none!important;
+        text-decoration:none!important;
+     }
+
+     .leaflet-touch .leaflet-control-measure .leaflet-control-measure-toggle, .leaflet-touch .leaflet-control-measure .leaflet-control-measure-toggle:hover {
+        width: 32px;
+        height: 32px;
+    }
+
+    /* Style popups */
+    .leaflet-popup-content-wrapper{
+        min-width:550px;
+        overflow:scroll;
+    }
+
+    /* Style for Table in Leaflet Popup*/
+    caption.featureInfo {
+        color: #666;
+        font-size: 15px!important;
+        text-align: left
+    }
+
+    table.featureInfo.featureInfo a {
+    color: #666!important;
+    font-weight: bold!important;
+    text-decoration:none!important;
+    }
+    table.featureInfo a:visited {
+        color: #999999!important;
+        font-weight:bold!important;
+        text-decoration:none!important;
+    }
+    table.featureInfo a:active,
+    table.featureInfo a:hover {
+        color: #6680AA!important;
+        text-decoration:underline!important;
+    }
+
+    table.featureInfo {
+        font-family:Arial, Helvetica, sans-serif!important;
+        color:#666!important;
+        font-size:12px!important;
+        text-shadow: 1px 1px 0px #fff!important;
+        background:#eaebec!important;
+        border:#ccc 1px solid!important;
+        -moz-border-radius:3px!important;
+        -webkit-border-radius:3px!important;
+        border-radius:3px!important;
+
+        -moz-box-shadow: 0 1px 2px #d1d1d1!important;
+        -webkit-box-shadow: 0 1px 2px #d1d1d1!important;
+        box-shadow: 0 1px 2px #d1d1d1!important;
+    }
+    table.featureInfo th {
+        padding:5px 5px 5px 5px!important;
+        border-top:1px solid #fafafa!important;
+        border-bottom:1px solid #e0e0e0!important;
+
+        background: #ededed!important;
+        background: -webkit-gradient(linear, left top, left bottom, from(#ededed), to(#ebebeb))!important;
+        background: -moz-linear-gradient(top,  #ededed,  #ebebeb)!important;
+    }
+    table.featureInfo th:first-child {
+        text-align: left!important;
+    }
+    table.featureInfo tr:first-child th:first-child {
+        -moz-border-radius-topleft:3px!important;
+        -webkit-border-top-left-radius:3px!important;
+        border-top-left-radius:3px!important;
+    }
+    table.featureInfo tr:first-child th:last-child {
+        -moz-border-radius-topright:3px!important;
+        -webkit-border-top-right-radius:3px!important;
+        border-top-right-radius:3px!important;
+    }
+    table.featureInfo tr {
+        text-align: left!important;
+    }
+    table.featureInfo td:first-child {
+        border-left: 0!important;
+    }
+
+
+    table.featureInfo td ul{
+           padding-left: 15px!important;
+    }
+
+
+    table.featureInfo td {
+        padding:5px!important;
+        padding-left: 10px!important;
+        border-top: 1px solid #ffffff!important;
+        border-bottom:1px solid #e0e0e0!important;
+        border-left: 1px solid #e0e0e0!important;
+
+        background: #fafafa!important;
+        background: -webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#fafafa))!important;
+        background: -moz-linear-gradient(top,  #fbfbfb,  #fafafa)!important;
+    }
+
+    table.featureInfo h1,table.featureInfo h2,table.featureInfo h3,table.featureInfo td p {
+           font-size:12px!important;
+           margin: 0!important;
+    }
+
+    table.featureInfo tr.even td {
+        background: #f6f6f6!important;
+        background: -webkit-gradient(linear, left top, left bottom, from(#f8f8f8), to(#f6f6f6))!important;
+        background: -moz-linear-gradient(top,  #f8f8f8,  #f6f6f6)!important;
+    }
+    table.featureInfo tr:last-child td {
+        border-bottom:0!important;
+    }
+    table.featureInfo tr:last-child td:first-child {
+        -moz-border-radius-bottomleft:3px!important;
+        -webkit-border-bottom-left-radius:3px!important;
+        border-bottom-left-radius:3px!important;
+    }
+    table.featureInfo tr:last-child td:last-child {
+        -moz-border-radius-bottomright:3px!important;
+        -webkit-border-bottom-right-radius:3px!important;
+        border-bottom-right-radius:3px!important;
+    }
+    table.featureInfo tr:hover td {
+        background: #f2f2f2!important;
+        background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#f0f0f0))!important;
+        background: -moz-linear-gradient(top,  #f2f2f2,  #f0f0f0)!important;    
+    }
+
+    .captionPos{
+        font-size:11px;
+        margin-left:15px;
+    }
+
+    .resizer {
+      position: absolute;
+      top: 0;
+      right: -8px;
+      bottom: 0;
+      left: auto;
+      width: 16px;    
+      cursor: col-resize;       
+    }
