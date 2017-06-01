@@ -1,6 +1,6 @@
-# idai-components
+# idai-components for geoserver (geonode)
 
-Components library for use in other angular based dai projects. 
+Components library for use in other angular based dai projects and geoserver (geonode). 
 
 ## Demo application and usage documentation
 

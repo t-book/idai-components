@@ -1,10 +1,10 @@
 {
   "name": "idai-components",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "reusable angular components for the applications of the iDAI.world",
   "repository": {
     "type": "git",
-    "url": "https://github.com/dainst/idai-components.git"
+    "url": "https://github.com/t-book/idai-components.git"
   },
   "scripts": {
     "test": "karma start test/browser/karma.conf.js",
