@@ -55,10 +55,9 @@ gulp.task('minify-leaflet-css', function() {
             paths.bower + 'Leaflet.Coordinates/src/Control.Coordinates.css',
             paths.geonode + 'css/idai-leafletstyles.css'
 		])
-		.pipe(replace('fullscreen.png', '../images/fullscreen.png'))
-		.pipe(replace('img/', '../images/'))
-		.pipe(replace('images/', '../images/'))
-		.pipe(replace('../../images/', '../images/'))
+		.pipe(replace('img/', '../img/'))
+		.pipe(replace('images/', '../img/'))
+		.pipe(replace('fullscreen.png', '../img/fullscreen.png'))
 		.pipe(minifyCss())
   		.pipe(concat('idai-leaflet.min.css'))
 		.pipe(gulp.dest(paths.build + '/css'));
@@ -69,7 +68,7 @@ gulp.task('minify-leaflet-css', function() {
 gulp.task('concat-js', function() {
 	return gulp.src(['src/_modules-and-constants.js','src/**/*.js'])
 		.pipe(concat(pkg.name + '-no-tpls.js'))
-		.pipe(gulp.dest(paths.build))
+		.pipe(gulp.dest(paths.build + '/js'))
     	.pipe(reload({ stream:true }));
 });
 
@@ -83,7 +82,7 @@ gulp.task('concat-deps', function() {
 		])
 		.pipe(concat(pkg.name + '-deps.js'))
     	.pipe(uglify())
-		.pipe(gulp.dest(paths.build));
+		.pipe(gulp.dest(paths.build + '/js'));
 });
 
 // concatenates and minifies all leaflet dependecies into a single file 
@@ -103,7 +102,7 @@ gulp.task('concat-leaflet-js', function(){
 	     ])
         .pipe(concat('idai-leaflet-components.min.js'))
         .pipe(uglify())
-        .pipe(gulp.dest(paths.build));
+        .pipe(gulp.dest(paths.build + '/js'));
 });
 
 // concatenates and minifies all Metadata dependecies into a single file 
@@ -111,7 +110,7 @@ gulp.task('concat-metadata-js', function(){
     gulp.src([ paths.geonode + 'js/idai_FE-format-layer-detail.js' ])
         .pipe(concat('idai_FE-format-layer-detail.min.js'))
         .pipe(uglify())
-        .pipe(gulp.dest(paths.build));
+        .pipe(gulp.dest(paths.build + '/js'));
     
     return gulp.src([
     			paths.bower + 'select2/dist/js/select2.full.js',
@@ -122,18 +121,18 @@ gulp.task('concat-metadata-js', function(){
             presets: ['es2015']
         }))
         .pipe(uglify())
-        .pipe(gulp.dest(paths.build));
+        .pipe(gulp.dest(paths.build + '/js'));
 });
 
 // minifies and concatenates js files in build dir
 gulp.task('minify-js', ['concat-js', 'html2js'], function() {
-	return gulp.src([paths.build + '/' + pkg.name + '-no-tpls.js',
+	return gulp.src([paths.build + '/js/' + pkg.name + '-no-tpls.js',
 			paths.build + '/' + pkg.name + '-tpls.js'])
 		.pipe(concat(pkg.name + '.js'))
-    	.pipe(gulp.dest(paths.build))
+    	.pipe(gulp.dest(paths.build + '/js'))
     	.pipe(uglify())
 		.pipe(concat(pkg.name + '.min.js'))
-    	.pipe(gulp.dest(paths.build));
+    	.pipe(gulp.dest(paths.build + '/js'));
 });
 
 // converts, minifies and concatenates html partials
@@ -143,7 +142,7 @@ gulp.task('html2js', function() {
 		.pipe(minifyHtml())
 		.pipe(ngHtml2Js({ moduleName: 'idai.templates', stripPrefix: 'src/' }))
 		.pipe(concat(pkg.name + '-tpls.js'))
-		.pipe(gulp.dest(paths.build));
+		.pipe(gulp.dest(paths.build + '/js'));
 });
 
 gulp.task('copy-fonts', function() {
@@ -152,15 +151,16 @@ gulp.task('copy-fonts', function() {
 });
 
 
-// Copy Leaflet Images
-gulp.task('copy-leaflet-images',['minify-leaflet-css'],function() {
+// Copy brand images and Leaflet-lib-images
+gulp.task('copy-images',['minify-leaflet-css'],function() {
     gulp.src([
     	paths.bower + '/leaflet/dist/images/**',
     	paths.bower + '/leaflet-fullscreen/dist/**',
     	paths.bower + '/leaflet-measure/dist/images/**',
-    	paths.bower + '/Leaflet.NavBar/src/img/**'
+    	paths.bower + '/Leaflet.NavBar/src/img/**',
+    	'img/**'
     	])
-        .pipe(gulp.dest(paths.build+'/images'));
+        .pipe(gulp.dest(paths.build+'/img'));
     });
 
 
@@ -174,7 +174,7 @@ gulp.task('build', [
 	'copy-fonts',
 	'concat-leaflet-js',
 	'minify-leaflet-css',
-	'copy-leaflet-images',
+	'copy-images',
 	'concat-metadata-js',
 ]);
 

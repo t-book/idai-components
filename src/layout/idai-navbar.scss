@@ -10,6 +10,10 @@
     }
   }
 
+  form#search{
+    margin-top:0px;
+  }
+
   #brand-img {
 
     height: 38px;
@@ -175,3 +179,43 @@
 .selected-language {
   background-color: #ddd;
 }
+
+// Geonode Template Styles
+.navbar-brand {
+    width: 205px;
+    height: 40px;
+}
+
+.navbar-inverse {
+    height: 40px;
+    background: #6786ad;
+    color: white;
+}
+
+.navbar-collapse {
+    color: white;
+}
+
+.navbar-nav {
+    color: white;
+}
+
+.nav {
+    color: white;
+}
+
+.navbar-right {
+    color: white;
+    position: fixed;
+    top: 0px;
+    right: 116px;
+}
+
+.navbar-fixed-top{
+  -webkit-box-shadow: inset 0px -5px 6px 0px rgba(50, 50, 50, 0.3);
+  -moz-box-shadow: inset  0px -5px 6px 0px rgba(50, 50, 50, 0.3);
+  box-shadow: inset 0px -5px 6px 0px rgba(50, 50, 50, 0.3);
+}
+
+
+
