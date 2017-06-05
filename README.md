@@ -37,6 +37,7 @@ dist/css/idai-components.min.css # minified full css including bootstrap
 dist/css/idai-leaflet.min.css  # minified full css for geonode leaflet preview map
 
 dist/img # images for geonode leaflet plugins and dai branding
+dist/fonts # fonts for bootstrap theme
 ```
 
 In most cases only `idai-components.min.js` and `idai-components.min.css` need
