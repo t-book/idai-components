@@ -28,11 +28,15 @@ dist/idai-components.min.js     # minified full js library without dependencies
 dist/idai-components-deps.js      # concatenated and minified dependencies
 dist/idai-components-no-tpls.js  # js library without the templates
 dist/idai-components-tpls.js     # angular templates
+dist/idai-leaflet-components.min.js  # uglified geonode leaflet and components
+dist/idai-BE-metadata.min.js  # uglified jquery script for metadataform
+dist/idai-FE-format-layer-detail.min.js  # uglified jquery script to format layer metadata
+
 dist/css/idai-components.css     # full css including bootstrap
 dist/css/idai-components.min.css # minified full css including bootstrap
 dist/css/idai-leaflet.min.css  # minified full css for geonode leaflet preview map
-dist/idai-leaflet-components.min.js  # uglified geonode leaflet and components
-dist/images # images for geonode leaflet layer preview map
+
+dist/img # images for geonode leaflet plugins and dai branding
 ```
 
 In most cases only `idai-components.min.js` and `idai-components.min.css` need
