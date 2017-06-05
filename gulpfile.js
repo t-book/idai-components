@@ -12,6 +12,7 @@ var ngHtml2Js = require("gulp-ng-html2js");
 var minifyHtml = require("gulp-minify-html");
 var Server = require('karma').Server;
 var replace = require('gulp-replace');
+var babel = require('gulp-babel');
 
 var pkg = require('./package.json');
 
@@ -19,7 +20,8 @@ var paths = {
 	'build': 'dist/',
 	'lib': 'node_modules/',
 	'bootstrap': 'node_modules/bootstrap-sass/assets/',
-	'bower': 'bower_components/'
+	'bower': 'bower_components/',
+	'geonode': 'geonode_src/'
 };
 
 // compile sass and concatenate to single css file in build dir
@@ -33,7 +35,10 @@ gulp.task('sass', function() {
 
 // minify css files in build dir
 gulp.task('minify-css', ['sass'], function() {
-	return gulp.src(paths.build + '/css/*.css')
+	return gulp.src([
+		paths.build + '/css/*.css',
+		paths.bower + 'select2/dist/css/select2.css',
+		])
 		.pipe(minifyCss())
   		.pipe(concat(pkg.name + '.min.css'))
 		.pipe(gulp.dest(paths.build + '/css'));
@@ -48,7 +53,7 @@ gulp.task('minify-leaflet-css', function() {
             paths.bower + 'leaflet-measure/dist/leaflet-measure.css',
             paths.bower + 'Leaflet.NavBar/src/Leaflet.NavBar.css',
             paths.bower + 'Leaflet.Coordinates/src/Control.Coordinates.css',
-            './src/css/dai-leafletstyles.css'
+            paths.geonode + 'css/idai-leafletstyles.css'
 		])
 		.pipe(replace('fullscreen.png', '../images/fullscreen.png'))
 		.pipe(replace('img/', '../images/'))
@@ -82,7 +87,7 @@ gulp.task('concat-deps', function() {
 });
 
 // concatenates and minifies all leaflet dependecies into a single file 
-gulp.task('concat-leaflet', function(){
+gulp.task('concat-leaflet-js', function(){
     return gulp.src([
                 paths.bower + 'leaflet/dist/leaflet-src.js', 
                 paths.bower + 'leaflet-fullscreen/dist/leaflet.fullscreen.js',
@@ -94,9 +99,28 @@ gulp.task('concat-leaflet', function(){
                 paths.bower + 'Leaflet.Coordinates/src/Control.Coordinates.js',
                 paths.bower + 'jquery/dist/jquery.js',
                 paths.bower + 'col-resizable/colResizable-1.6.js',
-                './src/js/removeEmptyCells.js',
+                paths.geonode + 'js/removeEmptyCells.js',
 	     ])
         .pipe(concat('idai-leaflet-components.min.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest(paths.build));
+});
+
+// concatenates and minifies all Metadata dependecies into a single file 
+gulp.task('concat-metadata-js', function(){
+    gulp.src([ paths.geonode + 'js/idai_FE-format-layer-detail.js' ])
+        .pipe(concat('idai_FE-format-layer-detail.min.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest(paths.build));
+    
+    return gulp.src([
+    			paths.bower + 'select2/dist/js/select2.full.js',
+                paths.geonode + 'js/idai_BE-new-layer-meta.js'
+	     ])
+        .pipe(concat('idai_BE-metadata.min.js'))
+        .pipe(babel({
+            presets: ['es2015']
+        }))
         .pipe(uglify())
         .pipe(gulp.dest(paths.build));
 });
@@ -148,9 +172,10 @@ gulp.task('build', [
 	'html2js',
 	'minify-js',
 	'copy-fonts',
-	'concat-leaflet',
+	'concat-leaflet-js',
 	'minify-leaflet-css',
-	'copy-leaflet-images'
+	'copy-leaflet-images',
+	'concat-metadata-js',
 ]);
 
 // clean
