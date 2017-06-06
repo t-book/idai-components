@@ -98,6 +98,7 @@ gulp.task('concat-leaflet-js', function(){
                 paths.bower + 'Leaflet.Coordinates/src/Control.Coordinates.js',
                 paths.bower + 'jquery/dist/jquery.js',
                 paths.bower + 'col-resizable/colResizable-1.6.js',
+                paths.bower + 'autolink/autolink-min.js',
                 paths.geonode + 'js/removeEmptyCells.js',
 	     ])
         .pipe(concat('idai-leaflet-components.min.js'))
