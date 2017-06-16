@@ -127,13 +127,22 @@ gulp.task('concat-metadata-js', function(){
 
 // minifies and concatenates js files in build dir
 gulp.task('minify-js', ['concat-js', 'html2js'], function() {
-	return gulp.src([paths.build + '/js/' + pkg.name + '-no-tpls.js',
+	gulp.src([paths.build + '/js/' + pkg.name + '-no-tpls.js',
 			paths.build + '/' + pkg.name + '-tpls.js'])
 		.pipe(concat(pkg.name + '.js'))
     	.pipe(gulp.dest(paths.build + '/js'))
     	.pipe(uglify())
 		.pipe(concat(pkg.name + '.min.js'))
     	.pipe(gulp.dest(paths.build + '/js'));
+
+    // concat cart.js with session cookie
+    return gulp.src([
+    			paths.lib + 'angular-cookies/angular-cookies.js',
+                paths.geonode + 'js/cart_session.js'
+	     ])
+        .pipe(concat('cart_session.min.js'))
+	    .pipe(uglify({mangle:false}))
+        .pipe(gulp.dest(paths.build + '/js'));
 });
 
 // converts, minifies and concatenates html partials
